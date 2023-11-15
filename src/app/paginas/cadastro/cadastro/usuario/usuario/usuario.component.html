@@ -1,0 +1,45 @@
+<div class="bg-fundo">
+    <div class="bg">
+        <div class="cadastro">
+            <div class="cadastro-conteudo">
+                <div class="header">Perfil de {{ usuario.nome }}</div>
+            </div>
+            <div>
+                <p>Nome: </p>
+                <span>{{ usuario.nome }}</span>
+            </div>
+
+            <div>
+                <p>Username: </p>
+                <span>&#64;{{ usuario.username }}</span>
+            </div>
+
+            <div>
+                <p>Email: </p>
+                <span>{{ usuario.email }}</span>
+            </div>
+
+            <div>
+                <p>Senha: </p>
+                <span>{{ usuario.senha }}</span>
+            </div>
+
+            <div class="box">
+                <div class="data-nascimento">
+                    <label for="data-nascimento">Data de Nascimento:</label>
+                    <span>{{ usuario.data_nascimento }}</span>
+                </div>
+
+            </div>
+
+            <div class="box-arquivo">
+                <p>Foto de perfil</p>
+            </div>
+
+            <div class="box">
+                <p>Tipo de perfil</p>
+                <span>{{ usuario.tipo_perfil }}</span>
+            </div>
+        </div>   
+    </div>
+</div>
