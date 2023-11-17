@@ -1,0 +1,35 @@
+<section class="perfil-usuario">
+    <div class="conteudo-perfil">
+        <div class="capa-perfil" style="background-image: url('https://i0.wp.com/worldgbctourevent.fr/wp-content/uploads/2018/01/banner-bg-1.jpg?ssl=1');">
+            <div class="sombra"></div>
+            <div class="foto-perfil">
+                <img src="https://static.hitek.fr/img/up_m/1924884110/chatikirugrimacesphotos23.jpg" alt="img">
+                <a href="#" class="alterar-foto">
+                    <i class="fas fa-camera"></i> 
+                    <span>Alterar foto</span>
+                </a>
+            </div>
+            <div class="dados-perfil">
+                <h4 class="titulo-usuario">{{ usuario.nome }}</h4>
+                <h2 class="titulo-perfil">Eu sou &#35;{{ usuario.tipo_perfil }}</h2>
+                <p class="bio-usuario">{{ usuario.bio }}</p>
+                <ul class="lista-perfil">
+                    <li>32 Publicações</li>
+                    <li>35 Seguidores</li>
+                    <li>7 Seguidos</li>
+                </ul>
+            </div>
+            <div class="opcoes-perfil">
+                <button type="">Alterar capa</button>
+                <button type=""><i class="fas fa-wrench"></i></button>
+            </div>
+        </div>
+        <div class="menu-perfil">
+            <ul>
+                <li><a href="#" title=""><i class="icono-perfil fas fa-info-circle"></i> Informações</a></li>
+                <li><a href="#" title=""><i class="icono-perfil fas fa-bullhorn"></i> Publicações</a></li>
+                <li><a href="#" title=""><i class="icono-perfil fas fa-grin"></i> Seguidores</a></li>
+                <li><a href="#" title=""><i class="icono-perfil fas fa-grin"></i> Seguindo</a></li>
+            </ul>
+        </div>
+    </div>

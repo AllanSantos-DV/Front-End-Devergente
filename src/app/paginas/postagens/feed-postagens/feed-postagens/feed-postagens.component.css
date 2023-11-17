@@ -1,0 +1,42 @@
+@font-face {
+    font-family: 'OpenDyslexic';
+    src: url('./../../../../../assets/fonts/OpenDyslexic-Regular.otf'),
+         url('./../../../../../assets/fonts/OpenDyslexic-Bold.otf'),
+         url('./../../../../../assets/fonts/OpenDyslexic-Italic.otf'),
+         url('./../../../../../assets/fonts/OpenDyslexic-BoldItalic.otf');
+  }
+  
+ 
+ :root {
+     --azul: #55ACEE;
+     --verde: #12BD12;
+     --laranja: #FF7800;
+     --roxo: #800080;
+     --vermelho: #F7000F;
+     --amarelo: #FFCD32;
+   }
+
+.bg-fundo {
+    width: 100%;
+    height: 100%;
+}
+
+.bg {
+    width: 100%;
+    height: 100%;
+    background-color: var(--roxo);
+    background-size: cover;
+    background-position: center; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 100%;
+    min-height: 800px;
+}
+
+.post-button {
+    position: fixed;
+    bottom: 2em;
+    right: 2em;
+}

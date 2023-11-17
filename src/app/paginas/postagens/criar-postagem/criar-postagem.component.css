@@ -1,0 +1,28 @@
+#photo-upload {
+    display: none;
+}
+
+textarea {
+    font-size: 1.5em;
+    padding: 1em;
+    resize: none;
+    width: 250px;
+    min-height: 200px;
+    border: none;
+    outline: none;
+}
+
+#img-previa-box {
+    text-align: right;
+    margin-top: 1em;
+    padding: 1em;
+}
+
+#img-previa {
+    object-fit: cover;
+    object-position: center;
+    width: 150px;
+    height: 100px;
+    border-radius: 1em;
+    border: 1px dashed blue;
+}
