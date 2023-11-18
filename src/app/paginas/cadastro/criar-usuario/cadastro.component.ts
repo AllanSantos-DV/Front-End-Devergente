@@ -34,8 +34,9 @@ export class CadastroComponent {
   };
 
   cadastroUsuario() {
-    let newDate: moment.Moment = moment.utc(this.formularioCadastro.value.data_nascimento).local();
-    this.formularioCadastro.value.data_nascimento = newDate.format("YYYY-MM-DD");
+    let dataNascimento = moment(this.formularioCadastro.value.data_nascimento, "DD-MM-YYYY");
+    let dataFormatada = new Date(dataNascimento.year(), dataNascimento.month(), dataNascimento.date());
+    let usuario = { ...this.formularioCadastro.value, data_nascimento: dataFormatada };
 
     this.service.criarUsuario(this.formularioCadastro.value).subscribe((res: any) => {
       alert("Cadastro realizado com sucesso!");
@@ -44,5 +45,9 @@ export class CadastroComponent {
     }, (err: Error) => {
       alert("Não foi possível realizar o seu cadastro")
     });
+  }
+
+  cancelar() {
+    this.router.navigate(['bem-vindo'])
   }
 }

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import * as moment from 'moment';
@@ -13,7 +13,7 @@ import { Usuario } from 'src/app/interfaces/usuario';
 })
 export class EditarUsuarioComponent {
 
-  public formularioCadastro!: FormGroup;
+  public formularioAtualizacao!: FormGroup;
 
   usuario: Usuario = {
     id: 0,
@@ -31,35 +31,45 @@ export class EditarUsuarioComponent {
   }
 
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id')
+    const id = this.route.snapshot.paramMap.get('id');
+    console.log('ID recuperado da rota:', id); // Adicione esta linha
     this.usuarioService.buscarPorId(parseInt(id!)).subscribe((usuario) => {
-      this.usuario = usuario
-    })
+      console.log('Usuário recuperado do serviço:', usuario); // Adicione esta linha
+      this.usuario = usuario;
+    });
 
-    this.formularioCadastro = this.formBuilder.group ({
-      nome: ['',[Validators.required]],
-      username: ['',[Validators.required, 
-        Validators.pattern(/^[^\s]*$/)]],
-      email: ['',[Validators.required, Validators.email]],
-      senha: ['',[Validators.required, 
+    this.formularioAtualizacao = this.formBuilder.group ({
+      id: [this.usuario.id],
+      nome: [''],
+      username: [[''], [Validators.pattern(/^[^\s]*$/)]],
+      email: ['', Validators.email],
+      senha: ['',[ 
         Validators.minLength(8),
         Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/)]],
-      data_nascimento: ['',[Validators.required]],
-      foto_perfil: ['',[Validators.required]],
-      tipo_perfil: ['', [Validators.required]] 
+      data_nascimento: [''],
+      foto_perfil: '',
+      tipo_perfil: '',
     })
   };
 
   editarUsuario() {
-    let newDate: moment.Moment = moment.utc(this.formularioCadastro.value.data_nascimento).local();
-    this.formularioCadastro.value.data_nascimento = newDate.format("YYYY-MM-DD");
+    let newDate: moment.Moment = moment.utc(this.formularioAtualizacao.value.data_nascimento).local();
+    this.formularioAtualizacao.value.data_nascimento = newDate.format("YYYY-MM-DD");
 
-    this.usuarioService.editarUsuario(this.formularioCadastro.value).subscribe((res: any) => {
-      alert("Usuário atualizado com sucesso!");
-      this.formularioCadastro.reset();
-      this.router.navigate(['perfil/:id']);
+    this.usuarioService.editarUsuario(this.usuario).subscribe((res: any) => {
+      alert("Perfil atualizado com sucesso!");
+      this.formularioAtualizacao.reset();
+      this.router.navigate(['/perfil', this.usuario.id]);
     }, (err: Error) => {
-      alert("Não foi possível atualizar o usuário")
+      alert("Não foi possível atualizar o seu perfil")
     });
+  }
+
+  cancelar() {
+    this.router.navigate(['/perfil', this.usuario.id])
+  }
+
+  excluirUsuario() {
+    this.router.navigate(['/excluir-perfil', this.usuario.id])
   }
 }

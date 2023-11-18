@@ -2,46 +2,34 @@
     <div class="bg">
         <div class="cadastro">
             <div class="cadastro-conteudo">
-                <div class="header">Crie sua conta</div>
+                <div class="header">Editar perfil de {{ usuario.nome }}</div>
             </div>
-            <form [formGroup]="formularioCadastro" (ngSubmit)="editarUsuario()">
+            <form [formGroup]="formularioAtualizacao" (ngSubmit)="editarUsuario()">
                 <div>
-                    <input formControlName="nome" type="text" placeholder="Nome"/>
-                </div>
-                <div class="alertas-input" *ngIf="formularioCadastro.get('nome')?.hasError('required')">
-                    * O campo nome é obrigatório.
-                  </div>
-
-                <div>
-                    <input formControlName="username" type="text" placeholder="Username"/>
-                </div>
-                <div class="alertas-input" *ngIf="formularioCadastro.get('username')?.hasError('required')">
-                    * O campo username é obrigatório.
-                </div>
-                <div class="alertas-input" *ngIf="formularioCadastro.get('username')?.hasError('pattern')">
-                    * O username pode conter espaços.
+                    <input formControlName="nome" type="text" placeholder="Nome" [(ngModel)]="usuario.nome"/>
                 </div>
 
                 <div>
-                    <input formControlName="email" type="email" placeholder="email"/>
+                    <input formControlName="username" type="text" placeholder="username" [(ngModel)]="usuario.username"/>
                 </div>
-                <div class="alertas-input" *ngIf="formularioCadastro.get('email')?.hasError('required')">
-                    * O campo e-mail é obrigatório.
+                <div class="alertas-input" *ngIf="formularioAtualizacao.get('username')?.hasError('pattern')">
+                    * O username não pode conter espaços.
                 </div>
-                <div class="alertas-input" *ngIf="formularioCadastro.get('email')?.hasError('email')">
+
+                <div>
+                    <input formControlName="email" type="email" placeholder="email" [(ngModel)]="usuario.email"/>
+                </div>
+                <div class="alertas-input" *ngIf="formularioAtualizacao.get('email')?.hasError('email')">
                     * Formato de email inválido.
                 </div>
 
                 <div>
                     <input formControlName="senha" type="password" placeholder="senha"/>
                 </div>
-                <div class="alertas-input" *ngIf="formularioCadastro.get('senha')?.hasError('required')">
-                    * A senha é obrigatória.
-                  </div>
-                  <div class="alertas-input" *ngIf="formularioCadastro.get('senha')?.hasError('minlength')">
+                  <div class="alertas-input" *ngIf="formularioAtualizacao.get('senha')?.hasError('minlength')">
                     * A senha deve ter pelo menos 8 caracteres.
                   </div>
-                  <div class="alertas-input" *ngIf="formularioCadastro.get('senha')?.hasError('pattern')">
+                  <div class="alertas-input" *ngIf="formularioAtualizacao.get('senha')?.hasError('pattern')">
                     * A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.
                   </div>
 
@@ -52,13 +40,16 @@
                 <div class="data-nascimento">
                     <mat-form-field>
                         <mat-label>Escolha uma data</mat-label>
-                        <input matInput [matDatepicker]="picker" formControlName="data_nascimento" name="data_nascimento">
+                        <input matInput [matDatepicker]="picker" formControlName="data_nascimento" placeholder="data_nascimento" name="data_nascimento" [(ngModel)]="usuario.data_nascimento">
                         <mat-hint>DD/MM/YYYY</mat-hint>
                         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                       </mat-form-field>
                 </div>
                 </div>
+                <div class="alertas-input" *ngIf="formularioAtualizacao.get('data-nascimento')?.hasError('maiorDe18Anos()')">
+                    * O usuário é menor de 18 anos e não pode participar do DeVerGente
+                  </div>
 
                 <div class="box">
                         Imagem do Perfil
@@ -67,25 +58,10 @@
                     </div>
                 </div>
 
-                <div class="box">
-                    <p>Tipo de perfil</p>
-                    <div class="box-perfil">
-                        <input type="radio" id="neurodivergente" name="tipo_perfil" value="neurodivergente" formControlName="tipo_perfil">
-                        <label for="neurodivergente">Neurodivergente</label><br>
-                        <input type="radio" id="familiar" name="tipo_perfil" value="familiar" formControlName="tipo_perfil">
-                        <label for="familiar">Familiar de neurodivergente</label><br>
-                        <input type="radio" id="profissional" name="tipo_perfil" value="profissional" formControlName="tipo_perfil">
-                        <label for="profissional">Profissional de saúde mental</label><br>
-                        <input type="radio" id="empregador" name="tipo_perfil" value="empregador" formControlName="tipo_perfil">
-                        <label for="empregador">Empregador</label><br>
-                    </div>
-                    <div class="alertas-input" *ngIf="formularioCadastro.get('tipo-perfil')?.hasError('required')">
-                        * O campo tipo de perfil é obrigatório.
-                    </div>
-                </div>
                 <div class="btn-opcoes">
-                    <button mat-raised-button routerLink="/bem-vindo">Cancelar</button>
-                    <button mat-raised-button>Atualizar Usuario</button>
+                    <button mat-raised-button (click)="cancelar()">Cancelar</button>
+                    <button mat-raised-button class="btn-alerta" (click)="excluirUsuario()">Excluir Perfil</button>
+                    <button mat-raised-button>Atualizar Perfil</button>
                 </div>
             </form>
         </div>   

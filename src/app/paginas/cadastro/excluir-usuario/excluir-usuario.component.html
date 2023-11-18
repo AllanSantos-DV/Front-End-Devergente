@@ -1,0 +1,29 @@
+<div class="bg-fundo">
+    <div class="bg">
+        <div class="cadastro">
+            <div class="cadastro-conteudo">
+                <div class="header">Excluir perfil de {{ usuario.nome }}</div>
+            </div>
+
+            <div><p>Se você deseja excluir esta conta, digite seu email e senha</p></div>
+            <form [formGroup]="formularioExclusao" (ngSubmit)="excluirConta()">
+
+                <div>
+                    <input formControlName="email" type="email" placeholder="email" [(ngModel)]="usuario.email"/>
+                </div>
+                <div class="alertas-input" *ngIf="formularioExclusao.get('email')?.hasError('email')">
+                    * Formato de email inválido.
+                </div>
+
+                <div>
+                    <input formControlName="senha" type="password" placeholder="senha"/>
+                </div>
+                <div class="alertas-input" *ngIf="formularioExclusao.get('senha')?.hasError('minlength')">
+                    * A senha deve ter pelo menos 8 caracteres.
+                </div>
+
+                <button class="btn-alerta">Excluir conta</button>
+            </form>
+        </div>
+    </div>
+</div>

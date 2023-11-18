@@ -19,7 +19,7 @@
                     * O campo username é obrigatório.
                 </div>
                 <div class="alertas-input" *ngIf="formularioCadastro.get('username')?.hasError('pattern')">
-                    * O username pode conter espaços.
+                    * O username não pode conter espaços.
                 </div>
 
                 <div>
@@ -84,7 +84,7 @@
                     </div>
                 </div>
                 <div class="btn-opcoes">
-                    <button mat-raised-button routerLink="/bem-vindo">Cancelar</button>
+                    <button mat-raised-button (click)="cancelar()">Cancelar</button>
                     <button mat-raised-button>Criar Usuario</button>
                 </div>
             </form>

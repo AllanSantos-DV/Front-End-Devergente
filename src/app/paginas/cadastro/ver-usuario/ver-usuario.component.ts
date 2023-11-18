@@ -37,13 +37,17 @@ export class VerUsuarioComponent {
 
   exibirPerfil() {
     this.usuarioService.listarUsuario(this.usuario).subscribe(() => {
-      this.router.navigate(['/perfil/:id'])
+      this.router.navigate(['/perfil', this.usuario.id])
     })
 
   }
 
   cancelar() {
     this.router.navigate(['/feed'])
+  }
+
+  editarPerfil() {
+    this.router.navigate(['/editar-perfil', this.usuario.id])
   }
 
 }
