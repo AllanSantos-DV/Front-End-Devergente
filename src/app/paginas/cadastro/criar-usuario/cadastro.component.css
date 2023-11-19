@@ -1,3 +1,13 @@
+@font-face {
+   font-family: 'OpenDyslexic';
+   src:  url('./../../../../assets/fonts/OpenDyslexic-Regular.otf'),
+         url('./../../../../assets/fonts/OpenDyslexic-Bold.otf'),
+         url('./../../../../assets/fonts/OpenDyslexic-BoldItalic.otf'),
+         url('./../../../../assets/fonts/OpenDyslexic-Italic.otf');
+      
+   /* Outros formatos de arquivo podem ser adicionados aqui */
+ }
+
 :root {
     --azul: #55ACEE;
     --verde: #12BD12;
@@ -7,6 +17,7 @@
     --amarelo: #FFCD32;
   }
 
+
 .bg-fundo {
    width: 100%;
    height: 100%;
@@ -14,7 +25,7 @@
 
 .bg {
    width: 100%;
-   background-color: var(--roxo);
+   background: linear-gradient(#800080, #F7000F, #FF7800, transparent);
    background-size: cover;
    background-position: center; 
    display: flex;
@@ -27,11 +38,12 @@
 
 .cadastro {
    width: 40%;
-   background-color: var(--azul);
+   background: rgba(255, 255, 255, .6);
    border-radius: 25px;
    justify-content: center;
    align-items: center;
    padding: 3em;
+   margin: 3em;
 }
 
 .cadastro:hover {
@@ -81,9 +93,8 @@
    padding: .5em;
 }
 
-.data-nascimento select {
+.data-nascimento {
    font-family: 'OpenDyslexic';
-   background-color: white;
    color: black;
    font-size: .8em;
    padding: .5em;

@@ -12,8 +12,24 @@ import * as moment from 'moment';
 })
 export class CadastroComponent {
 
+  dataNascimento: Date | null = null;
+
   public formularioCadastro!: FormGroup;
 
+  maiorIdade = (data: Date | null): boolean => {
+    this.dataNascimento = data;
+    if (data) {
+      const dataAtual = new Date();
+      const dataMinima = new Date(
+        dataAtual.getFullYear() - 18,
+        dataAtual.getMonth(),
+        dataAtual.getDate()
+      );
+      return data <= dataMinima;
+    }
+    return false;
+  };
+  
   constructor(private formBuilder: FormBuilder, private service: UsuarioService, private http: HttpClient, private router: Router) {
 
   }
@@ -29,7 +45,6 @@ export class CadastroComponent {
         Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/)]],
       data_nascimento: ['',[Validators.required]],
       foto_perfil: ['',[Validators.required]],
-      tipo_perfil: ['', [Validators.required]] 
     })
   };
 

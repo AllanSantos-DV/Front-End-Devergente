@@ -46,43 +46,22 @@
                   </div>
 
                 <div class="box">
-                   <div class="data-nascimento">
-                    <label for="data-nascimento">Data de Nascimento:</label>
-                </div>
-                <div class="data-nascimento">
+                    
                     <mat-form-field>
-                        <mat-label>Escolha uma data</mat-label>
-                        <input matInput [matDatepicker]="picker" formControlName="data_nascimento" name="data_nascimento">
+                        <mat-label>Data de nascimento</mat-label>
+                        <input matInput [matDatepickerFilter]="maiorIdade" [matDatepicker]="picker" formControlName="data_nascimento" name="data_nascimento">
                         <mat-hint>DD/MM/YYYY</mat-hint>
                         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                       </mat-form-field>
-                </div>
+                      
+
                 </div>
 
-                <div class="box">
-                        Imagem do Perfil
-                    <div class="box">
-                     <!--   <app-controle-imagem [width]="200" [height]="200"></app-controle-imagem> -->
-                    </div>
-                </div>
-
-                <div class="box">
-                    <p>Tipo de perfil</p>
-                    <div class="box-perfil">
-                        <input type="radio" id="neurodivergente" name="tipo_perfil" value="neurodivergente" formControlName="tipo_perfil">
-                        <label for="neurodivergente">Neurodivergente</label><br>
-                        <input type="radio" id="familiar" name="tipo_perfil" value="familiar" formControlName="tipo_perfil">
-                        <label for="familiar">Familiar de neurodivergente</label><br>
-                        <input type="radio" id="profissional" name="tipo_perfil" value="profissional" formControlName="tipo_perfil">
-                        <label for="profissional">Profissional de saúde mental</label><br>
-                        <input type="radio" id="empregador" name="tipo_perfil" value="empregador" formControlName="tipo_perfil">
-                        <label for="empregador">Empregador</label><br>
-                    </div>
-                    <div class="alertas-input" *ngIf="formularioCadastro.get('tipo-perfil')?.hasError('required')">
-                        * O campo tipo de perfil é obrigatório.
-                    </div>
-                </div>
+                <div class="alertas-input" *ngIf="dataNascimento && !maiorIdade(dataNascimento)">
+                    * Não permitimos o cadastro de menores de 18 anos
+                  </div>
+                
                 <div class="btn-opcoes">
                     <button mat-raised-button (click)="cancelar()">Cancelar</button>
                     <button mat-raised-button>Criar Usuario</button>
