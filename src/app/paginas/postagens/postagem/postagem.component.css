@@ -1,0 +1,33 @@
+@font-face {
+    font-family: 'OpenDyslexic';
+    src: url('./../../../../assets/fonts/OpenDyslexic-Regular.otf'),
+         url('./../../../../assets/fonts/OpenDyslexic-Bold.otf'),
+         url('./../../../../assets/fonts/OpenDyslexic-Italic.otf'),
+         url('./../../../../assets/fonts/OpenDyslexic-BoldItalic.otf');
+  }
+  
+ 
+ :root {
+     --azul: #55ACEE;
+     --verde: #12BD12;
+     --laranja: #FF7800;
+     --roxo: #800080;
+     --vermelho: #F7000F;
+     --amarelo: #FFCD32;
+   }
+
+.acoes {
+    color: #FFCD32;
+    margin-left: .5em;
+    cursor: pointer;
+}
+
+
+
+img {
+    max-width: 465px;
+}
+
+mat-card {
+    margin-top: 1em;
+}

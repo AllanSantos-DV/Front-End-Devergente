@@ -1,21 +1,24 @@
-<mat-card>
-    <mat-card-header>
-        <mat-card-title>Criar Postagem</mat-card-title>
-    </mat-card-header>
-    <div>
-        <textarea placeholder="Digite sua mensagem"></textarea>
-    </div>
-    <div *ngIf="imagemSelecionada" id="img-previa-box">
-        <img id="img-previa">
-    </div>
-    <mat-card-actions align="end">
-        <button mat-button>
-            <label for="photo-upload">
-                <input #photoSelector (change)="onPhotoSelected(photoSelector)" id="photo-upload" type="file" accept=".jpg, .jpeg, .png">
-                <mat-icon>insert_photo</mat-icon>
-            </label>
-        </button>
-        <button mat mat-raised-button routerLink="feed">Cancelar</button>
-        <button mat mat-raised-button>Publicar</button>
-    </mat-card-actions>
-</mat-card>
+<form [formGroup]="formPostagem" (ngSubmit)="criarPostagem()">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Criar Postagem</mat-card-title>
+        </mat-card-header>
+        <div>
+            <textarea formControlName="conteudo" type="textarea" placeholder="Digite sua mensagem"></textarea>
+        </div>
+        <div *ngIf="imagemSelecionada" formControlName="imagemUrl" id="img-previa-box">
+            <img id="img-previa">
+        </div>
+        <mat-card-actions align="end">
+            <button mat-button type="button">
+                <label for="photo-upload">
+                    <input #photoSelector (change)="onPhotoSelected(photoSelector)" id="photo-upload" type="file"
+                        accept=".jpg, .jpeg, .png">
+                    <mat-icon>insert_photo</mat-icon>
+                </label>
+            </button>
+            <button mat mat-raised-button type="button" (click)="cancelarPostagem()">Cancelar</button>
+            <button mat mat-raised-button type="submit">Publicar</button>
+        </mat-card-actions>
+    </mat-card>
+</form>

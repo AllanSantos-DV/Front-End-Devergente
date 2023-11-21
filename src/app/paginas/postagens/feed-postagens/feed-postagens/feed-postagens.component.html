@@ -1,3 +1,21 @@
-<button (click)="criarPostagem()" mat-fab color="warm" class="post-button">
-    <mat-icon>add</mat-icon>
-</button>
+<app-nav-cabecalho></app-nav-cabecalho>
+<div class="bg">
+    <section>
+        <div class="postagens-feed">
+            <div *ngIf="listaPostagens.length > 0, else semPostagens">
+                <div *ngFor="let postagem of listaPostagens">
+                    <app-postagem [postagem]="postagem"></app-postagem>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <ng-template #semPostagens>
+        <div class="semPostagens">
+            <p>As mensagens das pessoas que você segue aparecerão aqui</p>
+            <p>Amplie a sua rede, seguindo pessoas com os seus mesmos interesses!</p>
+        </div>
+    </ng-template>
+    <!-- <button (click)="criarPostagem()" mat-fab color="warm" class="post-button"></button> -->    
+</div>
+<app-nav-rodape></app-nav-rodape>

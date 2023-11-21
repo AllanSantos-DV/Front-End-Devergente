@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CriarPostagemComponent } from '../../criar-postagem/criar-postagem.component';
+import { PostagensService } from 'src/app/services/postagens.service';
+import { Postagem } from 'src/app/interfaces/postagem';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-feed-postagens',
@@ -9,11 +12,14 @@ import { CriarPostagemComponent } from '../../criar-postagem/criar-postagem.comp
 })
 export class FeedPostagensComponent {
 
-  constructor(private dialog: MatDialog) {
+  listaPostagens: Postagem[] = [];
 
-  }
 
-  criarPostagem() {
-    this.dialog.open(CriarPostagemComponent);
+  constructor(private postagemService: PostagensService) { }
+
+  ngOnInit(): void {
+    this.postagemService.listarPostagens().subscribe((listaPostagens) => {
+      this.listaPostagens = listaPostagens;
+    })
   }
 }
