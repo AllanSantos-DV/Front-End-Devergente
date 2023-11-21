@@ -11,6 +11,7 @@ export class UsuarioComponent {
       id: 0,
       nome: 'Eni Essi',
       username: 'EniEssi',
+      imagemUrl: '',
       email: 'teste@teste.com.br',
       senha: 'Teste@1234',
       data_nascimento: new Date('1998-11-13'),

@@ -9,6 +9,9 @@ export interface Familiar extends Usuario {
     data_nascimento: Date,
     foto_perfil: Blob,
     tipo_perfil: string,
-    tipo_familiar: string[],
-    interesses: string[], 
+    filho: boolean,
+    pai: boolean,
+    conjuge: boolean,
+    irmao: boolean,
+    namorado: boolean
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-cabecalho',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./nav-cabecalho.component.css']
 })
 export class NavCabecalhoComponent {
+  
+  constructor(
+    private router: Router
+  ) { }
 
+  inicio() {
+    this.router.navigate(['/feed'])
+  }
 }

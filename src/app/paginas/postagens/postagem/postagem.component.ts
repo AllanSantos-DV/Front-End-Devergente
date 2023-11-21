@@ -25,11 +25,35 @@ export class PostagemComponent {
     data: new Date()
   }
 
-  constructor(private router: Router,
+  constructor(private postagemService: PostagensService,
+    private router: Router,
     private dialog: MatDialog) {}
 
-    editarPostagem(id: number) {
-      this.dialog.open(CriarPostagemComponent);
+    editarPostagem(postagem: Postagem) {
+      const dialogRef = this.dialog.open(CriarPostagemComponent, {
+        data: { editar: postagem }
+      });
+    
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+      });
+    }
+
+    excluirPostagem(id: number | undefined) {
+      if(id) {
+        this.postagemService.excluirPostagem(id).
+        subscribe({
+          next:(res) => {
+            alert("Postagem deletada com sucesso")
+            location.reload();
+          },
+          error:() => {
+            alert("Erro ao deletar a postagem")
+          }
+        })
+      } else {
+        console.log(id)
+      }
     }
 
 }

@@ -1,0 +1,58 @@
+<div class="bg-fundo">
+    <div class="bg">
+        <div class="cadastro">
+            <div class="cadastro-conteudo">
+                <form [formGroup]="formularioUsuario" (ngSubmit)="tipoUsuario()">
+                <div class="box">
+                    <section class="app">
+                        <h3 class="gray-color">Você é: </h3>
+                        <article class="neurodivergente">
+                          <input type="checkbox" id="neurodivergente" formControlName="neurodivergente"/>
+                          <div>
+                            <span>
+                              Neurodivergente
+                            </span>
+                          </div>
+                        </article>
+                        
+                        <article class="familiar">
+                          <input type="checkbox" id="familiar" formControlName="familiar"/>
+                          <div>
+                            <span>
+                              Familiar
+                            </span>
+                          </div>
+                        </article>
+                        
+                        <article class="profissional">
+                          <input type="checkbox" id="prfissional" formControlName="profissional"/>
+                          <div>
+                            <span>
+                              Profissional
+                            </span>
+                          </div>
+                        </article>
+                        
+                        <article class="empregador">
+                          <input type="checkbox" id="empregador" formControlName="empregador"/>
+                          <div>
+                            <span>
+                              Empregador
+                            </span>
+                          </div>
+                        </article>
+                    </section>
+                </div>
+
+                <div class="alertas-input" *ngIf="formularioUsuario.errors?.['multipleSelection']">
+                  Não é possível selecionar mais de uma opção.
+                </div>
+                
+                <div class="btn-opcoes">
+                    <button mat-raised-button type="button" (click)="cancelar()">Cancelar</button>
+                    <button mat-raised-button type="submit">Criar Usuario</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -15,6 +15,7 @@ export class VerUsuarioComponent {
     id: 0,
     nome: '',
     username: '',
+    imagemUrl: '',
     email: '',
     senha: '',
     data_nascimento: null,

@@ -1,10 +1,13 @@
 <div class="nav-bar-cabecalho">
     <div class="nav-bar-cabecalho-conteudo">
         <div class="nav-bar-cabecalho-esquerda">
-            <img class="nav-bar-cabecalho-itens" src="./../../assets/img/logo.png">
+            <mat-icon>menu</mat-icon>
+        </div>
+        <div class="nav-bar-cabecalho-centro">
+            <img (click)="inicio()" class="nav-bar-cabecalho-itens" src="./../../assets/img/logo.png">
         </div>
         <div class="nav-bar-cabecalho-direita">
-            <div class="nav-bar-cabecalho-itens">Login</div>
+            <mat-icon>logout</mat-icon>
         </div>
     </div>
 </div>

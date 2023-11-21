@@ -4,6 +4,6 @@ export interface Postagem {
     id?: number,
     usuario: Usuario,
     conteudo: string,
-    imagem?: Blob,
+    imagemUrl: string,
     data: Date;
 }

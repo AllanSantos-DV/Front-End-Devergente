@@ -9,6 +9,8 @@ export interface Profissional extends Usuario {
     data_nascimento: Date,
     foto_perfil: Blob,
     tipo_perfil: string,
-    tipo_profissional: string[],
+    psicologo: boolean,
+    psiquiatra: boolean,
+    outros: boolean,
     registro_profissional: Blob 
 }

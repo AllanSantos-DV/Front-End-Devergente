@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Postagem } from 'src/app/interfaces/postagem';
 import { PostagensService } from 'src/app/services/postagens.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { PostagemComponent } from '../postagem/postagem.component';
 
 @Component({
   selector: 'app-criar-postagem',
@@ -25,34 +26,42 @@ export class CriarPostagemComponent {
     data: new Date()
   }
 
+  public editar!: Postagem;
+
   public formPostagem!: FormGroup;
+
+  acaoHeader: string = "Criar Postagem";
 
   imagemSelecionada!: File;
 
-  constructor(private formBuilder:FormBuilder, 
-    private service: PostagensService, 
+  constructor(private formBuilder: FormBuilder,
+    private service: PostagensService,
     private router: Router,
-    @Inject(MAT_DIALOG_DATA) public editar: Postagem,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private dialog: MatDialog,
     private dialogRef: MatDialogRef<CriarPostagemComponent>) {
 
-  this.formPostagem = this.formBuilder.group ({
+      if(this.data) {
+        this.editar = this.data.editar;
+      }
+
+    this.formPostagem = this.formBuilder.group({
       id: [0],
       usuario: this.formBuilder.group({
         id: [0],
         nome: [''],
         username: [''],
-      }), 
-      conteudo: ['',[Validators.required, Validators.minLength(3)]],
+      }),
+      conteudo: ['', [Validators.required, Validators.minLength(3)]],
       imagemUrl: ['', this.onPhotoSelected],
       data: [new Date().toLocaleString]
-  });
-}
+    });
+  }
 
   onPhotoSelected(onPhotoSelector: HTMLInputElement) {
     if (onPhotoSelector.files) {
       this.imagemSelecionada = onPhotoSelector.files[0];
-      if(!this.imagemSelecionada) return;
+      if (!this.imagemSelecionada) return;
       let fileReader = new FileReader();
       fileReader.readAsDataURL(this.imagemSelecionada);
       fileReader.addEventListener("loadend", ev => {
@@ -70,26 +79,42 @@ export class CriarPostagemComponent {
   }
 
   criarPostagem() {
-    this.service.criarPostagem(this.formPostagem.value).subscribe((res: any) => {
-      this.formPostagem.reset();
-      this.dialogRef.close();
-      this.router.navigate(['feed']);
-    }, (err: Error) => {
-      alert("Não foi possível criar sua postagem")
-    });
+    if (this.editar == null) {
+      this.service.criarPostagem(this.formPostagem.value).subscribe((res: any) => {
+        alert("Sua postagem foi criada com sucesso");
+        this.formPostagem.reset();
+        this.dialogRef.close('postagem criada');
+        location.reload();
+      }, (err: Error) => {
+        alert("Não foi possível criar sua postagem")
+      });
+    } else {
+      this.editarPostagem()
+    }
   }
 
-  editarPostagem(id: number) {
-    this.dialog.open(CriarPostagemComponent,  {
-      data:  { id: this.postagem.id },
-    });
-
-    this.dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
+  editarPostagem() {
+    if (this.editar && this.editar.id) {
+      this.service.editarPostagem(this.formPostagem.value, this.editar.id)
+      .subscribe({
+        next:(res) => {
+          alert("Sua postagem foi atualizada com sucesso");
+          this.formPostagem.reset();
+          this.dialogRef.close('postagem atualizada');
+          location.reload();
+        },
+        error:() => {
+          alert("Erro ao atualizar a postagem")
+        }
+      })
+    }
   }
 
   ngOnInit() {
-    console.log(this.editarPostagem);
+    if (this.editar) {
+      this.acaoHeader = "Editar postagem"
+      this.formPostagem.controls['conteudo'].setValue(this.editar.conteudo);
+      this.formPostagem.controls['imagemUrl'].setValue(this.editar.imagemUrl);
+    }
   }
 }

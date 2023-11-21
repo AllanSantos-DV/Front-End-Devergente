@@ -19,6 +19,7 @@ export class EditarUsuarioComponent {
     id: 0,
     nome: '',
     username: '',
+    imagemUrl: '',
     email: '',
     senha: '',
     data_nascimento: null,
@@ -32,9 +33,9 @@ export class EditarUsuarioComponent {
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
-    console.log('ID recuperado da rota:', id); // Adicione esta linha
+    console.log('ID recuperado da rota:', id); 
     this.usuarioService.buscarPorId(parseInt(id!)).subscribe((usuario) => {
-      console.log('Usuário recuperado do serviço:', usuario); // Adicione esta linha
+      console.log('Usuário recuperado do serviço:', usuario); 
       this.usuario = usuario;
     });
 

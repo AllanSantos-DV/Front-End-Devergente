@@ -1,0 +1,231 @@
+@font-face {
+    font-family: 'OpenDyslexic';
+    src:  url('./../../../../../assets/fonts/OpenDyslexic-Regular.otf'),
+          url('./../../../../../assets/fonts/OpenDyslexic-Bold.otf'),
+          url('./../../../../../assets/fonts/OpenDyslexic-BoldItalic.otf'),
+          url('./../../../../../assets/fonts/OpenDyslexic-Italic.otf');
+       
+    /* Outros formatos de arquivo podem ser adicionados aqui */
+  }
+ 
+ :root {
+     --azul: #55ACEE;
+     --verde: #12BD12;
+     --laranja: #FF7800;
+     --roxo: #800080;
+     --vermelho: #F7000F;
+     --amarelo: #FFCD32;
+   }
+ 
+ 
+ .bg-fundo {
+    width: 100%;
+    height: 100%;
+ }
+ 
+ .bg {
+    width: 100%;
+    background: linear-gradient(#800080, #FF7800, transparent);
+    background-size: cover;
+    background-position: center; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 100%;
+    min-height: 800px;
+ }
+ 
+ .cadastro {
+    width: 40%;
+    background: rgba(255, 255, 255, .6);
+    border-radius: 25px;
+    justify-content: center;
+    align-items: center;
+    padding: 3em;
+    margin: 3em;
+ }
+ 
+ .cadastro:hover {
+    box-shadow: 15px 15px white;
+ }
+ 
+ .cadastro-conteudo {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    max-width: 30em;
+    padding: 1.5em;
+ }
+ 
+ .header {
+    font-family: 'OpenDyslexic';
+    font-size: 30px;
+    justify-content: center;
+    display: flex;
+    padding: 1em;
+ }
+ 
+ .box {
+    font-family: 'OpenDyslexic';
+    background-color: white;
+    border-radius: 25px;
+    justify-content: center;
+    display: flex;
+    padding: 2em;
+    margin-top: 1em;
+ }
+ 
+ .box p {
+    font-family: 'OpenDyslexic';
+    justify-content: center;
+    display: flex;
+    text-align: center;
+ }
+ 
+ .data-nascimento {
+    font-family: 'OpenDyslexic';
+    justify-content: center;
+    display: flex;
+    padding: .5em;
+ }
+ 
+ .data-nascimento {
+    font-family: 'OpenDyslexic';
+    color: black;
+    font-size: .8em;
+    padding: .5em;
+    margin: 1em;
+ }
+ 
+ .box-arquivo {
+    font-family: 'OpenDyslexic';
+    background-color: white;
+    border-radius: 25px;
+    justify-content: center;
+ }
+ 
+ .box-arquivo p {
+    font-family: 'OpenDyslexic';
+    justify-content: center;
+    display: flex;
+ }
+ 
+ .box-arquivo input {
+    font-family: 'OpenDyslexic';
+    justify-content: center;
+    display: flex;
+    border: white;
+    padding: 1em;
+ }
+ 
+ .box-arquivo button {
+    font-family: 'OpenDyslexic';
+    background-color: #FF7800;
+    font-size: 1em;
+    padding: 1em;
+    margin: .5em;
+ }
+ 
+ .box-perfil {
+    font-family: 'OpenDyslexic';
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+    padding: 3em;
+ }
+ 
+ .btn-opcoes {
+    justify-content: center;
+    display: flex;
+ }
+ 
+ .btn-opcoes button {
+    font-family: 'OpenDyslexic';
+    background-color: #FF7800;
+    justify-content: center;
+    display: flex;
+    color: white;
+    font-size: 1em;
+    padding: 1em;
+    margin: .5em;
+ }
+ 
+ .btn-opcoes button:active {
+    background-color: white;
+    color: var(--laranja);
+ }
+ 
+ input {
+    background-color: white;
+    font-family: 'OpenDyslexic';
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    padding: 1em;
+    margin: .5em auto;
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid rgba(15, 15, 15, .3);
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+ }
+ 
+ .alertas-input {
+    font-family: 'OpenDyslexic';
+    color: var(--vermelho);
+    font-size: 1em;
+ }
+
+ .checkbox {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    text-align: center;
+}
+
+.checkbox-esquerda .checkbox-direita {
+    text-align: center;
+    padding: 1em;
+    display:grid;
+}
+ 
+article {
+    position: relative;
+    width: 7em;
+    height: 100px;
+    margin: 5px;
+    float: left;
+    border: 2px solid #800080;
+    box-sizing: border-box;
+  }
+  
+  article div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 25px;
+    transition: .5s ease;
+  }
+  
+  article input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 140px;
+    height: 100px;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  input[type=checkbox]:checked ~ div {
+    background-color: #800080;
+  }

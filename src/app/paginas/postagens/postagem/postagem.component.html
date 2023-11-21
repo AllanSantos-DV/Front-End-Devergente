@@ -13,11 +13,11 @@
         <mat-icon class="acoes">chat_bubble_outline</mat-icon>
     </mat-card-actions>
     <mat-card-actions>
-        <button mat-icon-button type="button" (click)="postagem.id && editarPostagem(postagem.id)">
+        <button mat-icon-button type="button" (click)="editarPostagem(postagem)">
             <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button type="button">
+        <button mat-icon-button type="button" (click)="postagem.id && excluirPostagem(postagem.id)">
             <mat-icon>delete</mat-icon>
-        </button>
+          </button>
     </mat-card-actions>
 </mat-card>

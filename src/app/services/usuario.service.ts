@@ -2,14 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { Usuario } from '../interfaces/usuario';
+import { environment } from './../enviroments/enviroments';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
 
-    // OBS: MODIFICAR ESTA PARTE DEPOIS, COM OS PARÂMETROS DO BACKEND JAVA / SPRINGBOOT
-    private readonly API = 'http://localhost:3000/perfil/'
+    private readonly API = `${environment.API_URL}/perfil`
 
     constructor(private http: HttpClient) { }
 
@@ -30,9 +30,8 @@ export class UsuarioService {
     }
 
     editarUsuario(usuario: Usuario): Observable<Usuario> {
-      const url = `${this.API}/${usuario.id}`
-      return this.http.put<Usuario>(url, usuario )
-  
+      const url = `${this.API}/${usuario.id}`; 
+      return this.http.put<Usuario>(url, usuario);
     }
   
     excluirUsuario(id: number): Observable<Usuario> {
@@ -44,5 +43,11 @@ export class UsuarioService {
       const url = `${this.API}/${id}`
       return this.http.get<Usuario>(url)
     }
+
+    /*
+    verificarCredenciais(email: string, senha: string): Observable<boolean> {
+      return this.http.post<boolean>('/api/usuarios/verificarCredenciais', { email, senha });
+}
+    */
   
 }

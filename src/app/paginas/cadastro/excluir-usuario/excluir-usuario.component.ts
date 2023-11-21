@@ -17,6 +17,7 @@ export class ExcluirUsuarioComponent {
     id: 0,
     nome: '',
     username: '',
+    imagemUrl: '',
     email: '',
     senha: '',
     data_nascimento: null,

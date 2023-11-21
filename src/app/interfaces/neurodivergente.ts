@@ -9,7 +9,11 @@ export interface Neurodivergente extends Usuario {
     data_nascimento: Date,
     foto_perfil: Blob,
     tipo_perfil: string,
-    tipo_neurodivergencia: string,
+    tea: boolean,
+    tdah: boolean,
+    dislexia: boolean,
+    tourette: boolean,
+    outros: boolean,
     laudo_neurodivergente: Blob,
     interesses: string[] 
 }

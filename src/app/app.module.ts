@@ -24,7 +24,7 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 import { CustomDateAdapter  } from './enviroments/data-customizada';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { FeedPostagensComponent } from './paginas/postagens/feed-postagens/feed-postagens/feed-postagens.component';
 import { CriarPostagemComponent } from './paginas/postagens/criar-postagem/criar-postagem.component';
@@ -33,6 +33,19 @@ import { VerUsuarioComponent } from './paginas/cadastro/ver-usuario/ver-usuario.
 import { UsuarioService } from './services/usuario.service';
 import { Routes } from '@angular/router';
 import { EditarUsuarioComponent } from './paginas/cadastro/editar-usuario/editar-usuario.component';
+import { ExcluirUsuarioComponent } from './paginas/cadastro/excluir-usuario/excluir-usuario.component';
+import { NavRodapeComponent } from './nav-rodape/nav-rodape.component';
+import { NeurodivergenteComponent } from './paginas/cadastro/criar-usuario/neurodivergente/neurodivergente.component';
+import { FamiliarComponent } from './paginas/cadastro/criar-usuario/familiar/familiar.component';
+import { ProfissionalComponent } from './paginas/cadastro/criar-usuario/profissional/profissional.component';
+import { EmpregadorComponent } from './paginas/cadastro/criar-usuario/empregador/empregador.component';
+import { CriarVagaComponent } from './paginas/vagas/criar-vaga/criar-vaga.component';
+import { VerVagasComponent } from './paginas/vagas/ver-vagas/ver-vagas.component';
+import { EditarVagaComponent } from './paginas/vagas/editar-vaga/editar-vaga.component';
+import { ExcluirVagaComponent } from './paginas/vagas/excluir-vaga/excluir-vaga.component';
+import { VagaComponent } from './paginas/vagas/vaga/vaga.component';
+import { TipoUsuarioComponent } from './paginas/cadastro/criar-usuario/tipo-usuario/tipo-usuario.component';
+import { PostagemComponent } from './paginas/postagens/postagem/postagem.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +61,19 @@ import { EditarUsuarioComponent } from './paginas/cadastro/editar-usuario/editar
     CriarPostagemComponent,
     VerUsuarioComponent,
     EditarUsuarioComponent,
+    ExcluirUsuarioComponent,
+    NavRodapeComponent,
+    NeurodivergenteComponent,
+    FamiliarComponent,
+    ProfissionalComponent,
+    EmpregadorComponent,
+    CriarVagaComponent,
+    VerVagasComponent,
+    EditarVagaComponent,
+    ExcluirVagaComponent,
+    VagaComponent,
+    TipoUsuarioComponent,
+    PostagemComponent,
   ],
   imports: [
     CommonModule,
@@ -71,7 +97,7 @@ import { EditarUsuarioComponent } from './paginas/cadastro/editar-usuario/editar
     ImageCropperModule,
   ],
   providers: [
-    { provide: DateAdapter, useClass: CustomDateAdapter , deps: [MAT_DATE_LOCALE] },
+    {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
     { provide: MAT_DATE_FORMATS, useValue: {
       parse: {
         dateInput: {month: 'short', year: 'numeric', day: 'numeric'}
@@ -84,6 +110,6 @@ import { EditarUsuarioComponent } from './paginas/cadastro/editar-usuario/editar
       }
     }}
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
