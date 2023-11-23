@@ -46,7 +46,7 @@ export class UsuarioService {
 
     /*
     verificarCredenciais(email: string, senha: string): Observable<boolean> {
-      return this.http.post<boolean>('/api/usuarios/verificarCredenciais', { email, senha });
+      return this.http.post<boolean>(`${this.API}/verificarCredenciais', { email, senha });
 }
     */
   
