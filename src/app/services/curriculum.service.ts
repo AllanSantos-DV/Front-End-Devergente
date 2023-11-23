@@ -30,12 +30,12 @@ export class CurriculumService {
     return this.http.get<Curriculum>(url)
   }
 
-  editarUsuario(cv: Curriculum): Observable<Curriculum> {
+  editarCurriculum(cv: Curriculum): Observable<Curriculum> {
     const url = `${this.API}/${cv.id}`; 
     return this.http.put<Curriculum>(url, cv);
   }
 
-  excluirUsuario(id: number): Observable<Curriculum> {
+  excluirCurriculum(id: number): Observable<Curriculum> {
     const url = `${this.API}/${id}`
     return this.http.delete<Curriculum>(url)
   }

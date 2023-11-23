@@ -22,10 +22,14 @@ export class ExcluirUsuarioComponent {
     senha: '',
     data_nascimento: null,
     tipo_perfil: '',
-    bio: '' 
+    bio: ''
   }
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient, private usuarioService: UsuarioService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private formBuilder: FormBuilder,
+    private http: HttpClient,
+    private usuarioService: UsuarioService,
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id')
@@ -33,17 +37,17 @@ export class ExcluirUsuarioComponent {
       this.usuario = usuario
     })
 
-    this.formularioExclusao = this.formBuilder.group ({
+    this.formularioExclusao = this.formBuilder.group({
       id: [this.usuario.id],
       email: ['', Validators.email],
-      senha: ['',[ 
+      senha: ['', [
         Validators.minLength(8),
         Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/)]],
     })
   };
 
   excluirConta() {
-    if(this.usuario.id) {
+    if (this.usuario.id) {
       this.usuarioService.excluirUsuario(this.usuario.id).subscribe(() => {
         alert('Conta excluída com sucesso')
         this.router.navigate(['bem-vindo'])

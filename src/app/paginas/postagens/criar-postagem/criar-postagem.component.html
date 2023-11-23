@@ -12,7 +12,7 @@
         <mat-card-actions align="end">
             <button mat-button type="button">
                 <label for="photo-upload">
-                    <input #photoSelector (change)="onPhotoSelected(photoSelector)" id="photo-upload" type="file"
+                    <input (change)="imagemCarregadaPost($event)" id="imagemUrl" type="file"
                         accept=".jpg, .jpeg, .png">
                     <mat-icon>insert_photo</mat-icon>
                 </label>

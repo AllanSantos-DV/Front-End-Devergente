@@ -5,6 +5,7 @@ import { Postagem } from 'src/app/interfaces/postagem';
 import { PostagensService } from 'src/app/services/postagens.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PostagemComponent } from '../postagem/postagem.component';
+import { S3UploadService } from './../../../services/s3-upload.service';
 
 @Component({
   selector: 'app-criar-postagem',
@@ -37,6 +38,7 @@ export class CriarPostagemComponent {
   constructor(private formBuilder: FormBuilder,
     private service: PostagensService,
     private router: Router,
+    private s3UploadService: S3UploadService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialog: MatDialog,
     private dialogRef: MatDialogRef<CriarPostagemComponent>) {
@@ -53,23 +55,19 @@ export class CriarPostagemComponent {
         username: [''],
       }),
       conteudo: ['', [Validators.required, Validators.minLength(3)]],
-      imagemUrl: ['', this.onPhotoSelected],
+      imagemUrl: ['', this.imagemCarregadaPost],
       data: [new Date().toLocaleString]
     });
   }
 
-  onPhotoSelected(onPhotoSelector: HTMLInputElement) {
-    if (onPhotoSelector.files) {
-      this.imagemSelecionada = onPhotoSelector.files[0];
-      if (!this.imagemSelecionada) return;
-      let fileReader = new FileReader();
-      fileReader.readAsDataURL(this.imagemSelecionada);
-      fileReader.addEventListener("loadend", ev => {
-        if (fileReader.result) {
-          let readableString = fileReader.result.toString();
-          let imagemPrevia = <HTMLImageElement>document.getElementById("img-previa");
-          imagemPrevia.src = readableString;
-        }
+  imagemCarregadaPost(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    const file: File = (target.files as FileList)[0];
+    if (file) {
+      this.s3UploadService.enviarImagemPost(file).then(url => {
+        console.log('URL da imagem:', url);
+      }).catch(error => {
+        console.error('Erro ao enviar a imagem:', error);
       });
     }
   }

@@ -1,21 +1,22 @@
 @font-face {
    font-family: 'OpenDyslexic';
-   src:  url('./../../../../assets/fonts/OpenDyslexic-Regular.otf'),
-         url('./../../../../assets/fonts/OpenDyslexic-Bold.otf'),
-         url('./../../../../assets/fonts/OpenDyslexic-BoldItalic.otf'),
-         url('./../../../../assets/fonts/OpenDyslexic-Italic.otf');
-      
+   src: url('./../../../../assets/fonts/OpenDyslexic-Regular.otf'),
+      url('./../../../../assets/fonts/OpenDyslexic-Bold.otf'),
+      url('./../../../../assets/fonts/OpenDyslexic-BoldItalic.otf'),
+      url('./../../../../assets/fonts/OpenDyslexic-Italic.otf');
+
    /* Outros formatos de arquivo podem ser adicionados aqui */
- }
+}
 
 :root {
-    --azul: #55ACEE;
-    --verde: #12BD12;
-    --laranja: #FF7800;
-    --roxo: #800080;
-    --vermelho: #F7000F;
-    --amarelo: #FFCD32;
-  }
+   --azul: #55ACEE;
+   --verde: #12BD12;
+   --laranja: #FF7800;
+   --roxo: #800080;
+   --vermelho: #F7000F;
+   --amarelo: #FFCD32;
+}
+
 
 .bg-fundo {
    width: 100%;
@@ -24,9 +25,9 @@
 
 .bg {
    width: 100%;
-   background: linear-gradient(#800080, #FF7800, transparent);
+   background: linear-gradient(#55ACEE, #12BD12, transparent);
    background-size: cover;
-   background-position: center; 
+   background-position: center;
    display: flex;
    justify-content: center;
    align-items: center;
@@ -60,11 +61,6 @@
    padding: 1.5em;
 }
 
-p {
-   font-family: 'OpenDyslexic';
-   text-align: center;
-}
-
 .header {
    font-family: 'OpenDyslexic';
    font-size: 30px;
@@ -79,8 +75,14 @@ p {
    border-radius: 25px;
    justify-content: center;
    display: flex;
+   text-align: center;
    padding: 2em;
    margin-top: 1em;
+}
+
+.box input {
+   font-family: 'OpenDyslexic';
+   margin: auto;
 }
 
 .box p {
@@ -97,9 +99,8 @@ p {
    padding: .5em;
 }
 
-.data-nascimento select {
+.data-nascimento {
    font-family: 'OpenDyslexic';
-   background-color: white;
    color: black;
    font-size: .8em;
    padding: .5em;
@@ -165,22 +166,6 @@ p {
    color: var(--laranja);
 }
 
-.btn-excluir button {
-   font-family: 'OpenDyslexic';
-   background-color: red;
-   color: white;
-   float: right;
-}
-
-.btn-excluir button :active {
-   font-family: 'OpenDyslexic';
-   background-color: white;
-   color: red;
-   float: right;
-}
-
-
-
 input {
    background-color: white;
    font-family: 'OpenDyslexic';
@@ -198,8 +183,77 @@ input {
    -webkit-box-sizing: border-box;
 }
 
+textarea {
+   background-color: white;
+   font-family: 'OpenDyslexic';
+   width: 100%;
+   height: 15em;
+   justify-content: center;
+   display: flex;
+   align-items: center;
+   padding: 1em;
+   margin: .5em auto;
+   border-radius: 10px;
+   outline: none;
+   border: 1px solid rgba(15, 15, 15, .3);
+   box-sizing: border-box;
+   -moz-box-sizing: border-box;
+   -webkit-box-sizing: border-box;
+}
+
 .alertas-input {
    font-family: 'OpenDyslexic';
    color: var(--vermelho);
    font-size: 1em;
+}
+
+article {
+   position: relative;
+   width: 7em;
+   height: 100px;
+   margin: 5px;
+   float: left;
+   border: 2px solid #12BD12;
+   box-sizing: border-box;
+}
+
+article div {
+   width: 100%;
+   height: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin: auto;
+   line-height: 30px;
+   transition: .5s ease;
+}
+
+article input {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 140px;
+   height: 100px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   opacity: 0;
+   cursor: pointer;
+}
+
+input[type=radio]:checked~div {
+   background-color: #12BD12;
+   color: white;
+}
+
+p {
+   font-family: 'OpenDyslexic';
+}
+
+.demo-inline-calendar-card {
+   width: 300px;
+ }
+
+ .box p {
+   display: block;
 }

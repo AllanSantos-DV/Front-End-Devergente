@@ -6,64 +6,64 @@
             </div>
             <form [formGroup]="formularioAtualizacao" (ngSubmit)="editarUsuario()">
                 <div>
-                    <input formControlName="nome" type="text" placeholder="Nome" [(ngModel)]="usuario.nome"/>
+                    <input formControlName="nome" type="text" placeholder="Nome" [(ngModel)]="usuario.nome" />
                 </div>
 
                 <div>
-                    <input formControlName="username" type="text" placeholder="username" [(ngModel)]="usuario.username"/>
+                    <input formControlName="username" type="text" placeholder="username"
+                        [(ngModel)]="usuario.username" />
                 </div>
                 <div class="alertas-input" *ngIf="formularioAtualizacao.get('username')?.hasError('pattern')">
                     * O username não pode conter espaços.
                 </div>
 
                 <div>
-                    <input formControlName="email" type="email" placeholder="email" [(ngModel)]="usuario.email"/>
+                    <input formControlName="email" type="email" placeholder="email" [(ngModel)]="usuario.email" />
                 </div>
                 <div class="alertas-input" *ngIf="formularioAtualizacao.get('email')?.hasError('email')">
                     * Formato de email inválido.
                 </div>
 
                 <div>
-                    <input formControlName="senha" type="password" placeholder="senha"/>
+                    <input formControlName="senha" type="password" placeholder="senha" />
                 </div>
-                  <div class="alertas-input" *ngIf="formularioAtualizacao.get('senha')?.hasError('minlength')">
+                <div class="alertas-input" *ngIf="formularioAtualizacao.get('senha')?.hasError('minlength')">
                     * A senha deve ter pelo menos 8 caracteres.
-                  </div>
-                  <div class="alertas-input" *ngIf="formularioAtualizacao.get('senha')?.hasError('pattern')">
-                    * A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.
-                  </div>
+                </div>
+                <div class="alertas-input" *ngIf="formularioAtualizacao.get('senha')?.hasError('pattern')">
+                    * A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere
+                    especial.
+                </div>
 
                 <div class="box">
-                   <div class="data-nascimento">
-                    <label for="data-nascimento">Data de Nascimento:</label>
-                </div>
-                <div class="data-nascimento">
-                    <mat-form-field>
-                        <mat-label>Escolha uma data</mat-label>
-                        <input matInput [matDatepicker]="picker" formControlName="data_nascimento" placeholder="data_nascimento" name="data_nascimento" [(ngModel)]="usuario.data_nascimento">
-                        <mat-hint>DD/MM/YYYY</mat-hint>
-                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                      </mat-form-field>
-                </div>
-                </div>
-                <div class="alertas-input" *ngIf="formularioAtualizacao.get('data-nascimento')?.hasError('maiorDe18Anos()')">
-                    * O usuário é menor de 18 anos e não pode participar do DeVerGente
-                  </div>
-
-                <div class="box">
-                        Imagem do Perfil
-                    <div class="box">
-                     <!--   <app-controle-imagem [width]="200" [height]="200"></app-controle-imagem> -->
+                    <div class="data-nascimento">
+                        <label for="data-nascimento">Data de Nascimento:</label>
                     </div>
+                    <div class="data-nascimento">
+                        <mat-form-field>
+                            <mat-label>Escolha uma data</mat-label>
+                            <input matInput [matDatepicker]="picker" formControlName="data_nascimento"
+                                placeholder="data_nascimento" name="data_nascimento"
+                                [(ngModel)]="usuario.data_nascimento">
+                            <mat-hint>DD/MM/YYYY</mat-hint>
+                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="alertas-input"
+                    *ngIf="formularioAtualizacao.get('data-nascimento')?.hasError('maiorDe18Anos()')">
+                    * O usuário é menor de 18 anos e não pode participar do DeVerGente
                 </div>
 
                 <div class="btn-opcoes">
                     <button mat-raised-button (click)="cancelar()">Cancelar</button>
-                    <button mat-raised-button class="btn-alerta" (click)="excluirUsuario()">Excluir Perfil</button>
+                    <div class="btn-excluir">
+                        <button mat-raised-button (click)="excluirUsuario()">Excluir Perfil</button>
+                    </div>
                     <button mat-raised-button>Atualizar Perfil</button>
                 </div>
             </form>
-        </div>   
+        </div>
     </div>
 </div>

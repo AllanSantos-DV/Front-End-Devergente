@@ -1,5 +1,6 @@
 // environment.ts
 export const environment = {
-    production: false,
-    API_URL: 'http://localhost:3000'
-  };
+  production: false,
+  API_URL: 'http://localhost:3000',
+};
+

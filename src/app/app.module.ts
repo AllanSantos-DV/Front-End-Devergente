@@ -46,6 +46,12 @@ import { ExcluirVagaComponent } from './paginas/vagas/excluir-vaga/excluir-vaga.
 import { VagaComponent } from './paginas/vagas/vaga/vaga.component';
 import { TipoUsuarioComponent } from './paginas/cadastro/criar-usuario/tipo-usuario/tipo-usuario.component';
 import { PostagemComponent } from './paginas/postagens/postagem/postagem.component';
+import { CriarCurriculumComponent } from './paginas/curriculum/criar-curriculum/criar-curriculum.component';
+import { EditarCurriculumComponent } from './paginas/curriculum/editar-curriculum/editar-curriculum.component';
+import { VerCurriculumComponent } from './paginas/curriculum/ver-curriculum/ver-curriculum.component';
+import { ExcluirCurriculumComponent } from './paginas/curriculum/excluir-curriculum/excluir-curriculum.component';
+import { CurriculumComponent } from './paginas/curriculum/curriculum/curriculum.component';
+import { CurriculumSimplificadoComponent } from './paginas/curriculum/curriculum-simplificado/curriculum-simplificado.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +80,12 @@ import { PostagemComponent } from './paginas/postagens/postagem/postagem.compone
     VagaComponent,
     TipoUsuarioComponent,
     PostagemComponent,
+    CriarCurriculumComponent,
+    EditarCurriculumComponent,
+    VerCurriculumComponent,
+    ExcluirCurriculumComponent,
+    CurriculumComponent,
+    CurriculumSimplificadoComponent,
   ],
   imports: [
     CommonModule,

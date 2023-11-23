@@ -5,8 +5,8 @@ export interface Curriculum {
     id?: number,
     usuario: Usuario,
     endereco: Endereco,
-    telefone: number,
-    telefone2?: number,
+    telefone: number | null,
+    telefone2?: number | null,
     area_interesse: string,
     habilidades: string,
     formacao: string,
@@ -14,7 +14,7 @@ export interface Curriculum {
     experiencia_anterior: boolean,
     cargo?: string,
     empresa?: string,
-    data_inicio: Date,
-    data_fim: Date,
+    data_inicio: Date | null,
+    data_fim: Date | null,
     resumo: string
 }

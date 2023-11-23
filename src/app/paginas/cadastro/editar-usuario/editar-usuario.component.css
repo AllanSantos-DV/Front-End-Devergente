@@ -1,3 +1,13 @@
+@font-face {
+   font-family: 'OpenDyslexic';
+   src:  url('./../../../../assets/fonts/OpenDyslexic-Regular.otf'),
+         url('./../../../../assets/fonts/OpenDyslexic-Bold.otf'),
+         url('./../../../../assets/fonts/OpenDyslexic-BoldItalic.otf'),
+         url('./../../../../assets/fonts/OpenDyslexic-Italic.otf');
+      
+   /* Outros formatos de arquivo podem ser adicionados aqui */
+ }
+
 :root {
     --azul: #55ACEE;
     --verde: #12BD12;
@@ -14,7 +24,7 @@
 
 .bg {
    width: 100%;
-   background-color: var(--roxo);
+   background: linear-gradient(#800080, #FF7800, transparent);
    background-size: cover;
    background-position: center; 
    display: flex;
@@ -27,11 +37,12 @@
 
 .cadastro {
    width: 40%;
-   background-color: var(--azul);
+   background: rgba(255, 255, 255, .6);
    border-radius: 25px;
    justify-content: center;
    align-items: center;
    padding: 3em;
+   margin: 3em;
 }
 
 .cadastro:hover {
@@ -149,7 +160,7 @@
    color: var(--laranja);
 }
 
-.btn-alerta button {
+.btn-excluir button {
    background-color: red;
    color: white;
 }

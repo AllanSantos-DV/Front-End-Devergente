@@ -16,6 +16,10 @@ import { ProfissionalComponent } from './paginas/cadastro/criar-usuario/profissi
 import { NeurodivergenteComponent } from './paginas/cadastro/criar-usuario/neurodivergente/neurodivergente.component';
 import { TipoUsuarioComponent } from './paginas/cadastro/criar-usuario/tipo-usuario/tipo-usuario.component';
 import { CriarPostagemComponent } from './paginas/postagens/criar-postagem/criar-postagem.component';
+import { CriarCurriculumComponent } from './paginas/curriculum/criar-curriculum/criar-curriculum.component';
+import { CurriculumComponent } from './paginas/curriculum/curriculum/curriculum.component';
+import { EditarCurriculumComponent } from './paginas/curriculum/editar-curriculum/editar-curriculum.component';
+import { ExcluirCurriculumComponent } from './paginas/curriculum/excluir-curriculum/excluir-curriculum.component';
 
 const routes: Routes = [
   {
@@ -78,6 +82,22 @@ const routes: Routes = [
   {
     path: 'criar-postagem',
     component: CriarPostagemComponent
+  },
+  {
+    path: 'criar-curriculum',
+    component: CriarCurriculumComponent
+  },
+  {
+    path: 'curriculum/:id',
+    component: CurriculumComponent
+  },
+  {
+    path: 'editar-curriculum/:id',
+    component: EditarCurriculumComponent
+  },
+  {
+    path: 'excluir-curriculum/:id',
+    component: ExcluirCurriculumComponent
   },
 ];
 

@@ -1,0 +1,239 @@
+<div class="bg-fundo">
+    <div class="bg">
+        <div class="cadastro">
+            <div class="cadastro-conteudo">
+                <div class="header">Crie seu curriculum</div>
+            </div>
+            <form [formGroup]="formularioCurriculum" (ngSubmit)="cadastroCurriculum()">
+                <div formGroupName="endereco">
+                    <div>
+                        Endereço:
+                        <input type="text" placeholder="cep (00000-000)" formControlName="cep" />
+                    </div>
+                    <div class="alertas-input" *ngIf="formularioCurriculum.get('cep')?.hasError('required')">
+                        * O campo cep é obrigatório.
+                    </div>
+                    <div class="alertas-input" *ngIf="formularioCurriculum.get('cep')?.hasError('pattern')">
+                        * Somente números.
+                    </div>
+
+                    <div>
+                        <input type="text" placeholder="Rua onde você mora" formControlName="logradouro" />
+                    </div>
+                    <div class="alertas-input" *ngIf="formularioCurriculum.get('logradouro')?.hasError('required')">
+                        * O campo logradouro é obrigatório.
+                    </div>
+
+                    <div>
+                        <input type="text" placeholder="Complemento" formControlName="complemento" />
+                    </div>
+
+                    <div>
+                        <input type="text" placeholder="Número" formControlName="numero" />
+                    </div>
+                    <div class="alertas-input" *ngIf="formularioCurriculum.get('numero')?.hasError('required')">
+                        * O campo número é obrigatório.
+                    </div>
+
+                    <div>
+                        <input type="text" placeholder="Referencia" formControlName="referencia" />
+                    </div>
+                    <div class="alertas-input" *ngIf="formularioCurriculum.get('referencia')?.hasError('required')">
+                        * O campo referencia é obrigatório.
+                    </div>
+
+                    <div>
+                        <input type="text" placeholder="Bairro" formControlName="bairro" />
+                    </div>
+                    <div class="alertas-input" *ngIf="formularioCurriculum.get('bairro')?.hasError('required')">
+                        * O campo bairro é obrigatório.
+                    </div>
+
+                    <div>
+                        <input type="text" placeholder="Cidade" formControlName="cidade" />
+                    </div>
+                    <div class="alertas-input" *ngIf="formularioCurriculum.get('cidade')?.hasError('required')">
+                        * O campo cidade é obrigatório.
+                    </div>
+
+                    <div>
+                        <input type="text" placeholder="UF" formControlName="uf" />
+                    </div>
+                    <div class="alertas-input" *ngIf="formularioCurriculum.get('uf')?.hasError('required')">
+                        * O campo UF é obrigatório.
+                    </div>
+                </div>
+
+                <div>
+                    <input formControlName="telefone" type="tel" placeholder="Telefone (00-00000-0000)" />
+                </div>
+                <div class="alertas-input" *ngIf="formularioCurriculum.get('telefone')?.hasError('required')">
+                    * O campo telefone é obrigatório.
+                </div>
+
+                <div>
+                    <input formControlName="telefone2" type="tel" placeholder="Telefone (00-00000-0000)" />
+                </div>
+
+                Informações profissionais:
+                <div>
+                    <input formControlName="area_interesse" type="text" placeholder="Área de interesse" />
+                </div>
+                <div class="alertas-input" *ngIf="formularioCurriculum.get('area_interesse')?.hasError('required')">
+                    * O campo área de interesse é obrigatório.
+                </div>
+
+                <div>
+                    <input formControlName="habilidades" type="text" placeholder="Habilidades" />
+                </div>
+                <div class="alertas-input" *ngIf="formularioCurriculum.get('habilidades')?.hasError('required')">
+                    * O campo habilidades é obrigatório.
+                </div>
+
+                <div class="box">
+                    <section class="app">
+                        <h3 class="gray-color">Formação:</h3>
+                        <article class="analfabeto">
+                            <input type="radio" id="sem-formacao" value="sem-formacao" formControlName="formacao" />
+                            <div>
+                                <span>
+                                    Sem Formação Escolar
+                                </span>
+                            </div>
+                        </article>
+
+                        <article class="ensino-fundamental-incompleto">
+                            <input type="radio" id="ensino-fundamental-incompleto" value="ensino-fundamental-incompleto"
+                                formControlName="formacao" />
+                            <div>
+                                <span>
+                                    Ensino Fundamental Incompleto
+                                </span>
+                            </div>
+                        </article>
+
+                        <article class="ensino-fundamental-completo">
+                            <input type="radio" id="ensino-fundamental-completo" value="ensino-fundamental-completo"
+                                formControlName="formacao" />
+                            <div>
+                                <span>
+                                    Ensino Fundamental Completo
+                                </span>
+                            </div>
+                        </article>
+
+                        <article class="ensino-medio-incompleto">
+                            <input type="radio" id="ensino-medio-incompleto" value="ensino-medio-incompleto"
+                                formControlName="formacao" />
+                            <div>
+                                <span>
+                                    Ensino Médio Incompleto
+                                </span>
+                            </div>
+                        </article>
+
+                        <article class="ensino-medio-completo">
+                            <input type="radio" id="ensino-medio-completo" value="ensino-medio-completo"
+                                formControlName="formacao" />
+                            <div>
+                                <span>
+                                    Ensino Médio Completo
+                                </span>
+                            </div>
+                        </article>
+
+                        <article class="ensino-superior-incompleto">
+                            <input type="radio" id="ensino-superior-incompleto" value="ensino-superior-incompleto"
+                                formControlName="formacao" />
+                            <div>
+                                <span>
+                                    Ensino Superior Incompleto
+                                </span>
+                            </div>
+                        </article>
+
+                        <article class="ensino-superior-completo">
+                            <input type="radio" id="ensino-superior-completo" value="ensino-superior-completo"
+                                formControlName="formacao" />
+                            <div>
+                                <span>
+                                    Ensino Superior Completo
+                                </span>
+                            </div>
+                        </article>
+
+                    </section>
+                </div>
+
+
+                <div>
+                    <input formControlName="instituicao_ensino" type="text" placeholder="Instituicao de Ensino" />
+                </div>
+
+                <div class="box">
+                    <section class="app">
+                        <h3 class="gray-color">Possui experiência profissional?</h3>
+                        <article class="sim">
+                            <input type="radio" id="sim" value="true" formControlName="experiencia_anterior" />
+                            <div>
+                                <span>
+                                    Sim
+                                </span>
+                            </div>
+                        </article>
+
+                        <article class="nao">
+                            <input type="radio" id="nao" value="false" formControlName="experiencia_anterior" />
+                            <div>
+                                <span>
+                                    Não
+                                </span>
+                            </div>
+                        </article>
+
+                    </section>
+                </div>
+
+                <div *ngIf="formularioCurriculum.get('experiencia_anterior')?.value === 'true'">
+                    <div>
+                        <input formControlName="cargo" type="text" placeholder="Cargo" />
+                    </div>
+
+                    <div>
+                        <input formControlName="empresa" type="text" placeholder="Empresa" />
+                    </div>
+
+                    <div class="box">
+                        <p>Data de Início</p>
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="pickerInicio" formControlName="data_inicio">
+                            <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerInicio></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="box">
+                        <p>Data de Saída</p>
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="pickerFim" formControlName="data_fim">
+                            <mat-datepicker-toggle matSuffix [for]="pickerFim"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerFim></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <textarea formControlName="resumo" type="text"
+                        placeholder="Um resumo sobre você e os seus objetivos profissionais"></textarea>
+                </div>
+                <div class="alertas-input" *ngIf="formularioCurriculum.get('resumo')?.hasError('required')">
+                    * O campo resumo é obrigatório.
+                </div>
+
+                <div class="btn-opcoes">
+                    <button mat-raised-button type="button" (click)="cancelar()">Cancelar</button>
+                    <button mat-raised-button type="submit">Criar Curriculum</button>
+                </div>
+
+</form>
+</div>

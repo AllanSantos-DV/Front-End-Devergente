@@ -1,5 +1,5 @@
 export interface Endereco {
-    cep: number,
+    cep: number | null,
     logradouro: string,
     complemento?: string,
     numero: string,

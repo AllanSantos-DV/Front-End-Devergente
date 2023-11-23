@@ -11,6 +11,7 @@ import * as moment from 'moment';
   styleUrls: ['./profissional.component.css']
 })
 export class ProfissionalComponent {
+  
   dataNascimento: Date | null = null;
 
   public formularioCadastro!: FormGroup;
