@@ -4,10 +4,13 @@ export interface Empregador extends Usuario {
     id?: number,
     nome: string,
     username: string,
-    email: string,
-    senha: string,
-    data_nascimento: Date,
-    foto_perfil: Blob,
-    tipo_perfil: string,
+    imagemUrl: string;
+    email?: string,
+    senha?: string,
+    data_nascimento?: Date | null,
+    tipo_perfil?: 4,
+    img_perfil?: string,
+    img_capa?: string,
+    bio?: string 
     cnpj: string 
 }

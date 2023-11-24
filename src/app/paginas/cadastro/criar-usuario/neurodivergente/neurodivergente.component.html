@@ -1,151 +1,156 @@
 <div class="bg-fundo">
-    <div class="bg">
-        <div class="cadastro">
-            <div class="cadastro-conteudo">
-                <div class="header">Crie sua conta</div>
-            </div>
-            <form [formGroup]="formularioCadastro" (ngSubmit)="cadastroUsuario()">
+  <div class="bg">
+    <div class="cadastro">
+      <div class="cadastro-conteudo">
+        <div class="header">Crie sua conta</div>
+      </div>
+      <form [formGroup]="formularioCadastro" (ngSubmit)="cadastroUsuario()">
+        <div>
+          <input formControlName="nome" type="text" placeholder="Nome" />
+        </div>
+        <div class="alertas-input" *ngIf="formularioCadastro.get('nome')?.hasError('required')">
+          * O campo nome é obrigatório.
+        </div>
+
+        <div>
+          <input formControlName="username" type="text" placeholder="Username" />
+        </div>
+        <div class="alertas-input" *ngIf="formularioCadastro.get('username')?.hasError('required')">
+          * O campo username é obrigatório.
+        </div>
+        <div class="alertas-input" *ngIf="formularioCadastro.get('username')?.hasError('pattern')">
+          * O username não pode conter espaços.
+        </div>
+
+        <div>
+          <input formControlName="email" type="email" placeholder="email" />
+        </div>
+        <div class="alertas-input" *ngIf="formularioCadastro.get('email')?.hasError('required')">
+          * O campo e-mail é obrigatório.
+        </div>
+        <div class="alertas-input" *ngIf="formularioCadastro.get('email')?.hasError('email')">
+          * Formato de email inválido.
+        </div>
+
+        <div>
+          <input formControlName="senha" type="password" placeholder="senha" />
+        </div>
+        <div class="alertas-input" *ngIf="formularioCadastro.get('senha')?.hasError('required')">
+          * A senha é obrigatória.
+        </div>
+        <div class="alertas-input" *ngIf="formularioCadastro.get('senha')?.hasError('minlength')">
+          * A senha deve ter pelo menos 8 caracteres.
+        </div>
+        <div class="alertas-input" *ngIf="formularioCadastro.get('senha')?.hasError('pattern')">
+          * A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.
+        </div>
+
+        <div>
+          <input formControlName="senha" type="password" placeholder="confirme sua senha" />
+        </div>
+        <div class="alertas-input" *ngIf="formularioCadastro.get('senha')?.hasError('required')">
+          * A senha é obrigatória.
+        </div>
+        <div class="alertas-input" *ngIf="formularioCadastro.get('senha')?.hasError('minlength')">
+          * A senha deve ter pelo menos 8 caracteres.
+        </div>
+        <div class="alertas-input" *ngIf="formularioCadastro.get('senha')?.hasError('pattern')">
+          * A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.
+        </div>
+
+        <div class="box">
+
+          <mat-form-field>
+            <mat-label>Data de nascimento</mat-label>
+            <input matInput [matDatepickerFilter]="maiorIdade" [matDatepicker]="picker"
+              formControlName="data_nascimento" name="data_nascimento">
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+
+        </div>
+
+        <div class="alertas-input" *ngIf="dataNascimento && !maiorIdade(dataNascimento)">
+          * Não permitimos o cadastro de menores de 18 anos
+        </div>
+
+        <div class="box">
+          <section class="app">
+            <h3 class="gray-color">Qual / quais são suas neurodivergencias</h3>
+
+              <article class="opcao1">
+                <input type="radio" id="opcao1" formControlName="tipo_neurodivergencia" value="1" />
                 <div>
-                    <input formControlName="nome" type="text" placeholder="Nome"/>
+                  <span>
+                    TEA
+                  </span>
                 </div>
-                <div class="alertas-input" *ngIf="formularioCadastro.get('nome')?.hasError('required')">
-                    * O campo nome é obrigatório.
-                  </div>
+              </article>
 
+              <article class="opcao2">
+                <input type="radio" id="opcao2" formControlName="tipo_neurodivergencia" value="2" />
                 <div>
-                    <input formControlName="username" type="text" placeholder="Username"/>
+                  <span>
+                    TDAH
+                  </span>
                 </div>
-                <div class="alertas-input" *ngIf="formularioCadastro.get('username')?.hasError('required')">
-                    * O campo username é obrigatório.
-                </div>
-                <div class="alertas-input" *ngIf="formularioCadastro.get('username')?.hasError('pattern')">
-                    * O username não pode conter espaços.
-                </div>
+              </article>
 
+              <article class="opcao3">
+                <input type="radio" id="opcao3" formControlName="tipo_neurodivergencia" value="3" />
                 <div>
-                    <input formControlName="email" type="email" placeholder="email"/>
+                  <span>
+                    Dislexia
+                  </span>
                 </div>
-                <div class="alertas-input" *ngIf="formularioCadastro.get('email')?.hasError('required')">
-                    * O campo e-mail é obrigatório.
-                </div>
-                <div class="alertas-input" *ngIf="formularioCadastro.get('email')?.hasError('email')">
-                    * Formato de email inválido.
-                </div>
+              </article>
 
+              
+              <article class="opcao4">
+                <input type="radio" id="opcao4" formControlName="tipo_neurodivergencia" value="4" />
                 <div>
-                    <input formControlName="senha" type="password" placeholder="senha"/>
+                  <span>
+                    Tourette
+                  </span>
                 </div>
-                <div class="alertas-input" *ngIf="formularioCadastro.get('senha')?.hasError('required')">
-                    * A senha é obrigatória.
-                  </div>
-                  <div class="alertas-input" *ngIf="formularioCadastro.get('senha')?.hasError('minlength')">
-                    * A senha deve ter pelo menos 8 caracteres.
-                  </div>
-                  <div class="alertas-input" *ngIf="formularioCadastro.get('senha')?.hasError('pattern')">
-                    * A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.
-                  </div>
+              </article>
 
-                  <div>
-                    <input formControlName="senha" type="password" placeholder="confirme sua senha"/>
+              
+              <article class="opcao5">
+                <input type="radio" id="opcao5" formControlName="tipo_neurodivergencia" value="5" />
+                <div>
+                  <span>
+                    Outros
+                  </span>
                 </div>
-                <div class="alertas-input" *ngIf="formularioCadastro.get('senha')?.hasError('required')">
-                    * A senha é obrigatória.
-                  </div>
-                  <div class="alertas-input" *ngIf="formularioCadastro.get('senha')?.hasError('minlength')">
-                    * A senha deve ter pelo menos 8 caracteres.
-                  </div>
-                  <div class="alertas-input" *ngIf="formularioCadastro.get('senha')?.hasError('pattern')">
-                    * A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.
-                  </div>
+              </article>
 
-                <div class="box">
-                    
-                    <mat-form-field>
-                        <mat-label>Data de nascimento</mat-label>
-                        <input matInput [matDatepickerFilter]="maiorIdade" [matDatepicker]="picker" formControlName="data_nascimento" name="data_nascimento">
-                        <mat-hint>DD/MM/YYYY</mat-hint>
-                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                    </mat-form-field>
-                      
+          </section>
+        </div>
 
-                </div>
+        <div class="alertas-input" *ngIf="">
+          Carregar laudo TEA
+        </div>
+        <div class="alertas-input" *ngIf="">
+          Carregar laudo TDAH
+        </div>
+        <div class="alertas-input" *ngIf="">
+          Carregar laudo DISLEXIA
+        </div>
+        <div class="alertas-input" *ngIf="">
+          Carregar laudo TOURETTE
+        </div>
+        <div class="alertas-input" *ngIf="">
+          Carregar laudo OUTROS
+        </div>
 
-                <div class="alertas-input" *ngIf="dataNascimento && !maiorIdade(dataNascimento)">
-                    * Não permitimos o cadastro de menores de 18 anos
-                </div>
-
-                <div class="box">
-                    <section class="app">
-                        <h3 class="gray-color">Qual / quais são suas neurodivergencias</h3>
-                        <article class="tea">
-                          <input type="checkbox" id="tea" formControlName="tea"/>
-                          <div>
-                            <span>
-                              TEA
-                            </span>
-                          </div>
-                        </article>
-                        
-                        <article class="tdah">
-                          <input type="checkbox" id="tdah" formControlName="tdah"/>
-                          <div>
-                            <span>
-                              TDAH
-                            </span>
-                          </div>
-                        </article>
-                        
-                        <article class="dislexia">
-                          <input type="checkbox" id="dislexia" formControlName="dislexia"/>
-                          <div>
-                            <span>
-                              Dislexia
-                            </span>
-                          </div>
-                        </article>
-                        
-                        <article class="tourette">
-                          <input type="checkbox" id="tourette" formControlName="tourette"/>
-                          <div>
-                            <span>
-                              Tourette
-                            </span>
-                          </div>
-                        </article>
-
-                        <article class="outros">
-                            <input type="checkbox" id="outros" formControlName="outros"/>
-                            <div>
-                              <span>
-                                Outros
-                              </span>
-                            </div>
-                          </article>
-                    </section>
-                </div>
-
-                <div class="alertas-input" *ngIf="">
-                    Carregar laudo TEA
-                </div>
-                <div class="alertas-input" *ngIf="">
-                    Carregar laudo TDAH
-                </div>
-                <div class="alertas-input" *ngIf="">
-                    Carregar laudo DISLEXIA
-                </div>
-                <div class="alertas-input" *ngIf="">
-                    Carregar laudo TOURETTE
-                </div>
-                <div class="alertas-input" *ngIf="">
-                    Carregar laudo OUTROS
-                </div>
-                
-                <div class="btn-opcoes">
-                    <button mat-raised-button type="button" (click)="cancelar()">Cancelar</button>
-                    <button mat-raised-button type="submit">Criar Usuario</button>
-                </div>
-            </form>
-        </div>   
+        <div class="btn-opcoes">
+          <button mat-raised-button type="button" (click)="cancelar()">Cancelar</button>
+          <button mat-raised-button type="submit">Criar Usuario</button>
+        </div>
+      </form>
     </div>
+  </div>
 </div>

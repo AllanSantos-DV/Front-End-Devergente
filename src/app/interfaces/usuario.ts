@@ -6,7 +6,7 @@ export interface Usuario {
     email?: string,
     senha?: string,
     data_nascimento?: Date | null,
-    tipo_perfil?: string,
+    tipo_perfil?: number,
     img_perfil?: string,
     img_capa?: string,
     bio?: string 

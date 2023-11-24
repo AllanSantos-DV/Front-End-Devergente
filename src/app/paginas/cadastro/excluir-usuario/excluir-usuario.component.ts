@@ -21,7 +21,6 @@ export class ExcluirUsuarioComponent {
     email: '',
     senha: '',
     data_nascimento: null,
-    tipo_perfil: '',
     bio: ''
   }
 

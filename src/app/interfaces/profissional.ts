@@ -4,13 +4,14 @@ export interface Profissional extends Usuario {
     id?: number,
     nome: string,
     username: string,
-    email: string,
-    senha: string,
-    data_nascimento: Date,
-    foto_perfil: Blob,
-    tipo_perfil: string,
-    psicologo: boolean,
-    psiquiatra: boolean,
-    outros: boolean,
-    registro_profissional: Blob 
+    imagemUrl: string;
+    email?: string,
+    senha?: string,
+    data_nascimento?: Date | null,
+    tipo_perfil?: 3,
+    img_perfil?: string,
+    img_capa?: string,
+    bio?: string 
+    tipo_profissional: number,
+    registro_profissional: string
 }

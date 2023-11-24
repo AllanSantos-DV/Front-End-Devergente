@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CurriculumComponent } from './curriculum.component';
+import { beforeEach } from 'node:test';
 
 describe('CurriculumComponent', () => {
   let component: CurriculumComponent;
@@ -19,3 +20,4 @@ describe('CurriculumComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+

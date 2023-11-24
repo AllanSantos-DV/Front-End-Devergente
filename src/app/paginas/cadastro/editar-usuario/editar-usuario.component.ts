@@ -23,7 +23,6 @@ export class EditarUsuarioComponent {
     email: '',
     senha: '',
     data_nascimento: null,
-    tipo_perfil: '',
     bio: '' 
   }
 

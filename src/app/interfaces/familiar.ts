@@ -4,14 +4,13 @@ export interface Familiar extends Usuario {
     id?: number,
     nome: string,
     username: string,
-    email: string,
-    senha: string,
-    data_nascimento: Date,
-    foto_perfil: Blob,
-    tipo_perfil: string,
-    filho: boolean,
-    pai: boolean,
-    conjuge: boolean,
-    irmao: boolean,
-    namorado: boolean
+    imagemUrl: string;
+    email?: string,
+    senha?: string,
+    data_nascimento?: Date | null,
+    tipo_perfil?: 2,
+    img_perfil?: string,
+    img_capa?: string,
+    bio?: string 
+    tipo_familiar: number
 }

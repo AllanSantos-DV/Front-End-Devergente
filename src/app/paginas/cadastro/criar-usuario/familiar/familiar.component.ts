@@ -43,12 +43,8 @@ export class FamiliarComponent {
         Validators.minLength(8),
         Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/)]],
       data_nascimento: ['',[Validators.required]],
-      tipo_perfil: "Familiar",
-      filho: [false],
-      pai: [false],
-      conjuge: [false],
-      irmao: [false],
-      namorado: [false]
+      tipo_perfil: 2,
+      tipo_familiar: ['',[Validators.required]],
     })
   };
 
@@ -56,8 +52,12 @@ export class FamiliarComponent {
     let dataNascimento = moment(this.formularioCadastro.value.data_nascimento, "DD-MM-YYYY");
     let dataFormatada = new Date(dataNascimento.year(), dataNascimento.month(), dataNascimento.date());
     let usuario = { ...this.formularioCadastro.value, data_nascimento: dataFormatada };
-
-    this.service.criarUsuario(this.formularioCadastro.value).subscribe((res: any) => {
+  
+    // Converta o valor de tipo_familiar para número
+    usuario.tipo_familiar = Number(usuario.tipo_familiar);
+  
+    // Envie 'usuario' para o serviço, não 'this.formularioCadastro.value'
+    this.service.criarUsuario(usuario).subscribe((res: any) => {
       alert("Cadastro realizado com sucesso!");
       this.formularioCadastro.reset();
       this.router.navigate(['login']);

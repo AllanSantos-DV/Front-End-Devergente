@@ -23,7 +23,6 @@ export class VerUsuarioComponent {
     email: '',
     senha: '',
     data_nascimento: null,
-    tipo_perfil: '',
     img_perfil: '',
     img_capa: '',
     bio: ''

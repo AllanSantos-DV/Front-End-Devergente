@@ -43,7 +43,7 @@ export class EmpregadorComponent {
         Validators.minLength(8),
         Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/)]],
       data_nascimento: ['',[Validators.required]],
-      tipo_perfil: "Empregador",
+      tipo_perfil: 4,
       cnpj: ['',[Validators.required, Validators.pattern(/^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/)]],
     })
   };

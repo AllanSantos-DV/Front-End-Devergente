@@ -60,36 +60,37 @@
 
                 
                 <div class="box">
-                    <section class="app">
-                        <h3 class="gray-color">Tipo de profissional:</h3>
-                        <article class="psicologo">
-                          <input type="checkbox" id="psicologo" formControlName="psicologo"/>
-                          <div>
-                            <span>
-                              Psicólogo
-                            </span>
-                          </div>
-                        </article>
-                        
-                        <article class="psiquiatra">
-                          <input type="checkbox" id="psiquiatra" formControlName="psiquiatra"/>
-                          <div>
-                            <span>
-                              Psiquiatra
-                            </span>
-                          </div>
-                        </article>
+                  <section class="app">
+                    <h3 class="gray-color">Tipo de profissional:</h3>
 
-                        <article class="outros">
-                            <input type="checkbox" id="outros" formControlName="outros"/>
-                            <div>
-                              <span>
-                                Outros
-                              </span>
-                            </div>
-                          </article>
+                    <article class="opcao1">
+                      <input type="radio" id="opcao1" formControlName="tipo_profissional" value="1"/>
+                      <div>
+                        <span>
+                          Psicólogo
+                        </span>
+                      </div>
+                    </article>
                     
-                    </section>
+                    <article class="opcao2">
+                      <input type="radio" id="opcao2" formControlName="tipo_profissional" value="2"/>
+                      <div>
+                        <span>
+                          Psiquiatra
+                        </span>
+                      </div>
+                    </article>
+                    
+                    <article class="opcao3">
+                      <input type="radio" id="opcao3" formControlName="tipo_profissional" value="3"/>
+                      <div>
+                        <span>
+                          Outros
+                        </span>
+                      </div>
+                    </article>
+
+                  </section>
                 </div>
                 
 

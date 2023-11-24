@@ -54,7 +54,6 @@ export class ExcluirCurriculumComponent {
     email: '',
     senha: '',
     data_nascimento: null,
-    tipo_perfil: '',
     bio: ''
   }
 

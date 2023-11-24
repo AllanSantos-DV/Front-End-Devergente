@@ -226,6 +226,6 @@ article {
     cursor: pointer;
   }
   
-  input[type=checkbox]:checked ~ div {
+  input[type=radio]:checked ~ div {
     background-color: #800080;
   }

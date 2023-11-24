@@ -211,9 +211,17 @@
    height: 100px;
    opacity: 0;
    cursor: pointer;
+   text-align: center;
+ }
+
+ .span {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   text-align: center;
  }
  
- input[type=checkbox]:checked ~ div {
+ input[type=radio]:checked ~ div {
    background-color: #F7000F;
    color: white;
  }

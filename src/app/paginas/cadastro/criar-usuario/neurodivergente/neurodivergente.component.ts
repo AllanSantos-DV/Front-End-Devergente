@@ -43,12 +43,8 @@ export class NeurodivergenteComponent {
         Validators.minLength(8),
         Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/)]],
       data_nascimento: ['',[Validators.required]],
-      tipo_perfil: "Neurodivergente",
-      tea: [false],
-      tdah: [false],
-      dislexia: [false],
-      tourette: [false],
-      outros: [false]
+      tipo_perfil: 1,
+      tipo_neurodivergencia: ['',[Validators.required]],
     })
   };
 
@@ -56,8 +52,10 @@ export class NeurodivergenteComponent {
     let dataNascimento = moment(this.formularioCadastro.value.data_nascimento, "DD-MM-YYYY");
     let dataFormatada = new Date(dataNascimento.year(), dataNascimento.month(), dataNascimento.date());
     let usuario = { ...this.formularioCadastro.value, data_nascimento: dataFormatada };
-
-    this.service.criarUsuario(this.formularioCadastro.value).subscribe((res: any) => {
+  
+    usuario.tipo_neurodivergencia = Number(usuario.tipo_neurodivergencia);
+  
+    this.service.criarUsuario(usuario).subscribe((res: any) => {
       alert("Cadastro realizado com sucesso!");
       this.formularioCadastro.reset();
       this.router.navigate(['login']);
