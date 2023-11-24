@@ -14,4 +14,12 @@ export interface Neurodivergente extends Usuario {
     bio?: string 
     tipo_neurodivergencia: number,
     laudo_neurodivergente: string,
+
+    /* Tipo Neurodivergente : 
+    1 - TEA;
+    2 - TDAH;
+    3 - Dislexia;
+    4 - Tourette;
+    5 - Outros;
+    */
 }
