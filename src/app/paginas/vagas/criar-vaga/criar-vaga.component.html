@@ -1,1 +1,55 @@
-<p>criar-vaga works!</p>
+<div class="bg-fundo">
+    <div class="bg">
+        <div class="cadastro">
+            <div class="cadastro-conteudo">
+                <div class="header">Crie sua vaga</div>
+            </div>
+            <form [formGroup]="formularioVaga" (ngSubmit)="cadastroVaga()">
+
+                <div>
+                    <input type="text" placeholder="Nome da Empresa" formControlName="empresa" />
+                </div>
+                <div class="alertas-input" *ngIf="formularioVaga.get('empresa')?.hasError('required')">
+                    * O campo empresa é obrigatório.
+                </div>
+
+                <div class="box">
+                    <p>Data de Fechamento</p>
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="pickerFechamento" formControlName="data_fechamento">
+                        <mat-datepicker-toggle matSuffix [for]="pickerFechamento"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerFechamento></mat-datepicker>
+                    </mat-form-field>
+                </div>
+
+                <div>
+                    Título:
+                    <input type="text" placeholder="Título da vaga" formControlName="titulo" />
+                </div>
+                <div class="alertas-input" *ngIf="formularioVaga.get('titulo')?.hasError('required')">
+                    * O campo título é obrigatório.
+                </div>
+
+                <div>
+                    <textarea placeholder="Descrição da vaga" formControlName="descricao"></textarea>
+                </div>
+                <div class="alertas-input" *ngIf="formularioVaga.get('descricao')?.hasError('required')">
+                    * O campo descricao é obrigatório.
+                </div>
+
+                <div>
+                    <textarea placeholder="Requisitos" formControlName="requisitos"></textarea>
+                </div>
+                <div class="alertas-input" *ngIf="formularioVaga.get('requisitos')?.hasError('required')">
+                    * O campo requisitos é obrigatório.
+                </div>
+
+                <div class="btn-opcoes">
+                    <button mat-raised-button type="button" (click)="cancelar()">Cancelar</button>
+                    <button mat-raised-button type="submit">Criar Vaga</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

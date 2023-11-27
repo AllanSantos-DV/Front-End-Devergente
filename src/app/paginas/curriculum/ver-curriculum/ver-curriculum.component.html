@@ -1,1 +1,55 @@
-<p>ver-curriculum works!</p>
+<div class="bg-fundo">
+    <div class="bg">
+        <div class="cadastro">
+            <div class="cadastro-conteudo">
+                <div class="header">
+                    Curriculum de {{ curriculum.usuario.nome }}
+                </div>
+            </div>
+            <div class="box">
+                <div class="header-box">
+                    <p>Endereço:</p>
+                </div>
+                <div>
+                    Logradouro: {{ curriculum.endereco.logradouro }}<br>
+                    Número: {{ curriculum.endereco.numero}}<br>
+                    Complemento: {{ curriculum.endereco.complemento }}<br>
+                    Referência: {{ curriculum.endereco.referencia }}<br>
+                    Bairro: {{ curriculum.endereco.bairro }}<br>
+                    Cidade: {{ curriculum.endereco.cidade }}<br>
+                    UF: {{ curriculum.endereco.uf }}<br>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="header-box">
+                    <p>Contatos:</p>
+                </div>
+                <div>
+                    Telefone 1: {{ curriculum.telefone }}<br>
+                    Telefone 2: {{ curriculum.telefone2 }}
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="header-box">
+                    <p>Informações Profissionais:</p>
+                </div>
+                <div>
+                    Área de interesse: {{ curriculum.area_interesse}}<br>
+                    Habilidades: {{ curriculum.habilidades }}<br>
+                    Formação: {{ curriculum.formacao }}<br>
+                    Instituição de Ensino: {{ curriculum.instituicao_ensino }}<br>
+                    <br>
+                    Possui experiencia profissional: {{ curriculum.experiencia_anterior }}<br>
+                    Cargo: {{ curriculum.cargo }}<br>
+                    Empresa: {{ curriculum.empresa }}<br>
+                    Data de início: {{ curriculum.data_inicio | date: 'dd-MM-yyyy' }}<br>
+                    Data de Saída: {{ curriculum.data_fim }}<br>
+                    <br>
+                    Resumo: {{ curriculum.resumo }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

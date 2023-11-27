@@ -13,14 +13,14 @@ import { CurriculumService } from 'src/app/services/curriculum.service';
 })
 export class ExcluirCurriculumComponent {
 
-  public formularioExclusao!: FormGroup;
+  public formularioExclusaoCurriculum!: FormGroup;
 
   curriculum: Curriculum = {
     id: 0,
     usuario: {
       nome: '',
       username: '',
-      imagemUrl: ''
+      img_perfil: ''
     },
     endereco: {
       cep: null,
@@ -50,7 +50,7 @@ export class ExcluirCurriculumComponent {
     id: 0,
     nome: '',
     username: '',
-    imagemUrl: '',
+    img_perfil: '',
     email: '',
     senha: '',
     data_nascimento: null,
@@ -72,7 +72,7 @@ export class ExcluirCurriculumComponent {
         this.curriculum = curriculum
       })
   
-      this.formularioExclusao = this.formBuilder.group({
+      this.formularioExclusaoCurriculum = this.formBuilder.group({
         id: [this.curriculum.id],
         email: ['', Validators.email],
         senha: ['', [

@@ -11,13 +11,13 @@ import { UsuarioService } from 'src/app/services/usuario.service';
   styleUrls: ['./excluir-usuario.component.css']
 })
 export class ExcluirUsuarioComponent {
-  public formularioExclusao!: FormGroup;
+  public formularioExclusaoUsuario!: FormGroup;
 
   usuario: Usuario = {
     id: 0,
     nome: '',
     username: '',
-    imagemUrl: '',
+    img_perfil: '',
     email: '',
     senha: '',
     data_nascimento: null,
@@ -36,7 +36,7 @@ export class ExcluirUsuarioComponent {
       this.usuario = usuario
     })
 
-    this.formularioExclusao = this.formBuilder.group({
+    this.formularioExclusaoUsuario = this.formBuilder.group({
       id: [this.usuario.id],
       email: ['', Validators.email],
       senha: ['', [

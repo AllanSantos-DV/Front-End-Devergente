@@ -20,7 +20,7 @@ export class CriarPostagemComponent {
       id: 0,
       nome: '',
       username: '',
-      imagemUrl: '',
+      img_perfil: '',
     },
     conteudo: '',
     imagemUrl: '',

@@ -20,6 +20,10 @@ import { CriarCurriculumComponent } from './paginas/curriculum/criar-curriculum/
 import { CurriculumComponent } from './paginas/curriculum/curriculum/curriculum.component';
 import { EditarCurriculumComponent } from './paginas/curriculum/editar-curriculum/editar-curriculum.component';
 import { ExcluirCurriculumComponent } from './paginas/curriculum/excluir-curriculum/excluir-curriculum.component';
+import { CriarVagaComponent } from './paginas/vagas/criar-vaga/criar-vaga.component';
+import { VagaComponent } from './paginas/vagas/vaga/vaga.component';
+import { EditarVagaComponent } from './paginas/vagas/editar-vaga/editar-vaga.component';
+import { ExcluirVagaComponent } from './paginas/vagas/excluir-vaga/excluir-vaga.component';
 
 const routes: Routes = [
   {
@@ -98,6 +102,22 @@ const routes: Routes = [
   {
     path: 'excluir-curriculum/:id',
     component: ExcluirCurriculumComponent
+  },
+  {
+    path: 'criar-vaga',
+    component: CriarVagaComponent
+  },
+  {
+    path: 'vaga/:id',
+    component: VagaComponent
+  },
+  {
+    path: 'editar-vaga/:id',
+    component: EditarVagaComponent
+  },
+  {
+    path: 'excluir-vaga/:id',
+    component: ExcluirVagaComponent
   },
 ];
 

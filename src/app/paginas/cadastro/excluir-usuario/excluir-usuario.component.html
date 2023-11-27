@@ -6,19 +6,19 @@
             </div>
 
             <div><p>Se você deseja excluir esta conta, digite seu email e senha</p></div>
-            <form [formGroup]="formularioExclusao" (ngSubmit)="excluirConta()">
+            <form [formGroup]="formularioExclusaoUsuario" (ngSubmit)="excluirConta()">
 
                 <div>
                     <input formControlName="email" type="email" placeholder="email" [(ngModel)]="usuario.email"/>
                 </div>
-                <div class="alertas-input" *ngIf="formularioExclusao.get('email')?.hasError('email')">
+                <div class="alertas-input" *ngIf="formularioExclusaoUsuario.get('email')?.hasError('email')">
                     * Formato de email inválido.
                 </div>
 
                 <div>
                     <input formControlName="senha" type="password" placeholder="senha"/>
                 </div>
-                <div class="alertas-input" *ngIf="formularioExclusao.get('senha')?.hasError('minlength')">
+                <div class="alertas-input" *ngIf="formularioExclusaoUsuario.get('senha')?.hasError('minlength')">
                     * A senha deve ter pelo menos 8 caracteres.
                 </div>
 

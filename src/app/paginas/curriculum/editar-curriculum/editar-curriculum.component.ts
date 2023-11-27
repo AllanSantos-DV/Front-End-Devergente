@@ -21,7 +21,7 @@ export class EditarCurriculumComponent {
     usuario: {
       nome: '',
       username: '',
-      imagemUrl: ''
+      img_perfil: '',
     },
     endereco: {
       cep: null,
@@ -139,7 +139,7 @@ export class EditarCurriculumComponent {
 
     let formularioValue = {
       ...this.formularioCurriculum.value,
-      id: this.curriculum.id, 
+      id: this.curriculum.id,
       data_inicio: dataFormatadaInicio,
       data_fim: dataFormatadaFim
     };

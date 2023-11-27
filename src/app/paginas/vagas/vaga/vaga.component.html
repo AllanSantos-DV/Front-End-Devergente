@@ -1,1 +1,43 @@
-<p>vaga works!</p>
+<div class="bg-fundo">
+    <div class="bg">
+        <div class="cadastro">
+            <div class="cadastro-conteudo">
+                <div class="header">
+                    {{ vaga.titulo }}
+                </div>
+            </div>
+
+            <div class="box">
+                <div>
+                    Vaga criada por: {{ vaga.usuario.nome }} {{ vaga.usuario.username }}<br>
+                    Empresa: {{ vaga.empresa }}<br>
+                    Data de abertura: {{ vaga.data_abertura | date: 'dd-MM-yyyy' }}<br>
+                    Data de fechamento: {{ vaga.data_fechamento | date: 'dd-MM-yyyy' }}<br>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="header-box">
+                    <p>Descrição da vaga:</p>
+                </div>
+                <div>
+                    {{ vaga.descricao }}<br>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="header-box">
+                    <p>Requisitos:</p>
+                </div>
+                <div>
+                    {{ vaga.requisitos}}<br>
+                </div>
+            </div>
+
+            <div class="btn-opcoes">
+                <button mat-raised-button type="button" (click)="voltar()">Voltar</button>
+                <button mat-raised-button type="submit">Candidatar-se</button>
+            </div>
+        </div>
+    </div>
+</div>

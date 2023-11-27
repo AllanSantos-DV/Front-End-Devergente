@@ -14,7 +14,7 @@ export class CurriculumComponent {
     usuario: {
       nome: '',
       username: '',
-      imagemUrl: ''
+      img_perfil: '',
     },
     endereco: {
       cep: null,

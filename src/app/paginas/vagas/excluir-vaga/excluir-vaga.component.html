@@ -1,1 +1,31 @@
-<p>excluir-vaga works!</p>
+<div class="bg-fundo">
+    <div class="bg">
+        <div class="cadastro">
+            <div class="cadastro-conteudo">
+                <div class="header">Excluir vaga {{ vaga.titulo }}</div>
+            </div>
+
+            <div><p>Se você deseja excluir esta vaga, digite seu email e senha</p></div>
+            <form [formGroup]="formularioExclusaoVaga" (ngSubmit)="excluirConta()">
+
+                <div>
+                    <input formControlName="email" type="email" placeholder="email" [(ngModel)]="usuario.email"/>
+                </div>
+                <div class="alertas-input" *ngIf="formularioExclusaoVaga.get('email')?.hasError('email')">
+                    * Formato de email inválido.
+                </div>
+
+                <div>
+                    <input formControlName="senha" type="password" placeholder="senha"/>
+                </div>
+                <div class="alertas-input" *ngIf="formularioExclusaoVaga.get('senha')?.hasError('minlength')">
+                    * A senha deve ter pelo menos 8 caracteres.
+                </div>
+
+                <div class="btn-excluir">
+                    <button mat-raised-button>Excluir Vaga</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

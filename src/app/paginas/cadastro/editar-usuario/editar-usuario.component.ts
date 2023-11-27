@@ -19,10 +19,11 @@ export class EditarUsuarioComponent {
     id: 0,
     nome: '',
     username: '',
-    imagemUrl: '',
     email: '',
     senha: '',
     data_nascimento: null,
+    img_perfil: '',
+    img_capa: '',
     bio: '' 
   }
 
@@ -47,7 +48,8 @@ export class EditarUsuarioComponent {
         Validators.minLength(8),
         Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/)]],
       data_nascimento: [''],
-      foto_perfil: '',
+      img_perfil: '',
+      img_capa: '',
       tipo_perfil: '',
     })
   };
