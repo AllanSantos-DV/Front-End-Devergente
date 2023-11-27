@@ -14,4 +14,10 @@ export interface Profissional extends Usuario {
     bio?: string 
     tipo_profissional: number,
     registro_profissional: string
+
+    /* Tipo Profissional : 
+    1 - Psicólogo;
+    2 - Psiquiatra;
+    3 - Outros;
+    */
 }

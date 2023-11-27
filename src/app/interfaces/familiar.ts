@@ -13,4 +13,12 @@ export interface Familiar extends Usuario {
     img_capa?: string,
     bio?: string 
     tipo_familiar: number
+
+    /* Tipo Familiar : 
+    1 - Pai/Mãe
+    2 - Filho/Filha
+    3 - Irmão/Irmã
+    4 - Marido/Esposa
+    5 - Namorado/Namorada
+    */
 }
