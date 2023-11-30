@@ -20,8 +20,7 @@ import { UsuarioComponent } from './paginas/cadastro/usuario/usuario.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
-import { CustomDateAdapter  } from './enviroments/data-customizada';
+import { MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
@@ -30,8 +29,6 @@ import { FeedPostagensComponent } from './paginas/postagens/feed-postagens/feed-
 import { CriarPostagemComponent } from './paginas/postagens/criar-postagem/criar-postagem.component';
 import { MatCardModule } from '@angular/material/card';
 import { VerUsuarioComponent } from './paginas/cadastro/ver-usuario/ver-usuario.component';
-import { UsuarioService } from './services/usuario.service';
-import { Routes } from '@angular/router';
 import { EditarUsuarioComponent } from './paginas/cadastro/editar-usuario/editar-usuario.component';
 import { ExcluirUsuarioComponent } from './paginas/cadastro/excluir-usuario/excluir-usuario.component';
 import { NavRodapeComponent } from './nav-rodape/nav-rodape.component';
@@ -52,6 +49,10 @@ import { VerCurriculumComponent } from './paginas/curriculum/ver-curriculum/ver-
 import { ExcluirCurriculumComponent } from './paginas/curriculum/excluir-curriculum/excluir-curriculum.component';
 import { CurriculumComponent } from './paginas/curriculum/curriculum/curriculum.component';
 import { CurriculumSimplificadoComponent } from './paginas/curriculum/curriculum-simplificado/curriculum-simplificado.component';
+import { ComentariosComponent } from './paginas/comentarios/comentarios/comentarios.component';
+import { ComentarioComponent } from './paginas/comentarios/comentario/comentario.component';
+import { ComentariosInputComponent } from './paginas/comentarios/comentarios-input/comentarios-input.component';
+import { ComentariosInputEdicaoComponent } from './paginas/comentarios/comentarios-input-edicao/comentarios-input-edicao.component';
 
 @NgModule({
   declarations: [
@@ -86,6 +87,10 @@ import { CurriculumSimplificadoComponent } from './paginas/curriculum/curriculum
     ExcluirCurriculumComponent,
     CurriculumComponent,
     CurriculumSimplificadoComponent,
+    ComentariosComponent,
+    ComentarioComponent,
+    ComentariosInputComponent,
+    ComentariosInputEdicaoComponent
   ],
   imports: [
     CommonModule,
@@ -98,7 +103,6 @@ import { CurriculumSimplificadoComponent } from './paginas/curriculum/curriculum
     MatCardModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,

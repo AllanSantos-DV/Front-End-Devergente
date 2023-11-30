@@ -27,6 +27,7 @@
     background-size: cover;
     background-position: center;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     grid-template-columns: 1fr 1fr;
@@ -37,22 +38,11 @@
 .postagens-feed {
     max-width: 500px;
     margin-top: 5em;
-    padding-bottom: 5em;
     margin-left: auto;
     margin-right: auto;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.postagens-feed img {
-    max-width: 50px;
-}
-
-.acoes {
-    color: #FFCD32;
-    margin-left: .5em;
-    cursor: pointer;
 }
 
 img {
@@ -61,4 +51,26 @@ img {
 
 mat-card {
     margin-top: 1em;
+}
+
+.acoes {
+    color: #FFCD32;
+    margin-left: .5em;
+    cursor: pointer;
+}
+
+.acoes-usuario {
+    margin-left: auto;
+}
+
+.comentarios {
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 4em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
 }

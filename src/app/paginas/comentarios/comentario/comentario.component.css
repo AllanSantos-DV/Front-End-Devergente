@@ -1,0 +1,31 @@
+.comentario {
+    width: 400px;
+    background-color: #FFCD32;
+    border-radius: 1em;
+    margin-bottom: 1em;
+    display: flex;
+}
+
+.comentario-imagem {
+    padding-top: 1em;
+    padding-left: 1em;
+}
+
+.comentario-direita {
+    padding-top: 1em;
+    padding-left: 1em;
+}
+
+.comentario-texto {
+    padding-top: .5em;
+}
+
+.edicao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+

@@ -1,0 +1,11 @@
+<form [formGroup]="formularioComentario" (ngSubmit)="criarComentario()">
+    <div class="comentario-form">
+        <textarea class="comentario-form-textarea" formControlName="conteudo"></textarea>
+        <button mat-raised-button class="comentario-btn" type="submit" [disabled]="formularioComentario.invalid">
+            {{ comentarioBtn }}
+        </button>
+        <button *ngIf="botaoCancelar" type="button" class="comentario-btn-cancelar">
+            Cancelar
+        </button>
+    </div>
+</form>

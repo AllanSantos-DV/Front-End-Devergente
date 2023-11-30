@@ -24,4 +24,8 @@ export class NavRodapeComponent {
   criarPostagem() {
     this.dialog.open(CriarPostagemComponent);
   }
+
+  perfilUsuario() {
+    this.router.navigate(['/perfil/9']);
+  }
 }

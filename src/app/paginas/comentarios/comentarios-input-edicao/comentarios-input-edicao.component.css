@@ -1,0 +1,22 @@
+.comentario-edicao-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    margin: -3em;
+  }
+
+.comentario-form-textarea {
+    width: 200px;
+    height: 5em;
+    border-radius: 2em;
+    border-color: #800080;
+    margin: 1em;
+    padding: 1em;
+    flex-grow: 1;
+  }
+  
+  .comentario-btn {
+    background-color: #800080;
+    color: white; 
+    margin: 1em;
+  }

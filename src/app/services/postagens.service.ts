@@ -36,4 +36,9 @@ export class PostagensService {
     const url = `${this.API}/${id}`
     return this.http.get<Postagem>(url)
   }
+
+  buscarPorUsuarioId(usuarioId: number): Observable<Postagem[]> {
+    const url = `${this.API}?usuario.id=${usuarioId}`;
+    return this.http.get<Postagem[]>(url);
+  }
 }

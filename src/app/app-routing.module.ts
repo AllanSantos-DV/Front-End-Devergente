@@ -24,6 +24,7 @@ import { CriarVagaComponent } from './paginas/vagas/criar-vaga/criar-vaga.compon
 import { VagaComponent } from './paginas/vagas/vaga/vaga.component';
 import { EditarVagaComponent } from './paginas/vagas/editar-vaga/editar-vaga.component';
 import { ExcluirVagaComponent } from './paginas/vagas/excluir-vaga/excluir-vaga.component';
+import { ComentariosComponent } from './paginas/comentarios/comentarios/comentarios.component';
 
 const routes: Routes = [
   {
@@ -119,6 +120,10 @@ const routes: Routes = [
     path: 'excluir-vaga/:id',
     component: ExcluirVagaComponent
   },
+  {
+    path: 'postagem/:id/comentarios',
+    component: ComentariosComponent
+  }
 ];
 
 @NgModule({

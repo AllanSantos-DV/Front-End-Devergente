@@ -5,6 +5,8 @@ import { Usuario } from 'src/app/interfaces/usuario';
 import { Observable, map, switchMap } from 'rxjs';
 import { S3UploadService } from './../../../services/s3-upload.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { PostagensService } from 'src/app/services/postagens.service';
+import { Postagem } from 'src/app/interfaces/postagem';
 
 @Component({
   selector: 'app-ver-usuario',
@@ -27,8 +29,12 @@ export class VerUsuarioComponent {
     bio: ''
   }
 
+  postagens: Postagem[] = [];
+
+
   constructor(
     private usuarioService: UsuarioService,
+    private postagemService: PostagensService,
     private router: Router,
     private route: ActivatedRoute,
     private s3UploadService: S3UploadService
@@ -37,8 +43,14 @@ export class VerUsuarioComponent {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id')
     this.usuarioService.buscarPorId(parseInt(id!)).subscribe((usuario) => {
-      this.usuario = usuario
-    })
+      this.usuario = usuario;
+  
+      if (this.usuario.id !== undefined) {
+        this.postagemService.buscarPorUsuarioId(this.usuario.id).subscribe((postagens) => {
+          this.postagens = postagens;
+        });
+      }
+    });
   }
 
   exibirPerfil() {

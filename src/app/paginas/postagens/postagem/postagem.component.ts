@@ -5,6 +5,7 @@ import { PostagensService } from 'src/app/services/postagens.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CriarPostagemComponent } from '../criar-postagem/criar-postagem.component';
 import { MatOptionSelectionChange } from '@angular/material/core';
+import { ComentariosComponent } from '../../comentarios/comentarios/comentarios.component';
 
 @Component({
   selector: 'app-postagem',
@@ -12,6 +13,9 @@ import { MatOptionSelectionChange } from '@angular/material/core';
   styleUrls: ['./postagem.component.css']
 })
 export class PostagemComponent {
+
+  curtido = false;
+
   @Input() postagem: Postagem = {
     id: 0,
     usuario: {
@@ -27,33 +31,36 @@ export class PostagemComponent {
 
   constructor(private postagemService: PostagensService,
     private router: Router,
-    private dialog: MatDialog) {}
+    private dialog: MatDialog) { }
 
-    editarPostagem(postagem: Postagem) {
-      const dialogRef = this.dialog.open(CriarPostagemComponent, {
-        data: { editar: postagem }
-      });
-    
-      dialogRef.afterClosed().subscribe(result => {
-        console.log(`Dialog result: ${result}`);
-      });
-    }
+  comentarios(id: number | undefined) {
+    this.router.navigate(['/postagem/', id, 'comentarios']);
+  }
 
-    excluirPostagem(id: number | undefined) {
-      if(id) {
-        this.postagemService.excluirPostagem(id).
+  editarPostagem(postagem: Postagem) {
+    const dialogRef = this.dialog.open(CriarPostagemComponent, {
+      data: { editar: postagem }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  excluirPostagem(id: number | undefined) {
+    if (id) {
+      this.postagemService.excluirPostagem(id).
         subscribe({
-          next:(res) => {
+          next: (res) => {
             alert("Postagem deletada com sucesso")
             location.reload();
           },
-          error:() => {
+          error: () => {
             alert("Erro ao deletar a postagem")
           }
         })
-      } else {
-        console.log(id)
-      }
+    } else {
+      console.log(id)
     }
-
+  }
 }

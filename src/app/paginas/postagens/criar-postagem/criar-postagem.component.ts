@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Postagem } from 'src/app/interfaces/postagem';
 import { PostagensService } from 'src/app/services/postagens.service';
@@ -50,26 +50,36 @@ export class CriarPostagemComponent {
     this.formPostagem = this.formBuilder.group({
       id: [0],
       usuario: this.formBuilder.group({
-        id: [0],
+        id: [],
         nome: [''],
         username: [''],
+        img_perfil: ['']
       }),
       conteudo: ['', [Validators.required, Validators.minLength(3)]],
-      imagemUrl: ['', this.imagemCarregadaPost],
+      imagemUrl: ['', this.validarImagemUrl],
       data: [new Date().toLocaleString]
     });
   }
 
+  
   imagemCarregadaPost(event: Event): void {
     const target = event.target as HTMLInputElement;
     const file: File = (target.files as FileList)[0];
     if (file) {
       this.s3UploadService.enviarImagemPost(file).then(url => {
-        console.log('URL da imagem:', url);
+        this.formPostagem.patchValue({ imagemUrl: url });
       }).catch(error => {
         console.error('Erro ao enviar a imagem:', error);
       });
     }
+  }
+  
+  validarImagemUrl(control: AbstractControl): ValidationErrors | null {
+    const url = control.value;
+    if (!url) {
+      return { 'urlInvalida': true };
+    }
+    return null;
   }
 
   cancelarPostagem() {
