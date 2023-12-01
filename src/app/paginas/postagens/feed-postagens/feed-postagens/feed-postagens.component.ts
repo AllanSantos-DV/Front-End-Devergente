@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CriarPostagemComponent } from '../../criar-postagem/criar-postagem.component';
 import { PostagensService } from 'src/app/services/postagens.service';
@@ -18,8 +18,27 @@ export class FeedPostagensComponent {
   constructor(private postagemService: PostagensService) { }
 
   ngOnInit(): void {
-    this.postagemService.listarPostagens().subscribe((listaPostagens) => {
-      this.listaPostagens = listaPostagens;
-    })
+    this.carregarMaisPostagens();
+    /* this.postagemService.listarPostagens().subscribe((listaPostagens) => {
+       this.listaPostagens = listaPostagens;
+     }) */
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll(event: any): void {
+    console.log('Evento de rolagem disparado');
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+      this.carregarMaisPostagens();
+    }
+  }
+
+  carregarMaisPostagens(): void {
+    this.postagemService.listarPostagens(this.listaPostagens.length, 10).subscribe((listaPostagens) => {
+      listaPostagens.forEach(postagem => {
+        if (!this.listaPostagens.find(p => p.id === postagem.id)) {
+          this.listaPostagens.push(postagem);
+        }
+      });
+    });
   }
 }
