@@ -12,7 +12,7 @@ export interface Profissional extends Usuario {
     img_perfil?: string,
     img_capa?: string,
     bio?: string 
-    tipo_profissional: number,
+    codigo: number,
     registro_profissional: string
 
     /* Tipo Profissional : 

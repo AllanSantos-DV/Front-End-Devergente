@@ -42,7 +42,7 @@ export class ProfissionalComponent {
       senha: ['',[Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/)]],
       data_nascimento: ['',[Validators.required]],
       tipo_perfil: 3,
-      tipo_profissional: ['',[Validators.required]],
+      codigo: ['',[Validators.required]],
     });
   }
 
@@ -51,7 +51,7 @@ export class ProfissionalComponent {
     let dataFormatada = new Date(dataNascimento.year(), dataNascimento.month(), dataNascimento.date());
     let usuario = { ...this.formularioCadastro.value, data_nascimento: dataFormatada };
   
-    usuario.tipo_profissional = Number(usuario.tipo_profissional);
+    usuario.codigo = Number(usuario.codigo);
   
     this.service.criarUsuario(usuario).subscribe((res: any) => {
       alert("Cadastro realizado com sucesso!");

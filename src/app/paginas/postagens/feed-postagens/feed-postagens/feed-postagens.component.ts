@@ -33,8 +33,8 @@ export class FeedPostagensComponent {
   }
 
   carregarMaisPostagens(): void {
-    this.postagemService.listarPostagens(this.listaPostagens.length, 10).subscribe((listaPostagens) => {
-      listaPostagens.forEach(postagem => {
+    this.postagemService.listarPostagens().subscribe(() => {
+      this.listaPostagens.forEach(postagem => {
         if (!this.listaPostagens.find(p => p.id === postagem.id)) {
           this.listaPostagens.push(postagem);
         }

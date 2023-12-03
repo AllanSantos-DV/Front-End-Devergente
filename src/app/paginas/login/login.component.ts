@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { Usuario } from '../../interfaces/usuario';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { timeout } from 'rxjs';
+import { environment } from '../../enviroments/enviroments'
 
 @Component({
   selector: 'app-login',
@@ -11,6 +11,8 @@ import { timeout } from 'rxjs';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+
+  private readonly API = `${environment.API_URL}/login`
 
   public login!: FormGroup
 
@@ -30,22 +32,18 @@ export class LoginComponent {
       email: this.login.value.email,
       senha: this.login.value.senha
     };
-  
-    this.http.get<any[]>(`http://localhost:3000/perfil?email=${loginData.email}`)
-      .subscribe(usuarios => {
-        if (usuarios.length === 0) {
-          alert("Usuário não encontrado");
+
+    this.http.post(this.API, loginData)
+      .subscribe((response: any) => {
+        if (response.success) {
+          alert("Login realizado com sucesso");
+          setTimeout(() => {
+            this.router.navigate(['feed']);
+          }, 3000);
         } else {
-          const usuario = usuarios[0];
-          if (usuario.senha === loginData.senha) {
-            alert("Login realizado com sucesso");
-            setTimeout(() => {
-              this.router.navigate(['feed']);
-            }, 3000);
-          } else {
-            alert("Sua senha está incorreta");
-          }
+          alert(response.message);
         }
       });
   }
-}
+}  
+

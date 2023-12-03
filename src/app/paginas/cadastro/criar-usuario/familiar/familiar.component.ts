@@ -44,7 +44,7 @@ export class FamiliarComponent {
         Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/)]],
       data_nascimento: ['',[Validators.required]],
       tipo_perfil: 2,
-      tipo_familiar: ['',[Validators.required]],
+      codigo: ['',[Validators.required]],
     })
   };
 
@@ -54,7 +54,7 @@ export class FamiliarComponent {
     let usuario = { ...this.formularioCadastro.value, data_nascimento: dataFormatada };
   
     // Converta o valor de tipo_familiar para número
-    usuario.tipo_familiar = Number(usuario.tipo_familiar);
+    usuario.codigo = Number(usuario.codigo);
   
     // Envie 'usuario' para o serviço, não 'this.formularioCadastro.value'
     this.service.criarUsuario(usuario).subscribe((res: any) => {

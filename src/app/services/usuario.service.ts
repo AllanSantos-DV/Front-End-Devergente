@@ -14,6 +14,7 @@ export class UsuarioService {
     constructor(private http: HttpClient) { }
 
     criarUsuario(usuario: Usuario) {
+      console.log(usuario)
       return this.http.post<Usuario>(this.API, usuario)
       .pipe(map((res:any) => {
         return res;

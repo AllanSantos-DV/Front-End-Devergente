@@ -12,7 +12,7 @@ export interface Neurodivergente extends Usuario {
     img_perfil?: string,
     img_capa?: string,
     bio?: string 
-    tipo_neurodivergencia: number,
+    codigo: number,
     laudo_neurodivergente: string,
 
     /* Tipo Neurodivergente : 
