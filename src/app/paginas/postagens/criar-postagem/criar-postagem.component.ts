@@ -88,6 +88,7 @@ export class CriarPostagemComponent {
 
   criarPostagem() {
     if (this.editar == null) {
+      console.log(this.formPostagem.value)
       this.service.criarPostagem(this.formPostagem.value).subscribe((res: any) => {
         alert("Sua postagem foi criada com sucesso");
         this.formPostagem.reset();

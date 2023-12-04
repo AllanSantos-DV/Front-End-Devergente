@@ -58,7 +58,7 @@ export class EmpregadorComponent {
       this.formularioCadastro.reset();
       this.router.navigate(['login']);
     }, (err: Error) => {
-      alert("Não foi possível realizar o seu cadastro")
+      alert(err.message);
     });
   }
 

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, catchError, map } from 'rxjs';
 import { Usuario } from '../interfaces/usuario';
 import { environment } from './../enviroments/enviroments';
 
@@ -14,10 +14,13 @@ export class UsuarioService {
     constructor(private http: HttpClient) { }
 
     criarUsuario(usuario: Usuario) {
-      console.log(usuario)
       return this.http.post<Usuario>(this.API, usuario)
       .pipe(map((res:any) => {
-        return res;
+        if (res === null) {
+          throw new Error('Email ja cadastrado');
+        }else {
+          return res;
+        }
       }))
     }
 

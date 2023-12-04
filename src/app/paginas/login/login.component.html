@@ -8,7 +8,7 @@
                     </div>
                     <div class="alertas-input" *ngIf="login.get('email')?.hasError('required')">
                         O campo email é obrigatório.
-                      </div>
+                    </div>
 
                     <div>
                         <input formControlName="senha" type="password" placeholder="senha"/>
@@ -23,11 +23,11 @@
                           </div>
 
                     <div class="btn-entrar">
-                        <button class="button" mat-raised-button>Entrar</button>
+                        <button class="button" type="submit" mat-raised-button>Entrar</button>
                     </div>
                     <div class="btn-opcoes">        
-                        <button class="button" routerLink="/reset-senha" mat-raised-button>Esqueci minha senha</button>
-                        <button class="button" routerLink="/criar-usuario" mat-raised-button>Crie sua conta</button>
+                        <button type="button" class="button" routerLink="/reset-senha" mat-raised-button>Esqueci minha senha</button>
+                        <button type="button" class="button" routerLink="/criar-usuario" mat-raised-button>Crie sua conta</button>
                     </div>
                 </div>
                 </form>

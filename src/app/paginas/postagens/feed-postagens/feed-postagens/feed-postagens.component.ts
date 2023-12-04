@@ -19,22 +19,18 @@ export class FeedPostagensComponent {
 
   ngOnInit(): void {
     this.carregarMaisPostagens();
-    /* this.postagemService.listarPostagens().subscribe((listaPostagens) => {
-       this.listaPostagens = listaPostagens;
-     }) */
   }
 
   @HostListener('window:scroll', ['$event'])
   onScroll(event: any): void {
-    console.log('Evento de rolagem disparado');
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
       this.carregarMaisPostagens();
     }
   }
 
   carregarMaisPostagens(): void {
-    this.postagemService.listarPostagens().subscribe(() => {
-      this.listaPostagens.forEach(postagem => {
+    this.postagemService.listarPostagens(this.listaPostagens.length, 10).subscribe((listaPostagens) => {
+      listaPostagens.forEach(postagem => {
         if (!this.listaPostagens.find(p => p.id === postagem.id)) {
           this.listaPostagens.push(postagem);
         }

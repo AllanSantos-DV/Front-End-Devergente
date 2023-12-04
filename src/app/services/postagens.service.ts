@@ -4,21 +4,26 @@ import { Observable } from 'rxjs';
 import { Postagem } from '../interfaces/postagem';
 import { environment } from './../enviroments/enviroments';
 import { map } from 'rxjs/operators';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostagensService {
 
-   private readonly API = `${environment.API_URL}/postagem`
+   private readonly API = `${environment.API_URL}/postagens`;
 
    constructor(private http: HttpClient) { }
  
-   listarPostagens(): Observable<Postagem[]> {
-     return this.http.get<Postagem[]>(this.API)
+   listarPostagens(inicio: number, quantidade: number): Observable<Postagem[]> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `${token}`);
+    const url = `${this.API}/page=${inicio}&size=${quantidade}`;
+    return this.http.get<Postagem[]>(url, { headers });
    }
  
    criarPostagem(postagens: Postagem): Observable<Postagem> {
+    console.log(postagens);
      return this.http.post<Postagem>(this.API, postagens)
    }
  

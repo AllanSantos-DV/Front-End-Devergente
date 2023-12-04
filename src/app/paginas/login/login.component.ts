@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { timeout } from 'rxjs';
 import { environment } from '../../enviroments/enviroments'
 
 @Component({
@@ -28,22 +27,13 @@ export class LoginComponent {
   }
 
   loginUsuario() {
-    const loginData = {
-      email: this.login.value.email,
-      senha: this.login.value.senha
-    };
-
-    this.http.post(this.API, loginData)
-      .subscribe((response: any) => {
-        if (response.success) {
-          alert("Login realizado com sucesso");
-          setTimeout(() => {
-            this.router.navigate(['feed']);
-          }, 3000);
-        } else {
-          alert(response.message);
-        }
-      });
-  }
+    this.http.post(this.API, this.login.value, {observe: 'response'})
+    .subscribe((res) => {
+      const token = res.headers.get('Authorization')
+      localStorage.setItem('token', token || '')
+      this.router.navigate(['/feed'])
+    }, (err) => {
+      alert('Email ou senha incorretos')
+    })
+  };
 }  
-
