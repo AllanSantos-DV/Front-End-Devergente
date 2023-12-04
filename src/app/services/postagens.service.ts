@@ -23,7 +23,6 @@ export class PostagensService {
    }
  
    criarPostagem(postagens: Postagem): Observable<Postagem> {
-    console.log(postagens);
      return this.http.post<Postagem>(this.API, postagens)
    }
  
