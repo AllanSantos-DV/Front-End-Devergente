@@ -5,10 +5,11 @@ export interface Usuario {
     email?: string,
     senha?: string,
     data_nascimento?: Date | null,
-    tipo_perfil?: number,
     img_perfil?: string,
     img_capa?: string,
     bio?: string 
+    codigo?: number,
+    tipo_perfil?: number
 
     /* Tipo Usuários : 
     1 - Neurodivergente;

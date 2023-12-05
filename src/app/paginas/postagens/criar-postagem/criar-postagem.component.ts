@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { Postagem } from 'src/app/interfaces/postagem';
 import { PostagensService } from 'src/app/services/postagens.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { PostagemComponent } from '../postagem/postagem.component';
 import { S3UploadService } from './../../../services/s3-upload.service';
 
 @Component({

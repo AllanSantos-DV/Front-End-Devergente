@@ -1,19 +1,9 @@
 import { Usuario } from "./usuario";
 
 export interface Profissional extends Usuario {
-    id?: number,
-    nome: string,
-    username: string,
-    imagemUrl: string;
-    email?: string,
-    senha?: string,
-    data_nascimento?: Date | null,
-    tipo_perfil?: 3,
-    img_perfil?: string,
-    img_capa?: string,
-    bio?: string 
-    codigo: number,
     registro_profissional: string
+    imagemUrl: string;
+    tipo_perfil?: 3,
 
     /* Tipo Profissional : 
     1 - Psicólogo;

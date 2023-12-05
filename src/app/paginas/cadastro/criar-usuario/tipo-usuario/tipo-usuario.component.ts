@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { validadorUnicaSelecao } from 'src/app/enviroments/unica-selecao';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
@@ -13,6 +12,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 export class TipoUsuarioComponent {
 
   public formularioUsuario!: FormGroup;
+  selectedControl: FormControl | null = null;
 
   constructor(private formBuilder: FormBuilder, 
     private service: UsuarioService, 
@@ -23,36 +23,33 @@ export class TipoUsuarioComponent {
 
   ngOnInit() {
     this.formularioUsuario = this.formBuilder.group ({
-      neurodivergente: [false],
-      familiar: [false],
-      profissional: [false],
-      empregador: [false]
-    }, { validators: validadorUnicaSelecao });
+      neurodivergente: new FormControl(false),
+      familiar: new FormControl(false),
+      profissional: new FormControl(false),
+      empregador: new FormControl(false)
+    });
+
+    Object.keys(this.formularioUsuario.controls).forEach(key => {
+      const control = this.formularioUsuario.controls[key] as FormControl;
+      control.valueChanges.subscribe(() => {
+        if (control.value && this.selectedControl && this.selectedControl !== control) {
+          this.selectedControl.setValue(false, { emitEvent: false });
+        }
+        this.selectedControl = control.value ? control : null;
+      });
+    });
   };
 
   tipoUsuario() {
-    let neurodivergente = this.formularioUsuario.get('neurodivergente')?.value;
-    let familiar = this.formularioUsuario.get('familiar')?.value;
-    let profissional = this.formularioUsuario.get('profissional')?.value;
-    let empregador = this.formularioUsuario.get('empregador')?.value;
+    const tipos = ['neurodivergente', 'familiar', 'profissional', 'empregador'];
   
-    if (this.formularioUsuario.errors?.['multipleSelection']) {
-      window.alert('Não foi possível prosseguir, pois houve mais de uma opção selecionada');
-      location.reload();
-      return;
-    }
-  
-    if (neurodivergente) {
-      this.router.navigate(['criar-usuario/neurodivergente']);
-    } else if (familiar) {
-      this.router.navigate(['criar-usuario/familiar']);
-    } else if (profissional) {
-      this.router.navigate(['criar-usuario/profissional']);
-    } else if (empregador) {
-      this.router.navigate(['criar-usuario/empregador']);
-    }
+    tipos.forEach(tipo => {
+      if (this.formularioUsuario.get(tipo)?.value) {
+        this.router.navigate([`criar-usuario/${tipo}`]);
+      }
+    });
   }
-
+  
   cancelar() {
     this.router.navigate(['bem-vindo'])
   }

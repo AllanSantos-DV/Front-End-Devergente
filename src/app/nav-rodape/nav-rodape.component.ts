@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {MatToolbarModule} from '@angular/material/toolbar';
 import { Router } from '@angular/router';
 import { CriarPostagemComponent } from '../paginas/postagens/criar-postagem/criar-postagem.component';
 import { MatDialog } from '@angular/material/dialog';
