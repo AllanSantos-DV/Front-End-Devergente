@@ -1,6 +1,6 @@
 <div class="comentario">
     <div class="comentario-imagem">
-        <img src="{{ comentario.usuario.img_perfil }}" mat-card-avatar />
+        <img src="{{ comentario?.usuario?.img_perfil }}" mat-card-avatar  alt=""/>
     </div>
     <div class="comentario-direita">
         <div class="comentario-conteudo">
@@ -15,7 +15,7 @@
                 <button mat-icon-button color="warn" type="button" (click)="excluirComentario(comentario.id)">
                     <mat-icon>delete</mat-icon>
                   </button>
-            </mat-card-actions> 
+            </mat-card-actions>
         </div>
         <div class="edicao">
             <app-comentarios-input-edicao [comentarioId]="comentario.id" *ngIf="editando"
@@ -23,5 +23,3 @@
         </div>
     </div>
 </div>
-
-<!--<p [ngClass]="{'comentario': true, 'comentario-usuariologado': true}">{{ comentario.conteudo }}</p>-->

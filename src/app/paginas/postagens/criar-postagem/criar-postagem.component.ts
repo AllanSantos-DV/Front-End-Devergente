@@ -1,10 +1,8 @@
 import { Component, Inject } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Postagem } from 'src/app/interfaces/postagem';
 import { PostagensService } from 'src/app/services/postagens.service';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { S3UploadService } from './../../../services/s3-upload.service';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-criar-postagem',
@@ -13,72 +11,42 @@ import { S3UploadService } from './../../../services/s3-upload.service';
 })
 export class CriarPostagemComponent {
 
-  postagem: Postagem = {
-    id: 0,
-    usuario: {
-      id: 0,
-      nome: '',
-      username: '',
-      img_perfil: '',
-    },
-    conteudo: '',
-    imagemUrl: '',
-    data: new Date()
-  }
-
   public editar!: Postagem;
 
   public formPostagem!: FormGroup;
 
   acaoHeader: string = "Criar Postagem";
 
-  imagemSelecionada!: File;
+  imagemSelecionada!: File | null;
 
   constructor(private formBuilder: FormBuilder,
-    private service: PostagensService,
-    private router: Router,
-    private s3UploadService: S3UploadService,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialog: MatDialog,
-    private dialogRef: MatDialogRef<CriarPostagemComponent>) {
+              private service: PostagensService,
+              @Inject(MAT_DIALOG_DATA) public data: any,
+              private dialogRef: MatDialogRef<CriarPostagemComponent>) {
 
-      if(this.data) {
-        this.editar = this.data.editar;
-      }
+    if (this.data) {
+      this.editar = this.data.editar;
+    }
+
+    const postagementity: Postagem = {
+      conteudo: this.formPostagem?.value.conteudo,
+      imagemUrl: '',
+      data: new Date()
+    }
 
     this.formPostagem = this.formBuilder.group({
-      id: [0],
-      usuario: this.formBuilder.group({
-        id: [],
-        nome: [''],
-        username: [''],
-        img_perfil: ['']
-      }),
-      conteudo: ['', [Validators.required, Validators.minLength(3)]],
-      imagemUrl: ['', this.validarImagemUrl],
-      data: [new Date().toLocaleString]
+      postagem: [postagementity],
+      token: [localStorage.getItem('token')],
+      imagemUrl: [''],
     });
   }
 
-  
+
   imagemCarregadaPost(event: Event): void {
     const target = event.target as HTMLInputElement;
     const file: File = (target.files as FileList)[0];
-    if (file) {
-      this.s3UploadService.enviarImagemPost(file).then(url => {
-        this.formPostagem.patchValue({ imagemUrl: url });
-      }).catch(error => {
-        console.error('Erro ao enviar a imagem:', error);
-      });
-    }
-  }
-  
-  validarImagemUrl(control: AbstractControl): ValidationErrors | null {
-    const url = control.value;
-    if (!url) {
-      return { 'urlInvalida': true };
-    }
-    return null;
+    if (file)  this.imagemSelecionada = file;
+    else this.imagemSelecionada = null;
   }
 
   cancelarPostagem() {
@@ -87,7 +55,7 @@ export class CriarPostagemComponent {
 
   criarPostagem() {
     if (this.editar == null) {
-      console.log(this.formPostagem.value)
+      console.log(this.formPostagem.value);
       this.service.criarPostagem(this.formPostagem.value).subscribe((res: any) => {
         alert("Sua postagem foi criada com sucesso");
         this.formPostagem.reset();
@@ -104,17 +72,17 @@ export class CriarPostagemComponent {
   editarPostagem() {
     if (this.editar && this.editar.id) {
       this.service.editarPostagem(this.formPostagem.value, this.editar.id)
-      .subscribe({
-        next:(res) => {
-          alert("Sua postagem foi atualizada com sucesso");
-          this.formPostagem.reset();
-          this.dialogRef.close('postagem atualizada');
-          location.reload();
-        },
-        error:() => {
-          alert("Erro ao atualizar a postagem")
-        }
-      })
+        .subscribe({
+          next: (res) => {
+            alert("Sua postagem foi atualizada com sucesso");
+            this.formPostagem.reset();
+            this.dialogRef.close('postagem atualizada');
+            location.reload();
+          },
+          error: () => {
+            alert("Erro ao atualizar a postagem")
+          }
+        })
     }
   }
 

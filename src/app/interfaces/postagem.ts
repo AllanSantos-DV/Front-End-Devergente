@@ -1,8 +1,8 @@
-import { Usuario } from "./usuario";
+import { UsuarioDTO } from "./usuarioDTO";
 
 export interface Postagem {
     id?: number,
-    usuario?: Usuario,
+    usuario?: UsuarioDTO,
     conteudo?: string,
     imagemUrl?: string,
     data?: Date;

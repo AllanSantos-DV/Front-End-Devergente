@@ -9,6 +9,7 @@ import { environment } from '../../enviroments/enviroments'
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent {
 
   private readonly API = `${environment.API_URL}/login`
@@ -28,12 +29,14 @@ export class LoginComponent {
 
   loginUsuario() {
     this.http.post(this.API, this.login.value, {observe: 'response'})
-    .subscribe((res) => {
-      const token = res.headers.get('Authorization')
-      localStorage.setItem('token', token || '')
-      this.router.navigate(['/feed'])
-    }, (err) => {
-      alert('Email ou senha incorretos')
+    .subscribe({
+      next: (res: any) => {
+        localStorage.setItem('token', res.headers.get('Authorization'));
+        this.router.navigate(['/feed']).then(r => console.log(r));
+      },
+      error: (err: any) => {
+        alert("Email ou senha incorretos");
+      }
     })
   };
-}  
+}

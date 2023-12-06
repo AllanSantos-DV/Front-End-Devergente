@@ -7,19 +7,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./nav-cabecalho.component.css']
 })
 export class NavCabecalhoComponent {
-  
+
   constructor(
     private router: Router
   ) { }
 
   inicio() {
-    this.router.navigate(['/feed'])
+    this.router.navigate(['/feed']).then(r => console.log(r))
   }
 
   logout() {
     if (window.confirm('Tem certeza de que deseja sair?')) {
       localStorage.removeItem('token');
-      this.router.navigate(['/login']);
+      this.router.navigate(['/login']).then(r => console.log(r));
     }
-  }  
+  }
 }

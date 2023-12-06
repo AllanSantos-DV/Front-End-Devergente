@@ -10,14 +10,14 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class NavRodapeComponent {
 
-  constructor( 
+  constructor(
     private dialog: MatDialog,
     private router: Router) {
 
   }
 
   inicio() {
-    this.router.navigate(['/feed']);
+    this.router.navigate(['/feed']).then(r => console.log(r));
   }
 
   criarPostagem() {
@@ -25,6 +25,6 @@ export class NavRodapeComponent {
   }
 
   perfilUsuario() {
-    this.router.navigate(['/perfil/9']);
+    this.router.navigate(['/perfil/9']).then(r => console.log(r));
   }
 }

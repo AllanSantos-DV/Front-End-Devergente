@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Comentario } from 'src/app/interfaces/comentario';
 import { Postagem } from 'src/app/interfaces/postagem';
@@ -44,8 +43,6 @@ export class ComentarioComponent {
     conteudo: '',
     data: new Date()
   }
-  textoInicial: any;
-
   constructor(private fb: FormBuilder,
     private comentarioService: ComentariosService,
     private postagemService: PostagensService,
