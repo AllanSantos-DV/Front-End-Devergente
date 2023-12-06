@@ -1,70 +1,26 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { UsuarioService } from 'src/app/services/usuario.service';
+import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import * as moment from 'moment';
+import { UsuarioService } from 'src/app/services/usuario.service';
+import { CadastroComponent } from '../cadastro.component';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-neurodivergente',
   templateUrl: './neurodivergente.component.html',
   styleUrls: ['./neurodivergente.component.css']
 })
-export class NeurodivergenteComponent {
-  dataNascimento: Date | null = null;
+export class NeurodivergenteComponent extends CadastroComponent {
+  constructor(formBuilder: FormBuilder, service: UsuarioService, http: HttpClient, router: Router) {
+    super(formBuilder, service, http, router);}
+    
+    override ngOnInit() {
+      super.ngOnInit();
+      this.formularioCadastro.addControl('tipo_perfil', new FormControl(1));
+      this.formularioCadastro.addControl('codigo', new FormControl(0));
 
-  public formularioCadastro!: FormGroup;
-
-  maiorIdade = (data: Date | null): boolean => {
-    this.dataNascimento = data;
-    if (data) {
-      const dataAtual = new Date();
-      const dataMinima = new Date(
-        dataAtual.getFullYear() - 18,
-        dataAtual.getMonth(),
-        dataAtual.getDate()
-      );
-      return data <= dataMinima;
-    }
-    return false;
-  };
-  
-  constructor(private formBuilder: FormBuilder, private service: UsuarioService, private http: HttpClient, private router: Router) {
-
-  }
-
-  ngOnInit() {
-    this.formularioCadastro = this.formBuilder.group ({
-      nome: ['',[Validators.required]],
-      username: ['',[Validators.required, 
-        Validators.pattern(/^[^\s]*$/)]],
-      email: ['',[Validators.required, Validators.email]],
-      senha: ['',[Validators.required, 
-        Validators.minLength(8),
-        Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/)]],
-      data_nascimento: ['',[Validators.required]],
-      tipo_perfil: 1,
-      codigo: ['',[Validators.required]],
-    })
-  };
-
-  cadastroUsuario() {
-    let dataNascimento = moment(this.formularioCadastro.value.data_nascimento, "DD-MM-YYYY");
-    let dataFormatada = new Date(dataNascimento.year(), dataNascimento.month(), dataNascimento.date());
-    let usuario = { ...this.formularioCadastro.value, data_nascimento: dataFormatada };
-  
-    usuario.codigo = Number(usuario.codigo);
-  
-    this.service.criarUsuario(usuario).subscribe((res: any) => {
-      alert("Cadastro realizado com sucesso!");
-      this.formularioCadastro.reset();
-      this.router.navigate(['login']);
-    }, (err: Error) => {
-      alert(err.message)
-    });
-  }
-
-  cancelar() {
-    this.router.navigate(['bem-vindo'])
+      this.service.tipo_perfil = 1;
+      console.log(this.formularioCadastro.value);
   }
 }
+

@@ -6,14 +6,14 @@
             </div>
             <form [formGroup]="formularioCadastro" (ngSubmit)="cadastroUsuario()">
                 <div>
-                    <input formControlName="nome" type="text" placeholder="Nome"/>
+                    <input formControlName="nome" type="text" placeholder="Nome" />
                 </div>
                 <div class="alertas-input" *ngIf="formularioCadastro.get('nome')?.hasError('required')">
                     * O campo nome é obrigatório.
-                  </div>
+                </div>
 
                 <div>
-                    <input formControlName="username" type="text" placeholder="Username"/>
+                    <input formControlName="username" type="text" placeholder="Username" />
                 </div>
                 <div class="alertas-input" *ngIf="formularioCadastro.get('username')?.hasError('required')">
                     * O campo username é obrigatório.
@@ -23,7 +23,7 @@
                 </div>
 
                 <div>
-                    <input formControlName="email" type="email" placeholder="email"/>
+                    <input formControlName="email" type="email" placeholder="email" />
                 </div>
                 <div class="alertas-input" *ngIf="formularioCadastro.get('email')?.hasError('required')">
                     * O campo e-mail é obrigatório.
@@ -33,40 +33,47 @@
                 </div>
 
                 <div>
-                    <input formControlName="senha" type="password" placeholder="senha"/>
+                    <input formControlName="senha" type="password" placeholder="senha" />
                 </div>
                 <div class="alertas-input" *ngIf="formularioCadastro.get('senha')?.hasError('required')">
                     * A senha é obrigatória.
-                  </div>
-                  <div class="alertas-input" *ngIf="formularioCadastro.get('senha')?.hasError('minlength')">
+                </div>
+                <div class="alertas-input" *ngIf="formularioCadastro.get('senha')?.hasError('minlength')">
                     * A senha deve ter pelo menos 8 caracteres.
-                  </div>
-                  <div class="alertas-input" *ngIf="formularioCadastro.get('senha')?.hasError('pattern')">
-                    * A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.
-                  </div>
+                </div>
+                <div class="alertas-input" *ngIf="formularioCadastro.get('senha')?.hasError('pattern')">
+                    * A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere
+                    especial.
+                </div>
+
+                <div>
+                    <input formControlName="confirmarSenha" type="password" placeholder="confirme sua senha" />
+                </div>
+                <div class="alertas-input" *ngIf="formularioCadastro.hasError('notSame')">
+                    * As senhas não conferem.
+                </div>
 
                 <div class="box">
-                    
                     <mat-form-field>
                         <mat-label>Data de nascimento</mat-label>
-                        <input matInput [matDatepickerFilter]="maiorIdade" [matDatepicker]="picker" formControlName="data_nascimento" name="data_nascimento">
+                        <input matInput [matDatepickerFilter]="maiorIdade" [matDatepicker]="picker"
+                            formControlName="data_nascimento" name="data_nascimento" aria-label="Data de nascimento">
                         <mat-hint>DD/MM/YYYY</mat-hint>
                         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
-                      </mat-form-field>
-                      
-
+                    </mat-form-field>
                 </div>
 
                 <div class="alertas-input" *ngIf="dataNascimento && !maiorIdade(dataNascimento)">
                     * Não permitimos o cadastro de menores de 18 anos
                 </div>
+                <ng-content></ng-content>
 
                 <div class="btn-opcoes">
-                    <button mat-raised-button (click)="cancelar()">Cancelar</button>
-                    <button mat-raised-button>Criar Usuario</button>
-                </div>
+                    <button mat-raised-button type="button" (click)="cancelar()">Cancelar</button>
+                    <button mat-raised-button type="submit">Criar Usuario</button>
+                  </div>
             </form>
-        </div>   
+        </div>
     </div>
 </div>

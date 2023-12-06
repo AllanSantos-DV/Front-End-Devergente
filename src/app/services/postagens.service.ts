@@ -27,6 +27,9 @@ export class PostagensService {
    criarPostagem(postagens: FormData): Observable<Postagem> {
       const token = localStorage.getItem('token');
       const headers = new HttpHeaders().set('Authorization', `${token}`);
+      postagens.forEach((value, key) => {
+        console.log(key + ' ' + value);
+      });
       return this.http.post<Postagem>(this.API, postagens, { headers });
    }
 

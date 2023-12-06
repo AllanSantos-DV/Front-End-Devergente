@@ -1,19 +1,85 @@
+h2{
+    text-align: center;
+}
+
+#body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1em;
+}
+
+#buttons{
+    display: flex;
+    justify-content: space-around;
+}
+
+#post-content {
+    align-items: center;
+    text-align: center;
+}
+
+#BtnEnviar {
+    margin-top: 1em;
+    padding: 1em;
+    border-radius: 1em;
+    border: none;
+    background-color: #1E90FF;
+    color: white;
+    font-size: 0.7em;
+    cursor: pointer;
+}
+
+#BtnEnviar:hover {
+    background-color: #00BFFF;
+}
+
+#BtnEnviar:active {
+    background-color: #1eff69;
+}
+
+#BtnCancel{
+    margin-top: 1em;
+    padding: 1em;
+    border-radius: 1em;
+    border: none;
+    background-color: #ff8b1e;
+    color: white;
+    font-size: 0.7em;
+    cursor: pointer;
+}
+
+#BtnCancel:hover {
+    background-color: #ff9c1e;
+}
+
+#BtnCancel:active {
+    background-color: #ff1e1e;
+}
+
+
 #photo-upload {
-    display: none;
+    margin-top: 1em;
+    padding: 1em;
+    border-radius: 1em;
+    border: none;
+    font-size: 0.7em;
+    cursor: pointer;
 }
 
 textarea {
     font-size: 1.5em;
     padding: 1em;
     resize: none;
-    width: 250px;
-    min-height: 200px;
-    border: none;
+    width: 40vw;
+    min-height: 20vh;
+    border: 5;
     outline: none;
 }
 
 #img-previa-box {
-    text-align: right;
+    text-align: center;
     margin-top: 1em;
     padding: 1em;
 }
@@ -21,8 +87,8 @@ textarea {
 #img-previa {
     object-fit: cover;
     object-position: center;
-    width: 150px;
-    height: 100px;
+    width: 30vw;
+    height: 20vh;
     border-radius: 1em;
     border: 1px dashed blue;
 }

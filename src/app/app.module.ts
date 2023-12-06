@@ -93,6 +93,7 @@ import { ComentariosInputEdicaoComponent } from './paginas/comentarios/comentari
     ComentariosInputEdicaoComponent
   ],
   imports: [
+    ReactiveFormsModule,
     CommonModule,
     FormsModule,
     BrowserModule,

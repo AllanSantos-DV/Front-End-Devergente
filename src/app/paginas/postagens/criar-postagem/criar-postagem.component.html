@@ -1,24 +1,15 @@
-<form [formGroup]="formPostagem" (ngSubmit)="criarPostagem()">
-    <mat-card>
-        <mat-card-header>
-            <mat-card-title>{{ acaoHeader }}</mat-card-title>
-        </mat-card-header>
-        <div>
-            <textarea formControlName="conteudo" type="textarea" placeholder="Digite sua mensagem"></textarea>
-        </div>
-        <div *ngIf="imagemSelecionada" formControlName="imagemUrl" id="img-previa-box">
-            <img src="" alt="Image" />
-        </div>
-        <mat-card-actions align="end">
-            <button mat-button type="button">
-                <label>
-                    <input (change)="imagemCarregadaPost($event)" accept=".jpg, .jpeg, .png" id="imagemUrl"
-                           type="file">
-                    <mat-icon>insert_photo</mat-icon>
-                </label>
-            </button>
-            <button mat mat-raised-button type="button" (click)="cancelarPostagem()">Cancelar</button>
-            <button mat mat-raised-button type="submit">Publicar</button>
-        </mat-card-actions>
-    </mat-card>
-</form>
+<div id="body">
+    <h2>Adicionar Postagem</h2>
+<textarea id="post-content" [(ngModel)]="postContent" placeholder="Conteúdo da postagem"></textarea>
+<input id="photo-upload" type="file" accept="image/*" (change)="onImageChange($event)" placeholder="Adicionar imagem">
+<div id="img-previa-box">
+  <img *ngIf="postImageUrl" [src]="postImageUrl" alt="Imagem selecionada" id="img-previa">
+</div>
+</div>
+<div id="buttons">
+    <button type="reset" id="BtnCancel" (click)="onCancel()">Cancelar</button>
+    <button type="submit" id="BtnEnviar" (click)="onSubmit()">Enviar</button>
+</div>
+
+
+

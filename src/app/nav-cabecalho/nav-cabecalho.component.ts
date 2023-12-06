@@ -13,8 +13,12 @@ export class NavCabecalhoComponent {
   ) { }
 
   inicio() {
-    this.router.navigate(['/feed']).then(r => console.log(r))
+    this.router.navigate(['/feed']).then(r => {
+      console.log(r);
+      window.scrollTo(0, 0);
+    });
   }
+  
 
   logout() {
     if (window.confirm('Tem certeza de que deseja sair?')) {

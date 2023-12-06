@@ -1,9 +1,6 @@
 import { Component, HostListener } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { CriarPostagemComponent } from '../../criar-postagem/criar-postagem.component';
 import { PostagensService } from 'src/app/services/postagens.service';
 import { Postagem } from 'src/app/interfaces/postagem';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-feed-postagens',

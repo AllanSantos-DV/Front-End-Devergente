@@ -1,11 +1,9 @@
 import { Component, Input } from '@angular/core';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Postagem } from 'src/app/interfaces/postagem';
 import { PostagensService } from 'src/app/services/postagens.service';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { CriarPostagemComponent } from '../criar-postagem/criar-postagem.component';
-import { MatOptionSelectionChange } from '@angular/material/core';
-import { ComentariosComponent } from '../../comentarios/comentarios/comentarios.component';
 
 @Component({
   selector: 'app-postagem',

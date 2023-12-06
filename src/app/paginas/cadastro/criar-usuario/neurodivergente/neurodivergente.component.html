@@ -1,156 +1,35 @@
-<div class="bg-fundo">
-  <div class="bg">
-    <div class="cadastro">
-      <div class="cadastro-conteudo">
-        <div class="header">Crie sua conta</div>
-      </div>
-      <form [formGroup]="formularioCadastro" (ngSubmit)="cadastroUsuario()">
-        <div>
-          <input formControlName="nome" type="text" placeholder="Nome" />
-        </div>
-        <div class="alertas-input" *ngIf="formularioCadastro.get('nome')?.hasError('required')">
-          * O campo nome é obrigatório.
-        </div>
+<app-cadastro [formGroup]="formularioCadastro" (formSubmit)="cadastroUsuario()">
+  <div class="box">
+    <section class="app">
+      <h3 class="gray-color">Qual é a sua Neurodivergencia</h3>
 
-        <div>
-          <input formControlName="username" type="text" placeholder="Username" />
-        </div>
-        <div class="alertas-input" *ngIf="formularioCadastro.get('username')?.hasError('required')">
-          * O campo username é obrigatório.
-        </div>
-        <div class="alertas-input" *ngIf="formularioCadastro.get('username')?.hasError('pattern')">
-          * O username não pode conter espaços.
-        </div>
+      <article class="opcao1">
+        <input type="radio" id="opcao1" formControlName="codigo" value="1" />
+        <div><label for="opcao1">TEA</label></div>
+      </article>
 
-        <div>
-          <input formControlName="email" type="email" placeholder="email" />
-        </div>
-        <div class="alertas-input" *ngIf="formularioCadastro.get('email')?.hasError('required')">
-          * O campo e-mail é obrigatório.
-        </div>
-        <div class="alertas-input" *ngIf="formularioCadastro.get('email')?.hasError('email')">
-          * Formato de email inválido.
-        </div>
+      <article class="opcao2">
+        <input type="radio" id="opcao2" formControlName="codigo" value="2" />
+        <div><label for="opcao2">TDAH</label></div>
+      </article>
 
-        <div>
-          <input formControlName="senha" type="password" placeholder="senha" />
-        </div>
-        <div class="alertas-input" *ngIf="formularioCadastro.get('senha')?.hasError('required')">
-          * A senha é obrigatória.
-        </div>
-        <div class="alertas-input" *ngIf="formularioCadastro.get('senha')?.hasError('minlength')">
-          * A senha deve ter pelo menos 8 caracteres.
-        </div>
-        <div class="alertas-input" *ngIf="formularioCadastro.get('senha')?.hasError('pattern')">
-          * A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.
-        </div>
+      <article class="opcao3">
+        <input type="radio" id="opcao3" formControlName="codigo" value="3" />
+        <div><label for="opcao3">Dislexia</label></div>
+      </article>
 
-        <div>
-          <input formControlName="senha" type="password" placeholder="confirme sua senha" />
-        </div>
-        <div class="alertas-input" *ngIf="formularioCadastro.get('senha')?.hasError('required')">
-          * A senha é obrigatória.
-        </div>
-        <div class="alertas-input" *ngIf="formularioCadastro.get('senha')?.hasError('minlength')">
-          * A senha deve ter pelo menos 8 caracteres.
-        </div>
-        <div class="alertas-input" *ngIf="formularioCadastro.get('senha')?.hasError('pattern')">
-          * A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.
-        </div>
+      <article class="opcao4">
+        <input type="radio" id="opcao4" formControlName="codigo" value="4" />
+        <div><label for="opcao4">Tourette</label></div>
+      </article>
 
-        <div class="box">
-
-          <mat-form-field>
-            <mat-label>Data de nascimento</mat-label>
-            <input matInput [matDatepickerFilter]="maiorIdade" [matDatepicker]="picker"
-              formControlName="data_nascimento" name="data_nascimento">
-            <mat-hint>DD/MM/YYYY</mat-hint>
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-
-
-        </div>
-
-        <div class="alertas-input" *ngIf="dataNascimento && !maiorIdade(dataNascimento)">
-          * Não permitimos o cadastro de menores de 18 anos
-        </div>
-
-        <div class="box">
-          <section class="app">
-            <h3 class="gray-color">Qual / quais são suas neurodivergencias</h3>
-
-              <article class="opcao1">
-                <input type="radio" id="opcao1" formControlName="codigo" value="1" />
-                <div>
-                  <span>
-                    TEA
-                  </span>
-                </div>
-              </article>
-
-              <article class="opcao2">
-                <input type="radio" id="opcao2" formControlName="codigo" value="2" />
-                <div>
-                  <span>
-                    TDAH
-                  </span>
-                </div>
-              </article>
-
-              <article class="opcao3">
-                <input type="radio" id="opcao3" formControlName="codigo" value="3" />
-                <div>
-                  <span>
-                    Dislexia
-                  </span>
-                </div>
-              </article>
-
-              
-              <article class="opcao4">
-                <input type="radio" id="opcao4" formControlName="codigo" value="4" />
-                <div>
-                  <span>
-                    Tourette
-                  </span>
-                </div>
-              </article>
-
-              
-              <article class="opcao5">
-                <input type="radio" id="opcao5" formControlName="codigo" value="5" />
-                <div>
-                  <span>
-                    Outros
-                  </span>
-                </div>
-              </article>
-
-          </section>
-        </div>
-
-        <div class="alertas-input" *ngIf="">
-          Carregar laudo TEA
-        </div>
-        <div class="alertas-input" *ngIf="">
-          Carregar laudo TDAH
-        </div>
-        <div class="alertas-input" *ngIf="">
-          Carregar laudo DISLEXIA
-        </div>
-        <div class="alertas-input" *ngIf="">
-          Carregar laudo TOURETTE
-        </div>
-        <div class="alertas-input" *ngIf="">
-          Carregar laudo OUTROS
-        </div>
-
-        <div class="btn-opcoes">
-          <button mat-raised-button type="button" (click)="cancelar()">Cancelar</button>
-          <button mat-raised-button type="submit">Criar Usuario</button>
-        </div>
-      </form>
-    </div>
+      <article class="opcao5">
+        <input type="radio" id="opcao5" formControlName="codigo" value="5" />
+        <div><label for="opcao5">Outros</label></div>
+      </article>
+    </section>
   </div>
-</div>
+
+
+
+</app-cadastro>
