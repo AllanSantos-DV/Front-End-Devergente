@@ -64,3 +64,24 @@ article input {
 input[type=radio]:checked~div {
    background-color: #800080;
 }
+
+.btn-opcoes {
+   justify-content: center;
+   display: flex;
+}
+
+.btn-opcoes button {
+   font-family: 'OpenDyslexic';
+   background-color: #FF7800;
+   justify-content: center;
+   display: flex;
+   color: white;
+   font-size: 1em;
+   padding: 1em;
+   margin: .5em;
+}
+
+.btn-opcoes button:active {
+   background-color: white;
+   color: var(--laranja);
+}

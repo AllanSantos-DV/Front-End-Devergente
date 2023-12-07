@@ -1,9 +1,11 @@
-import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+// CadastroComponent
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
+import { HttpClient } from '@angular/common/http';
+import { NeurodivergenteComponent } from './neurodivergente/neurodivergente.component';
 
 @Component({
   selector: 'app-cadastro',
@@ -13,10 +15,12 @@ import * as moment from 'moment';
 export class CadastroComponent {
 
   dataNascimento: Date | null = null;
+  @Input() formularioCadastro!: FormGroup;
+  @Output() ngSubmit = new EventEmitter<void>();
+  @Output() codigoSelecionado = new EventEmitter<string>();
 
-  public formularioCadastro!: FormGroup;
-
-  constructor(protected formBuilder: FormBuilder, protected service: UsuarioService, private http: HttpClient, private router: Router) {}
+  constructor(protected formBuilder: FormBuilder, protected service: UsuarioService,
+    private http: HttpClient, private router: Router) { }
 
   ngOnInit() {
     this.formularioCadastro = this.formBuilder.group({
@@ -25,36 +29,43 @@ export class CadastroComponent {
       email: ['', [Validators.required, Validators.email]],
       senha: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/)]],
       confirmarSenha: ['', [Validators.required]],
-      data_nascimento: ['', [Validators.required]]
+      data_nascimento: ['', [Validators.required]],
+      tipo_perfil: [],
+      codigo: []
     }, { validator: this.checkPasswords });
   }
-  
+
   checkPasswords(group: FormGroup) {
-    let senha = group.get('senha')?.value || '';  
+    let senha = group.get('senha')?.value || '';
     let confirmarSenha = group.get('confirmarSenha')?.value;
     return senha === confirmarSenha ? null : { notSame: true };
   }
-  
 
   cadastroUsuario() {
-    //if (this.formularioCadastro.valid) {
-      let dataNascimento = moment(this.formularioCadastro.value.data_nascimento, "DD-MM-YYYY");
-      let dataFormatada = new Date(dataNascimento.year(), dataNascimento.month(), dataNascimento.date());
-      let usuario = { ...this.formularioCadastro.value, data_nascimento: dataFormatada };
-      console.log(usuario);
+    if (this.formularioCadastro.valid) {
+    let codigoSelecionado = this.formularioCadastro.get('codigo')?.value;
+    this.codigoSelecionado.emit(codigoSelecionado);
 
-      console.log(this.formularioCadastro.value);
-      this.service.criarUsuario(this.formularioCadastro.value).subscribe((res: any) => {
-        alert("Cadastro realizado com sucesso!");
-        this.formularioCadastro.reset();
-        this.router.navigate(['login']);
-      }, (err: Error) => {
-        alert(err.message)
-      });
-    //} else {
-    //  console.log(this.formularioCadastro.value);
-    //  alert("Por favor, preencha o formulário corretamente antes de enviar.");
-    //}
+    let dataNascimento = moment(this.formularioCadastro.value.data_nascimento, "DD-MM-YYYY");
+    let dataFormatada = new Date(dataNascimento.year(), dataNascimento.month(), dataNascimento.date());
+    let usuario = { ...this.formularioCadastro.value, data_nascimento: dataFormatada };
+    let codigos = NeurodivergenteComponent.codigoSelecionado;
+    usuario.codigo = codigos[0];
+    usuario.tipo_perfil = codigos[1];
+
+
+    console.log(codigos);
+    console.log(usuario);
+    this.service.criarUsuario(usuario).subscribe((res: any) => {
+      alert("Cadastro realizado com sucesso!");
+      this.formularioCadastro.reset();
+      this.router.navigate(['login']);
+    }, (err: Error) => {
+      alert(err.message)
+    });
+    } else {
+      alert("Por favor, preencha o formulário corretamente antes de enviar.");
+    }
   }
 
   cancelar() {

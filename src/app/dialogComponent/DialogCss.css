@@ -1,0 +1,45 @@
+.center {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.dialog-content,
+.dialog-button {
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.dialog-content {
+    background-color: #f8f9fa;
+    color: #343a40;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dialog-actions {
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.dialog-button {
+    color: #ffffff;
+    background-color: #007bff;
+    padding: 10px 20px;
+}
+
+.dialog-button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos responsivos */
+@media (max-width: 600px) {
+    .dialog-content {
+        padding: 15px;
+    }
+
+    .dialog-button {
+        padding: 8px 16px;
+    }
+}

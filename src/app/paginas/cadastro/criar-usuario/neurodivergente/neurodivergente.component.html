@@ -1,35 +1,34 @@
-<app-cadastro [formGroup]="formularioCadastro" (formSubmit)="cadastroUsuario()">
-  <div class="box">
-    <section class="app">
-      <h3 class="gray-color">Qual é a sua Neurodivergencia</h3>
+<form [formGroup]="formularioCadastro" >
+  <app-cadastro [formularioCadastro]="formularioCadastro" >
+    <div class="box">
+      <section class="app">
+        <h3 class="gray-color">Qual é a sua Neurodivergencia</h3>
 
-      <article class="opcao1">
-        <input type="radio" id="opcao1" formControlName="codigo" value="1" />
-        <div><label for="opcao1">TEA</label></div>
-      </article>
+        <article class="opcao1">
+          <input type="radio" id="opcao1" formControlName="codigo" value="1" />
+          <div><label for="opcao1">TEA</label></div>
+        </article>
 
-      <article class="opcao2">
-        <input type="radio" id="opcao2" formControlName="codigo" value="2" />
-        <div><label for="opcao2">TDAH</label></div>
-      </article>
+        <article class="opcao2">
+          <input type="radio" id="opcao2" formControlName="codigo" value="2" />
+          <div><label for="opcao2">TDAH</label></div>
+        </article>
 
-      <article class="opcao3">
-        <input type="radio" id="opcao3" formControlName="codigo" value="3" />
-        <div><label for="opcao3">Dislexia</label></div>
-      </article>
+        <article class="opcao3">
+          <input type="radio" id="opcao3" formControlName="codigo" value="3" />
+          <div><label for="opcao3">Dislexia</label></div>
+        </article>
 
-      <article class="opcao4">
-        <input type="radio" id="opcao4" formControlName="codigo" value="4" />
-        <div><label for="opcao4">Tourette</label></div>
-      </article>
+        <article class="opcao4">
+          <input type="radio" id="opcao4" formControlName="codigo" value="4" />
+          <div><label for="opcao4">Tourette</label></div>
+        </article>
 
-      <article class="opcao5">
-        <input type="radio" id="opcao5" formControlName="codigo" value="5" />
-        <div><label for="opcao5">Outros</label></div>
-      </article>
-    </section>
-  </div>
-
-
-
-</app-cadastro>
+        <article class="opcao5">
+          <input type="radio" id="opcao5" formControlName="codigo" value="5" />
+          <div><label for="opcao5">Outros</label></div>
+        </article>
+      </section>
+    </div>
+  </app-cadastro>
+</form>
