@@ -1,9 +1,6 @@
 // NeurodivergenteComponent
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { UsuarioService } from 'src/app/services/usuario.service';
+import { Validators } from '@angular/forms';
 import { CadastroComponent } from '../cadastro.component';
 
 @Component({
@@ -12,12 +9,12 @@ import { CadastroComponent } from '../cadastro.component';
   styleUrls: ['./neurodivergente.component.css']
 })
 export class NeurodivergenteComponent extends CadastroComponent {
-  static codigoSelecionado: Number[];
     override ngOnInit() {
     super.ngOnInit();
     this.formularioCadastro.addControl('codigo', this.formBuilder.control('', Validators.required));
     this.formularioCadastro.get('codigo')?.valueChanges.subscribe(codigo => {
-      NeurodivergenteComponent.codigoSelecionado = [Number(codigo), 1]
+      CadastroComponent.codigos = [Number(codigo), 1]
+      console.log(CadastroComponent.codigos);
     });
   }
 }
