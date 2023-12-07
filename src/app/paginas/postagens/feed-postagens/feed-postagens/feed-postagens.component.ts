@@ -25,13 +25,21 @@ export class FeedPostagensComponent {
     }
   }
 
+  todasPostagensCarregadas = false;
+
   carregarMaisPostagens(): void {
-    this.postagemService.listarPostagens(this.listaPostagens.length, 10).subscribe((listaPostagens) => {
-      listaPostagens.forEach(postagem => {
-        if (!this.listaPostagens.find(p => p.id === postagem.id)) {
-          this.listaPostagens.push(postagem);
+    if (!this.todasPostagensCarregadas) {
+      this.postagemService.listarPostagens(this.listaPostagens.length, 10).subscribe((listaPostagens) => {
+        if (listaPostagens.length < 10) {
+          this.todasPostagensCarregadas = true;
         }
+        listaPostagens.forEach(postagem => {
+          if (!this.listaPostagens.find(p => p.id === postagem.id)) {
+            this.listaPostagens.push(postagem);
+          }
+        });
       });
-    });
+    }
   }
+  
 }
