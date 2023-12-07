@@ -1,40 +1,40 @@
 <div class="bg-fundo">
-    <div class="bg">
-        <div class="cadastro">
-            <div class="cadastro-conteudo">
-                <form [formGroup]="formularioUsuario" (ngSubmit)="tipoUsuario()">
-                <div class="box">
-                    <section class="app">
-                        <h3 class="gray-color">Você é: </h3>
+  <div class="bg">
+    <div class="cadastro">
+      <div class="cadastro-conteudo">
+        <form [formGroup]="formularioUsuario" (ngSubmit)="tipoUsuario()">
+          <div class="box">
+            <section class="app">
+              <h3 class="gray-color">Você é: </h3>
 
-                        <article class="neurodivergente">
-                          <input type="checkbox" id="neurodivergente" formControlName="neurodivergente"/>
-                          <div><label for="neurodivergente">Neurodivergente</label></div>
-                        </article>
+              <article class="neurodivergente">
+                <input type="checkbox" id="neurodivergente" formControlName="neurodivergente" />
+                <div><label for="neurodivergente">Neurodivergente</label></div>
+              </article>
 
-                        <article class="familiar">
-                          <input type="checkbox" id="familiar" formControlName="familiar"/>
-                          <div><label for="familiar">Familiar</label></div>
-                        </article>
-                        
-                        <article class="profissional">
-                          <input type="checkbox" id="profissional" formControlName="profissional"/>
-                          <div><label for="profissional">Profissional</label></div>
-                        </article>
-                        
-                        <article class="empregador">
-                          <input type="checkbox" id="empregador" formControlName="empregador"/>
-                          <div><label for="empregador">Empregador</label></div>
-                        </article>
+              <article class="familiar">
+                <input type="checkbox" id="familiar" formControlName="familiar" />
+                <div><label for="familiar">Familiar</label></div>
+              </article>
 
-                    </section>
-                </div>
-                
-                <div class="btn-opcoes">
-                    <button mat-raised-button type="button" (click)="cancelar()">Cancelar</button>
-                    <button mat-raised-button type="submit">Criar Usuario</button>
-                </div>
-            </form>
-        </div>
+              <article class="profissional">
+                <input type="checkbox" id="profissional" formControlName="profissional" />
+                <div><label for="profissional">Profissional</label></div>
+              </article>
+
+              <article class="empregador">
+                <input type="checkbox" id="empregador" formControlName="empregador" />
+                <div><label for="empregador">Empregador</label></div>
+              </article>
+
+            </section>
+          </div>
+
+          <div class="btn-opcoes">
+            <button mat-raised-button type="button" (click)="cancelar()">Cancelar</button>
+            <button mat-raised-button type="submit">Criar Usuario</button>
+          </div>
+        </form>
+      </div>
     </div>
-</div>
+  </div>

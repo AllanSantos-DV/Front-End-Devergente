@@ -12,8 +12,8 @@ import { DialogComponent } from 'src/app/dialogComponent/DialogComponent';
   styleUrls: ['./cadastro.component.css'],
 })
 export class CadastroComponent {
-
   public static codigos: Number[] = [];
+  public static cnpjNumber: string ='';
   dataNascimento: Date | null = null;
   @Input() formularioCadastro!: FormGroup;
   @Output() ngSubmit = new EventEmitter<void>();
@@ -31,7 +31,8 @@ export class CadastroComponent {
       confirmarSenha: new FormControl('', Validators.required),
       data_nascimento: new FormControl('', Validators.required),
       tipo_perfil: new FormControl(0),
-      codigo: new FormControl(0)
+      codigo: new FormControl(0),
+      cnpj: new FormControl('')
     }, { validators: this.checkPasswords });
   }
 
@@ -49,7 +50,7 @@ export class CadastroComponent {
     let dataNascimento = moment(this.formularioCadastro.value.data_nascimento, "DD-MM-YYYY");
     let dataFormatada = new Date(dataNascimento.year(), dataNascimento.month(), dataNascimento.date());
     let usuario = { ...this.formularioCadastro.value, data_nascimento: dataFormatada };
-    if (this.formularioCadastro.valid && usuario.codigo !== 0 && usuario.tipo_perfil !== 0) {
+    if ((this.formularioCadastro.valid && usuario.codigo !== 0 && usuario.tipo_perfil !== 0)|| usuario.cnpj !== '') {
       console.log(usuario);
       this.service.criarUsuario(this.formularioCadastro.value).subscribe({
         next: (res: any) => {
@@ -74,6 +75,7 @@ export class CadastroComponent {
 
   cancelar() {
     CadastroComponent.codigos = [0, 0];
+    CadastroComponent.cnpjNumber = '';
     this.router.navigate(['bem-vindo'])
   }
 

@@ -10,19 +10,16 @@ import { UsuarioService } from 'src/app/services/usuario.service';
   styleUrls: ['./tipo-usuario.component.css']
 })
 export class TipoUsuarioComponent {
-
   public formularioUsuario!: FormGroup;
   selectedControl: FormControl | null = null;
-
-  constructor(private formBuilder: FormBuilder, 
-    private service: UsuarioService, 
-    private http: HttpClient, 
+  constructor(private formBuilder: FormBuilder,
+    private service: UsuarioService,
+    private http: HttpClient,
     private router: Router) {
-
   }
 
   ngOnInit() {
-    this.formularioUsuario = this.formBuilder.group ({
+    this.formularioUsuario = this.formBuilder.group({
       neurodivergente: new FormControl(false),
       familiar: new FormControl(false),
       profissional: new FormControl(false),
@@ -42,14 +39,14 @@ export class TipoUsuarioComponent {
 
   tipoUsuario() {
     const tipos = ['neurodivergente', 'familiar', 'profissional', 'empregador'];
-  
+
     tipos.forEach(tipo => {
       if (this.formularioUsuario.get(tipo)?.value) {
         this.router.navigate([`criar-usuario/${tipo}`]);
       }
     });
   }
-  
+
   cancelar() {
     this.router.navigate(['bem-vindo'])
   }

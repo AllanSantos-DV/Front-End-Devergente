@@ -1,21 +1,22 @@
 @font-face {
    font-family: 'OpenDyslexic';
-   src:  url('./../../../../../assets/fonts/OpenDyslexic-Regular.otf'),
-         url('./../../../../../assets/fonts/OpenDyslexic-Bold.otf'),
-         url('./../../../../../assets/fonts/OpenDyslexic-BoldItalic.otf'),
-         url('./../../../../../assets/fonts/OpenDyslexic-Italic.otf');
+   src: url('./../../../../../assets/fonts/OpenDyslexic-Regular.otf'),
+      url('./../../../../../assets/fonts/OpenDyslexic-Bold.otf'),
+      url('./../../../../../assets/fonts/OpenDyslexic-BoldItalic.otf'),
+      url('./../../../../../assets/fonts/OpenDyslexic-Italic.otf');
 }
 
 :root {
-    --azul: #55ACEE;
-    --verde: #12BD12;
-    --laranja: #FF7800;
-    --roxo: #800080;
-    --vermelho: #F7000F;
-    --amarelo: #FFCD32;
+   --azul: #55ACEE;
+   --verde: #12BD12;
+   --laranja: #FF7800;
+   --roxo: #800080;
+   --vermelho: #F7000F;
+   --amarelo: #FFCD32;
 }
 
-.bg-fundo, .bg {
+.bg-fundo,
+.bg {
    width: 100%;
    height: 100%;
 }
@@ -23,7 +24,7 @@
 .bg {
    background: linear-gradient(#800080, #FF7800, transparent);
    background-size: cover;
-   background-position: center; 
+   background-position: center;
    display: flex;
    justify-content: center;
    grid-template-columns: 1fr 1fr;
@@ -45,7 +46,8 @@
    box-shadow: 15px 15px white;
 }
 
-.cadastro-conteudo, .btn-opcoes {
+.cadastro-conteudo,
+.btn-opcoes {
    width: 80%;
    display: flex;
    justify-content: center;
@@ -111,7 +113,7 @@ article input {
    cursor: pointer;
 }
 
-input[type=checkbox]:checked ~ div {
+input[type=checkbox]:checked~div {
    background-color: #800080;
    color: white;
 }
