@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UsuarioService } from 'src/app/services/usuario.service';
+import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { DialogComponent } from 'src/app/dialogComponent/DialogComponent';
 
 @Component({
   selector: 'app-tipo-usuario',
@@ -13,9 +13,8 @@ export class TipoUsuarioComponent {
   public formularioUsuario!: FormGroup;
   selectedControl: FormControl | null = null;
   constructor(private formBuilder: FormBuilder,
-    private service: UsuarioService,
-    private http: HttpClient,
-    private router: Router) {
+    private router: Router,
+    private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -39,12 +38,9 @@ export class TipoUsuarioComponent {
 
   tipoUsuario() {
     const tipos = ['neurodivergente', 'familiar', 'profissional', 'empregador'];
-
-    tipos.forEach(tipo => {
-      if (this.formularioUsuario.get(tipo)?.value) {
-        this.router.navigate([`criar-usuario/${tipo}`]);
-      }
-    });
+    const tipoUsuario = tipos.find(tipo => this.formularioUsuario.value[tipo]);
+    if (tipoUsuario) this.router.navigate(['criar-usuario/', tipoUsuario]);
+    else this.dialog.open(DialogComponent, { data: { message: "Selecione um tipo de usuário!" } });
   }
 
   cancelar() {
