@@ -1,45 +1,36 @@
-import { Component, HostListener } from '@angular/core';
-import { PostagensService } from 'src/app/services/postagens.service';
+import { Component, OnInit } from '@angular/core';
 import { Postagem } from 'src/app/interfaces/postagem';
+import { PostagensService } from 'src/app/services/postagens.service';
+import { CriarPostagemComponent } from '../../criar-postagem/criar-postagem.component';
 
 @Component({
   selector: 'app-feed-postagens',
   templateUrl: './feed-postagens.component.html',
   styleUrls: ['./feed-postagens.component.css']
 })
-export class FeedPostagensComponent {
+export class FeedPostagensComponent implements OnInit {
 
   listaPostagens: Postagem[] = [];
-
 
   constructor(private postagemService: PostagensService) { }
 
   ngOnInit(): void {
     this.carregarMaisPostagens();
+    this.postagemService.novaPostagemCriada.subscribe((novaPostagem) => {
+      this.listaPostagens.unshift(novaPostagem);
+      console.log(this.listaPostagens);
+    });
   }
-
-  @HostListener('window:scroll', ['$event'])
-  onScroll(event: any): void {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-      this.carregarMaisPostagens();
-    }
-  }
-
-  todasPostagensCarregadas = false;
 
   carregarMaisPostagens(): void {
-    if (!this.todasPostagensCarregadas) {
-      this.postagemService.listarPostagens(this.listaPostagens.length, 10).subscribe((listaPostagens) => {
-        if (listaPostagens.length < 10) {
-          this.todasPostagensCarregadas = true;
+    this.postagemService.listarPostagens(this.listaPostagens.length, 10).subscribe((listaPostagens) => {
+      console.log(listaPostagens);
+      listaPostagens.forEach(postagem => {
+        console.log(postagem);
+        if (!this.listaPostagens.find(p => p.id === postagem.id)) {
+          this.listaPostagens.push(postagem);
         }
-        listaPostagens.forEach(postagem => {
-          if (!this.listaPostagens.find(p => p.id === postagem.id)) {
-            this.listaPostagens.push(postagem);
-          }
-        });
       });
-    }
+    });
   }
-  
 }

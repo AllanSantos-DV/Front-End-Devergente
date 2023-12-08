@@ -16,9 +16,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VerificacaoEmailComponent } from './paginas/verificacao-email/verificacao-email/verificacao-email.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { UsuarioComponent } from './paginas/cadastro/usuario/usuario.component'; 
+import { UsuarioComponent } from './paginas/cadastro/usuario/usuario.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatNativeDateModule } from '@angular/material/core';
+import { DateAdapter, MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { ImageCropperModule } from 'ngx-image-cropper';
@@ -53,6 +53,7 @@ import { ComentariosComponent } from './paginas/comentarios/comentarios/comentar
 import { ComentarioComponent } from './paginas/comentarios/comentario/comentario.component';
 import { ComentariosInputComponent } from './paginas/comentarios/comentarios-input/comentarios-input.component';
 import { ComentariosInputEdicaoComponent } from './paginas/comentarios/comentarios-input-edicao/comentarios-input-edicao.component';
+import { CustomDateAdapter } from './enviroments/data-customizada';
 
 @NgModule({
   declarations: [
@@ -114,18 +115,21 @@ import { ComentariosInputEdicaoComponent } from './paginas/comentarios/comentari
     ImageCropperModule,
   ],
   providers: [
-    {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
-    { provide: MAT_DATE_FORMATS, useValue: {
-      parse: {
-        dateInput: {month: 'short', year: 'numeric', day: 'numeric'}
-      },
-      display: {
-        dateInput: 'input',
-        monthYearLabel: {year: 'numeric', month: 'short'},
-        dateA11yLabel: {year: 'numeric', month: 'long', day: 'numeric'},
-        monthYearA11yLabel: {year: 'numeric', month: 'long'},
+    { provide: DateAdapter, useClass: CustomDateAdapter },
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
+    {
+      provide: MAT_DATE_FORMATS, useValue: {
+        parse: {
+          dateInput: { month: 'short', year: 'numeric', day: 'numeric' }
+        },
+        display: {
+          dateInput: 'input',
+          monthYearLabel: { year: 'numeric', month: 'short' },
+          dateA11yLabel: { year: 'numeric', month: 'long', day: 'numeric' },
+          monthYearA11yLabel: { year: 'numeric', month: 'long' },
+        }
       }
-    }}
+    }
   ],
   bootstrap: [AppComponent],
 })

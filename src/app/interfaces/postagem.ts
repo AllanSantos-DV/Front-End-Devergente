@@ -5,5 +5,6 @@ export interface Postagem {
     usuario?: UsuarioDTO,
     conteudo?: string,
     imagemUrl?: string,
+    image?: File
     data?: Date;
 }

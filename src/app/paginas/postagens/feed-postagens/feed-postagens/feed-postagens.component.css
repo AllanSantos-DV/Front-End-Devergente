@@ -48,3 +48,23 @@
 .postagens-feed img {
     max-width: 50px;
 }
+
+.carregar-mais {
+    position: sticky;
+    bottom: 0;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: var(--azul);
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .carregar-mais:hover {
+    background-color: var(--verde);
+  }
+  

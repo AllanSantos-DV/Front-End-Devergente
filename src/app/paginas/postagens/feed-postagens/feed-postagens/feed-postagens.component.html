@@ -6,6 +6,9 @@
                 <div *ngFor="let postagem of listaPostagens">
                     <app-postagem [postagem]="postagem"></app-postagem>
                 </div>
+                <div>
+                    <button type="button" class="carregar-mais" (click) = "carregarMaisPostagens()" >Carregar mais postagens</button>
+                </div>
             </div>
         </div>
     </section>

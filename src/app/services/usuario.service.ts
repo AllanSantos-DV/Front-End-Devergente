@@ -8,17 +8,11 @@ import { environment } from '../enviroments/enviroments';
   providedIn: 'root'
 })
 export class UsuarioService {
-
-  public tipo_perfil: number = 0;
-  public codigo: number = 0;
-
     private readonly API = `${environment.API_URL}/perfil`
 
     constructor(private http: HttpClient) { }
 
     criarUsuario(usuario: Usuario) {
-      usuario.tipo_perfil = this.tipo_perfil;
-      usuario.codigo = this.codigo;
       console.log(usuario);
       return this.http.post<Usuario>(this.API, usuario)
       .pipe(map((res:any) => {
