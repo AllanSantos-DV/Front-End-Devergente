@@ -13,27 +13,33 @@ import { DialogComponent } from 'src/app/dialogComponent/DialogComponent';
 })
 export class CadastroComponent {
   public static codigos: Number[] = [];
-  public static cnpjNumber: string ='';
+  public static cnpjNumber: string = '';
   dataNascimento: Date | null = null;
   @Input() formularioCadastro!: FormGroup;
-  @Output() ngSubmit = new EventEmitter<void>();
-  @Output() codigoSelecionado = new EventEmitter<string>();
 
   constructor(protected formBuilder: FormBuilder, protected service: UsuarioService,
     private router: Router, private dialog: MatDialog) { }
 
   ngOnInit() {
+    CadastroComponent.codigos = [0, 0];
+    CadastroComponent.cnpjNumber = '';
     this.formularioCadastro = new FormGroup({
       nome: new FormControl('', Validators.required),
       username: new FormControl('', [Validators.required, Validators.pattern(/^[^\s]*$/)]),
       email: new FormControl('', [Validators.required, Validators.email]),
       senha: new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/)]),
       confirmarSenha: new FormControl('', Validators.required),
-      data_nascimento: new FormControl('', Validators.required),
-      tipo_perfil: new FormControl(0),
-      codigo: new FormControl(0),
-      cnpj: new FormControl('')
+      data_nascimento: new FormControl('', Validators.required)
     }, { validators: this.checkPasswords });
+  }
+  
+  validateForm() {
+    this.formularioCadastro.addControl('tipo_perfil',
+    this.formBuilder.control(CadastroComponent.codigos[1], [Validators.required, Validators.min(1)]));
+    this.formularioCadastro.addControl('codigo',
+    this.formBuilder.control(CadastroComponent.codigos[0], [Validators.required, Validators.min(1)]));
+    this.formularioCadastro.addControl('cnpj',
+    this.formBuilder.control(CadastroComponent.cnpjNumber));
   }
 
   checkPasswords(control: AbstractControl): ValidationErrors | null {
@@ -45,12 +51,15 @@ export class CadastroComponent {
   }
 
   cadastroUsuario() {
-    this.formularioCadastro.value.codigo = CadastroComponent.codigos[0];
-    this.formularioCadastro.value.tipo_perfil = CadastroComponent.codigos[1];
+    this.validateForm();
     let dataNascimento = moment(this.formularioCadastro.value.data_nascimento, "DD-MM-YYYY");
     let dataFormatada = new Date(dataNascimento.year(), dataNascimento.month(), dataNascimento.date());
     let usuario = { ...this.formularioCadastro.value, data_nascimento: dataFormatada };
-    if ((this.formularioCadastro.valid && usuario.codigo !== 0 && usuario.tipo_perfil !== 0)|| usuario.cnpj !== '') {
+    console.log(CadastroComponent.codigos)
+    console.log(usuario);
+    console.log(this.formularioCadastro.valid);
+    console.log(this.formularioCadastro)
+    if (this.formularioCadastro.valid && (usuario.tipo_perfil !== 4 || usuario.cnpj !== '')) {
       console.log(usuario);
       this.service.criarUsuario(this.formularioCadastro.value).subscribe({
         next: (res: any) => {
@@ -71,11 +80,12 @@ export class CadastroComponent {
         data: { message: "Por favor, preencha o formulário corretamente antes de enviar." }
       });
     }
+    this.formularioCadastro.removeControl('tipo_perfil');
+    this.formularioCadastro.removeControl('codigo');
+    this.formularioCadastro.removeControl('cnpj');
   }
 
   cancelar() {
-    CadastroComponent.codigos = [0, 0];
-    CadastroComponent.cnpjNumber = '';
     this.router.navigate(['bem-vindo'])
   }
 
