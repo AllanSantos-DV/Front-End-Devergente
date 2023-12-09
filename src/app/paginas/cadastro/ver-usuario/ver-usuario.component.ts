@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { UsuarioService } from 'src/app/services/usuario.service';
-import { ActivatedRoute, Params, Route, Router } from '@angular/router';
+import { FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Usuario } from 'src/app/interfaces/usuario';
-import { Observable, map, switchMap } from 'rxjs';
-import { S3UploadService } from './../../../services/s3-upload.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { PostagensService } from 'src/app/services/postagens.service';
 import { Postagem } from 'src/app/interfaces/postagem';
+import { UsuarioService } from 'src/app/services/usuario.service';
+import { PostagensService } from 'src/app/services/postagens.service';
+import { S3UploadService } from './../../../services/s3-upload.service';
 
 @Component({
   selector: 'app-ver-usuario',
@@ -17,20 +16,9 @@ export class VerUsuarioComponent {
 
   public formularioFotosPerfil!: FormGroup;
 
-  usuario: Usuario = {
-    id: 0,
-    nome: '',
-    username: '',
-    email: '',
-    senha: '',
-    data_nascimento: null,
-    img_perfil: '',
-    img_capa: '',
-    bio: ''
-  }
+  usuario!: Usuario;
 
   postagens: Postagem[] = [];
-
 
   constructor(
     private usuarioService: UsuarioService,
@@ -44,7 +32,7 @@ export class VerUsuarioComponent {
     const id = this.route.snapshot.paramMap.get('id')
     this.usuarioService.buscarPorId(parseInt(id!)).subscribe((usuario) => {
       this.usuario = usuario;
-  
+
       if (this.usuario.id !== undefined) {
         this.postagemService.buscarPorUsuarioId(this.usuario.id).subscribe((postagens) => {
           this.postagens = postagens;

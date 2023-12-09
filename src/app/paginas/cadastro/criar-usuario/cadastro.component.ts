@@ -32,7 +32,7 @@ export class CadastroComponent {
       data_nascimento: new FormControl('', Validators.required),
       tipo_perfil: new FormControl(0),
       codigo: new FormControl(0),
-      cnpj: new FormControl('', Validators.required)
+      cnpj: new FormControl('')
     }, { validators: this.checkPasswords });
   }
 
