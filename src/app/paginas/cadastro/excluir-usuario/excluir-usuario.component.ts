@@ -54,21 +54,6 @@ export class ExcluirUsuarioComponent {
     }
   }
 
-
-  /*
-  excluirConta(email: string, senha: string) {
-  this.usuarioService.verificarCredenciais(email, senha).subscribe((resultado) => {
-    if (resultado) {
-      this.usuarioService.excluirUsuario(this.usuario.id).subscribe(() => {
-        alert('Conta excluída com sucesso');
-        this.router.navigate(['bem-vindo']);
-      });
-    } else {
-      alert('E-mail ou senha incorretos');
-    }
-  });
-}
-  */
   cancelar() {
     this.router.navigate(['/perfil', this.usuario.id])
   }
