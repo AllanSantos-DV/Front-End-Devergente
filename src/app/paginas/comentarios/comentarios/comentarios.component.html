@@ -4,9 +4,9 @@
         <section>
             <mat-card>
                 <mat-card-header>
-                    <img src="{{ postagem?.usuario?.img_perfil }}" mat-card-avatar>
-                    <mat-card-title>{{ postagem?.usuario?.nome }}</mat-card-title>
-                    <mat-card-subtitle>&#64;{{ postagem?.usuario?.username }}</mat-card-subtitle>
+                    <img src="{{ postagem.usuario?.img_perfil }}" mat-card-avatar>
+                    <mat-card-title>{{ postagem.usuario?.nome }}</mat-card-title>
+                    <mat-card-subtitle>&#64;{{ postagem.usuario?.username }}</mat-card-subtitle>
                     <div class="acoes-usuario">
                         <mat-card-actions>
                             <button mat-icon-button type="button" (click)="editarPostagem(postagem)">
@@ -21,7 +21,7 @@
                 </mat-card-header>
                 <mat-card-content>
                     {{ postagem.conteudo }}
-                    <img mat-card-image src="{{ postagem?.imagemUrl }}">
+                    <img mat-card-image src="{{ postagem.imagemUrl }}">
                 </mat-card-content>
                 <mat-card-actions>
                     <mat-icon class="acoes" (click)="curtido = !curtido">
