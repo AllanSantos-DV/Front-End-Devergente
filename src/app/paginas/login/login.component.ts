@@ -33,7 +33,7 @@ export class LoginComponent {
   loginUsuario() {
     if (this.login.invalid) {
       this.dialog.open(DialogComponent, {
-        data: { message: 'Preecha todos os campos' },
+        data: { message: 'Preencha todos os campos' },
       });
       return;
     }

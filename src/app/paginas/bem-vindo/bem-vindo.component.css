@@ -1,72 +1,71 @@
 @font-face {
    font-family: 'OpenDyslexic';
-   src:  url('./../../../assets/fonts/OpenDyslexic-Regular.otf'),
-         url('./../../../assets/fonts/OpenDyslexic-Bold.otf'),
-         url('./../../../assets/fonts/OpenDyslexic-BoldItalic.otf'),
-         url('./../../../assets/fonts/OpenDyslexic-Italic.otf');
-      
-   /* Outros formatos de arquivo podem ser adicionados aqui */
- }
- 
+   src: url('./../../../assets/fonts/OpenDyslexic-Regular.otf'),
+      url('./../../../assets/fonts/OpenDyslexic-Bold.otf'),
+      url('./../../../assets/fonts/OpenDyslexic-BoldItalic.otf'),
+      url('./../../../assets/fonts/OpenDyslexic-Italic.otf');
+
+}
+
 
 :root {
-    --azul: #55ACEE;
-    --verde: #12BD12;
-    --laranja: #FF7800;
-    --roxo: #800080;
-    --vermelho: #F7000F;
-    --amarelo: #FFCD32;
-  }
+   --azul: #55ACEE;
+   --verde: #12BD12;
+   --laranja: #FF7800;
+   --roxo: #800080;
+   --vermelho: #F7000F;
+   --amarelo: #FFCD32;
+}
 
 .bem-vindo-fundo {
-    width: 100%;
-    height: 100%;
+   width: 100%;
+   height: 100%;
 }
 
 .bem-vindo {
-    width: 100%;
-    height: 100%;
-    background-image: url('./../../../assets/img/home_background.png');
-    background-size: cover;
-    background-position: center; 
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 100%;
-    min-height: 800px;
+   width: 100%;
+   height: 100%;
+   background-image: url('./../../../assets/img/home_background.png');
+   background-size: cover;
+   background-position: center;
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   grid-template-rows: 100%;
+   min-height: 800px;
 }
 
- .home-direita {
-    display: flex;
-    color: white;
-    justify-content: center;
-    align-items: center;
- }
+.home-direita {
+   display: flex;
+   color: white;
+   justify-content: center;
+   align-items: center;
+}
 
- .home-direita-conteudo {
-    text-align: right;
-    padding: 1em 1em 1em 1em;
- }
+.home-direita-conteudo {
+   text-align: right;
+   padding: 1em 1em 1em 1em;
+}
 
- .home-direita-conteudo h1 {
-    font-size: 5em;
- }
+.home-direita-conteudo h1 {
+   font-size: 5em;
+}
 
- .home-direita-conteudo p {
-    font-family: 'OpenDyslexic';
-    font-size: 3em;
- }
+.home-direita-conteudo p {
+   font-family: 'OpenDyslexic';
+   font-size: 3em;
+}
 
- .home-direita-conteudo button {
-    font-family: 'OpenDyslexic';
-    background-color: var(--laranja);
-    color: white;
-    font-size: 2em;
-    border-radius: 15px;
-    padding: 1em;
-    margin: .3em;
- }
+.home-direita-conteudo button {
+   font-family: 'OpenDyslexic';
+   background-color: var(--laranja);
+   color: white;
+   font-size: 2em;
+   border-radius: 15px;
+   padding: 1em;
+   margin: .3em;
+}
 
- .home-direita-conteudo button:active {
+.home-direita-conteudo button:active {
    background-color: white;
    color: var(--laranja);
 }

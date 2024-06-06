@@ -8,11 +8,19 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class DialogComponent {
 
+
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
-  onNoClick(): void {
+    onNoClick(): void {
+      if (this.data.onOk) {
+        this.data.onOk();
+      }
+      this.dialogRef.close();
+    }
+
+  onYesClick() {
     this.dialogRef.close();
   }
 
@@ -20,4 +28,5 @@ export class DialogComponent {
 
 export interface DialogData {
   message: string;
+  onOk?: () => void;
 }

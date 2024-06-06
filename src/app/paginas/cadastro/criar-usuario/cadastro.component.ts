@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators, AbstractControl, FormControl, Valid
 import * as moment from 'moment';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { DialogComponent } from 'src/app/dialogComponent/DialogComponent';
+import { CustomDateAdapter } from 'src/app/enviroments/data-customizada';
 
 @Component({
   selector: 'app-cadastro',
@@ -21,6 +22,10 @@ export class CadastroComponent {
     private router: Router, private dialog: MatDialog) { }
 
   ngOnInit() {
+    this.inicializarFormulario();
+  }
+
+  inicializarFormulario() {
     CadastroComponent.codigos = [0, 0];
     CadastroComponent.cnpjNumber = '';
     this.formularioCadastro = new FormGroup({
@@ -32,8 +37,12 @@ export class CadastroComponent {
       data_nascimento: new FormControl('', Validators.required)
     }, { validators: this.checkPasswords });
   }
-  
+
   validateForm() {
+    this.addControlsToForm();
+  }
+
+  addControlsToForm() {
     this.formularioCadastro.addControl('tipo_perfil',
     this.formBuilder.control(CadastroComponent.codigos[1], [Validators.required, Validators.min(1)]));
     this.formularioCadastro.addControl('codigo',
@@ -52,34 +61,50 @@ export class CadastroComponent {
 
   cadastroUsuario() {
     this.validateForm();
+    let usuario = this.prepararUsuario();
+    if (this.formularioCadastro.valid && (usuario.tipo_perfil !== 4 || usuario.cnpj !== '')) {
+      this.criarUsuario(usuario);
+    } else {
+      this.mostrarMensagemErro();
+    }
+    this.removerControlesDoFormulario();
+  }
+
+  prepararUsuario() {
     let dataNascimento = moment(this.formularioCadastro.value.data_nascimento, "DD-MM-YYYY");
     let dataFormatada = new Date(dataNascimento.year(), dataNascimento.month(), dataNascimento.date());
-    let usuario = { ...this.formularioCadastro.value, data_nascimento: dataFormatada };
-    console.log(CadastroComponent.codigos)
+    return { ...this.formularioCadastro.value, data_nascimento: dataFormatada };
+  }
+
+  criarUsuario(usuario: any) {
     console.log(usuario);
-    console.log(this.formularioCadastro.valid);
-    console.log(this.formularioCadastro)
-    if (this.formularioCadastro.valid && (usuario.tipo_perfil !== 4 || usuario.cnpj !== '')) {
-      console.log(usuario);
-      this.service.criarUsuario(this.formularioCadastro.value).subscribe({
-        next: (res: any) => {
-          this.dialog.open(DialogComponent, {
-            data: { message: "Cadastro realizado com sucesso!" }
-          });
-          this.formularioCadastro.reset();
-          this.router.navigate(['login']);
-        },
-        error: (err: Error) => {
-          this.dialog.open(DialogComponent, {
-            data: { message: err.message }
-          });
-        }
-      });
-    } else {
-      this.dialog.open(DialogComponent, {
-        data: { message: "Por favor, preencha o formulário corretamente antes de enviar." }
-      });
-    }
+    this.service.criarUsuario(this.formularioCadastro.value).subscribe({
+      next: (res: any) => {
+        this.mostrarMensagemSucesso();
+        this.formularioCadastro.reset();
+        this.router.navigate(['login']);
+      },
+      error: (err: Error) => {
+        this.dialog.open(DialogComponent, {
+          data: { message: err.message }
+        });
+      }
+    });
+  }
+
+  mostrarMensagemSucesso() {
+    this.dialog.open(DialogComponent, {
+      data: { message: "Cadastro realizado com sucesso!" }
+    });
+  }
+
+  mostrarMensagemErro() {
+    this.dialog.open(DialogComponent, {
+      data: { message: "Por favor, preencha o formulário corretamente antes de enviar." }
+    });
+  }
+
+  removerControlesDoFormulario() {
     this.formularioCadastro.removeControl('tipo_perfil');
     this.formularioCadastro.removeControl('codigo');
     this.formularioCadastro.removeControl('cnpj');

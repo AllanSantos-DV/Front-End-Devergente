@@ -21,13 +21,13 @@ export class NavCabecalhoComponent {
 
   logout() {
     this.dialog.open(DialogComponent, {
-      data: { message: 'Tem certeza de que deseja sair?' }
-    }).afterClosed().subscribe(result => {
-      if (result) {
-        localStorage.removeItem('token');
-        this.router.navigate(['/login']).then(r => console.log(r));
+      data: {
+        message: 'Tem certeza de que deseja sair?',
+        onOk: () => {
+          localStorage.removeItem('token');
+          this.router.navigate(['/login']);
+        }
       }
     });
   }
-
 }
